@@ -9,4 +9,4 @@ Disallow: /vendors/
 Disallow: /fancybox/
 
 Sitemap: https://bohe-mian.com/sitemap.xml
-Sitemap: https://bohe-mian.com/baidusitemap.xml
+Sitemap: https://bohe-mian.com/baidusitemap.xmllllll
