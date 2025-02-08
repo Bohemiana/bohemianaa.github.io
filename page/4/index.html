@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Bohemian - bohemian's blog</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Bohemian',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Bohemian</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/08/29/CTFS/2022Space-Heroes-CTF/" title="2022Space Heroes CTF"><img class="post-bg" src="/images/my2021/xingkong.jpeg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="2022Space Heroes CTF"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/08/29/CTFS/2022Space-Heroes-CTF/" title="2022Space Heroes CTF">2022Space Heroes CTF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-29T12:45:46.000Z" title="发表于 2023-08-29 20:45:46">2023-08-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ctf/">ctf</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/web/">web</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/misc/">misc</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%B3%B7%E5%89%91%E6%9D%AF/">泷剑杯</a></span></div><div class="content">webR2D2提示robot机器人，直接访问robots.txt即可  Space Traveler前端验证，直接右键源代码， 1var...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/06/14/ctfweb%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="ctfweb刷题记录"><img class="post-bg" src="/images/my2021/xingkong.jpeg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="ctfweb刷题记录"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/14/ctfweb%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="ctfweb刷题记录">ctfweb刷题记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T08:54:19.000Z" title="发表于 2023-06-14 16:54:19">2023-06-14</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/misc/">misc</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">流量分析</a></span></div><div class="content">[鹤城杯 2021]流量分析开局拿到一个流量包，是流量分析，经典老题， 一个一个数显然太慢了，抄的脚本， 123456789101112131415161718192021222324252627282930313233# strings timu.pcapng| grep flag &gt; a.txt#在kali中，将带有flag的字符提出来import ref = open(&quot;D:\\vscodework\\ctf\\tjctf\\a.txt&quot;,&quot;rb&quot;)#读取a.txtst = f.read().decode(&quot;utf-8&quot;,&quot;ignore&quot;)##GET /ctf/Less-5/?id=1&#x27;%20and%20ascii(substr((select%20flag%20from%20t),1,1))=33--+ HTTP/1.1lis = re.findall(&quot;,([0-9]*),1\)\)=([0-9]*)&quot;,st)#获取 位数和字符数aa =...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/06/14/ctfmisc%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="ctfmisc刷题记录"><img class="post-bg" src="/images/others/xingkong.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="ctfmisc刷题记录"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/14/ctfmisc%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" title="ctfmisc刷题记录">ctfmisc刷题记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-14T08:49:22.000Z" title="发表于 2023-06-14 16:49:22">2023-06-14</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/web/">web</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/misc/">misc</a></span></div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/05/%E7%AC%AC%E5%9B%9B%E5%B1%8A%E9%95%BF%E5%9F%8E%E6%9D%AF%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E9%93%81%E4%BA%BA%E4%B8%89%E9%A1%B9%E8%B5%9B%E6%80%BB%E5%86%B3%E8%B5%9B-%E6%BA%AF%E6%BA%90%E5%8F%96%E8%AF%81wp/" title="第四届&quot;长城杯&quot;信息安全铁人三项赛总决赛wp-溯源取证wp"><img class="post-bg" src="/images/tiesan/image-20230505205944763.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="第四届&quot;长城杯&quot;信息安全铁人三项赛总决赛wp-溯源取证wp"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/05/%E7%AC%AC%E5%9B%9B%E5%B1%8A%E9%95%BF%E5%9F%8E%E6%9D%AF%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E9%93%81%E4%BA%BA%E4%B8%89%E9%A1%B9%E8%B5%9B%E6%80%BB%E5%86%B3%E8%B5%9B-%E6%BA%AF%E6%BA%90%E5%8F%96%E8%AF%81wp/" title="第四届&quot;长城杯&quot;信息安全铁人三项赛总决赛wp-溯源取证wp">第四届&quot;长城杯&quot;信息安全铁人三项赛总决赛wp-溯源取证wp</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-05T05:49:11.000Z" title="发表于 2023-05-05 13:49:11">2023-05-05</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">流量分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E9%93%81%E4%BA%BA%E4%B8%89%E9%A1%B9%E8%B5%9B/">信息安全铁人三项赛</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%95%BF%E5%9F%8E%E6%9D%AF/">长城杯</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/weevely%E5%88%86%E6%9E%90/">weevely分析</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%BA%AF%E6%BA%90%E5%8F%96%E8%AF%81/">溯源取证</a></span></div><div class="content">...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/04/07/ctfshow-ssti%E5%AD%A6%E4%B9%A0/" title="ctfshow-ssti学习"><img class="post-bg" src="/images/my2021/xingkong.jpeg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="ctfshow-ssti学习"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/07/ctfshow-ssti%E5%AD%A6%E4%B9%A0/" title="ctfshow-ssti学习">ctfshow-ssti学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-07T09:13:00.000Z" title="发表于 2023-04-07 17:13:00">2023-04-07</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ctfshow/">ctfshow</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ssti/">ssti</a></span></div><div class="content">SSTI是什么SSTI，服务端模板注入，其实也就是模板引擎+注入，那么我们首先需要了解一下模板引擎  模板引擎是为了使用户界面与业务数据分离而产生，它可以生成特定格式的文档，利用模板引擎来生成前端的 HTML 代码，模板引擎会提供一套生成 HTML 代码的程序，然后只需要获取用户的数据，然后放到渲染函数里，然后生成模板 + 用户数据的前端 HTML 页面，然后反馈给浏览器，呈现在用户面前。  模板只是一种提供给程序来解析的一种语法，换句话说，模板是用于从数据（变量）到实际的视觉表现（HTML代码）这项工作的一种实现手段，而这种手段不论在前端还是后端都有应用。通俗点理解：拿到数据，塞到模板里，然后让渲染引擎将赛进去的东西生成 html 的文本，返回给浏览器，这样做的好处展示数据快，大大提升效率。 常见的模板引擎 123PHP: Smarty, Twig, BladeJAVA: JSP, FreeMarker, VelocityPython: Jinja2, django,...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/04/06/CTFshow-%E7%AC%AC%E4%B8%89%E5%B1%8A%E6%84%9A%E4%BA%BA%E6%9D%AFweb-wp/" title="CTFshow-第三届愚人杯web-wp"><img class="post-bg" src="/images/others/xingkong.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="CTFshow-第三届愚人杯web-wp"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/06/CTFshow-%E7%AC%AC%E4%B8%89%E5%B1%8A%E6%84%9A%E4%BA%BA%E6%9D%AFweb-wp/" title="CTFshow-第三届愚人杯web-wp">CTFshow-第三届愚人杯web-wp</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-06T06:14:12.000Z" title="发表于 2023-04-06 14:14:12">2023-04-06</time></span></div><div class="content">webeasy_signinhttps://ctf.show/challenges#easy_signin-3967 首先给到一个url http://f43e5622-a292-404c-98b5-85b54f0450d8.challenge.ctf.show/?img=ZmFjZS5wbmc= url后img为base64  ZmFjZS5wbmc=   =&gt; face.png 那可以直接读取源码，index.php,    index.php  =&gt; aW5kZXgucGhw 右键查看源代码即可看到   pd9开头为&lt;?php 直接解密即可  easy_flaskhttps://ctf.show/challenges#easy_flask-3971 打开题目连接是一个登录框，可以进行用户注册 可以参考这篇文章 https://blog.csdn.net/since_2020/article/details/119543172 随便一个用户注册，123/123登录上去，可以看到learn可以点击，查看到源代码 有一个app.secret_key =...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/04/01/CTFS/2023%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B-%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%BA%A7%E4%B8%9A%E4%BA%BA%E6%89%8D%E8%83%BD%E5%8A%9B%E6%8C%91%E6%88%98%E8%B5%9B-%E9%A2%84%E8%B5%9Bwp/" title="2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp"><img class="post-bg" src="/images/others/image-20230406143344755.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/01/CTFS/2023%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B-%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%BA%A7%E4%B8%9A%E4%BA%BA%E6%89%8D%E8%83%BD%E5%8A%9B%E6%8C%91%E6%88%98%E8%B5%9B-%E9%A2%84%E8%B5%9Bwp/" title="2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp">2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-01T07:00:17.000Z" title="发表于 2023-04-01 15:00:17">2023-04-01</time></span></div><div class="content"> C2流量分析.1 EDR在一台机密计算机上检测到终止k4.exe进程的行为，取证人员取出来了该机器的镜像流量，请分析附件流量，回答对应问题。（注意：题目中的程序可能存在恶意操作，如果需要运行或调试，请在虚拟机中操作） https://pan.baidu.com/s/1ldNxI6mMfduIxjtAOSMcZQ 附件下载...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/03/29/GKCTF-2021-hackme/" title="GKCTF-2021-hackme"><img class="post-bg" src="/images/others/xingkong.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="GKCTF-2021-hackme"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/03/29/GKCTF-2021-hackme/" title="GKCTF-2021-hackme">GKCTF-2021-hackme</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-03-29T08:46:39.000Z" title="发表于 2023-03-29 16:46:39">2023-03-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/web/">web</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/nosql/">nosql</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/buuctf/">buuctf</a></span></div><div class="content">复现地址：https://buuoj.cn/challenges#[GKCTF%202021]hackme 直接访问靶机是一个登录界面  给了提示：unicode   ,   注意server和其配置文件 右键查看源代码，可以看到一个注释，，这里是三个单词而不是四个，do you nosql？ 什么是 NosqlNoSQL 即 Not Only SQL，意即 “不仅仅是SQL”。在现代的计算系统上每天网络上都会产生庞大的数据量。这些数据有很大一部分是由关系数据库管理系统（RDBMS）来处理。 通过应用实践证明，关系模型是非常适合于客户服务器编程，远远超出预期的利益，今天它是结构化数据存储在网络和商务应用的主导技术。 NoSQL 是一项全新的数据库革命性运动，早期就有人提出，发展至 2009 年趋势越发高涨。NoSQL的拥护者们提倡运用非关系型的数据存储，相对于铺天盖地的关系型数据库运用，这一概念无疑是一种全新的思维的注入。 什么是 MongoDBMongoDB 是当前最流行的 NoSQL 数据库产品之一，由 C++ 语言编写，是一个基于分布式文件存储的数据库。旨在为 WEB...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/03/27/CTFS/picoCTF-2023-%E9%83%A8%E5%88%86wp/" title="picoCTF-2023-部分wp"><img class="post-bg" src="/images/others/xingkong.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="picoCTF-2023-部分wp"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/03/27/CTFS/picoCTF-2023-%E9%83%A8%E5%88%86wp/" title="picoCTF-2023-部分wp">picoCTF-2023-部分wp</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-03-27T06:20:50.000Z" title="发表于 2023-03-27 14:20:50">2023-03-27</time></span></div><div class="content"> webfindme访问页面，是一个登录的页面，账号密码test/test! 抓包看到跳转到一个页面， (/images/2023picoctf/image-20230327162639364.png)  访问这个/next-page/id=cGljb0NURntwcm94aWVzX2Fs  抓包，中间又会跳转一个页面，直接跳出来一个页面，看到有一个id，好像是base64，直接拼接  flag:picoCTF{proxies_all_the_way_a0fe074f} chronoHow to automate tasks to run at intervals on linux servers? 机翻：如何自动执行任务以在 Linux 服务器上定期运行？ 给了账号密码端口，直接连上去 定时任务的命令  crontab  ，执行crontab -l 发现没有，crontab的文件目录在/etc/下  以cron开头，  在 challenge目录下也有flag  flag:{“flag”: “picoCTF{Sch3DUL7NG_T45K3_L1NUX_1d781160}”,...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/02/18/VNCTF2023/" title="VNCTF2023"><img class="post-bg" src="/images/others/xingkong.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="VNCTF2023"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/02/18/VNCTF2023/" title="VNCTF2023">VNCTF2023</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-02-18T03:45:21.000Z" title="发表于 2023-02-18 11:45:21">2023-02-18</time></span></div><div class="content">web象棋王子顾名思义，应该是下象棋的，我们可以下，太菜了，js直接翻http://236f7cc1-466c-4d47-abf8-21b4ffc92cf7.node4.buuoj.cn:81/js/play.js在play.js中  下面有jsfuck   直接复制所有，到浏览器console中，即可 </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><a class="page-number" href="/page/6/#content-inner">6</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-3(动态密钥)"/></a><div class="content"><a class="title" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)">哥斯拉二开从0到1-3(动态密钥)</a><time datetime="2024-12-24T05:38:47.000Z" title="发表于 2024-12-24 13:38:47">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)">哥斯拉二开从0到1-2(免杀)</a><time datetime="2024-11-18T01:55:05.000Z" title="发表于 2024-11-18 09:55:05">2024-11-18</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ctf/"><span class="card-category-list-name">ctf</span><span class="card-category-list-count">6</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/ctf/" style="font-size: 1.4em; color: rgb(124, 200, 50);">ctf</a><a href="/tags/web/" style="font-size: 1.45em; color: rgb(50, 50, 120);">web</a><a href="/tags/%E5%BC%BA%E7%BD%91%E6%9D%AF/" style="font-size: 1.15em; color: rgb(52, 136, 82);">强网杯</a><a href="/tags/misc/" style="font-size: 1.35em; color: rgb(112, 147, 160);">misc</a><a href="/tags/crypto/" style="font-size: 1.15em; color: rgb(50, 143, 158);">crypto</a><a href="/tags/nosql/" style="font-size: 1.15em; color: rgb(50, 50, 178);">nosql</a><a href="/tags/buuctf/" style="font-size: 1.15em; color: rgb(50, 179, 50);">buuctf</a><a href="/tags/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" style="font-size: 1.25em; color: rgb(81, 78, 128);">流量分析</a><a href="/tags/%E5%85%8D%E6%9D%80/" style="font-size: 1.2em; color: rgb(169, 72, 57);">免杀</a><a href="/tags/cs/" style="font-size: 1.15em; color: rgb(50, 66, 50);">cs</a><a href="/tags/sqlserver/" style="font-size: 1.15em; color: rgb(103, 137, 153);">sqlserver</a><a href="/tags/msf/" style="font-size: 1.15em; color: rgb(50, 151, 82);">msf</a><a href="/tags/hash%E7%A2%B0%E6%92%9E/" style="font-size: 1.15em; color: rgb(181, 149, 140);">hash碰撞</a><a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.15em; color: rgb(119, 55, 117);">反序列化</a><a href="/tags/%E6%B3%B7%E5%89%91%E6%9D%AF/" style="font-size: 1.15em; color: rgb(163, 159, 63);">泷剑杯</a><a href="/tags/hws2022/" style="font-size: 1.15em; color: rgb(50, 124, 97);">hws2022</a><a href="/tags/%E5%B8%82%E8%B5%9B/" style="font-size: 1.15em; color: rgb(125, 108, 117);">市赛</a><a href="/tags/%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4/" style="font-size: 1.15em; color: rgb(91, 133, 80);">第五空间</a><a href="/tags/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8Crce/" style="font-size: 1.15em; color: rgb(52, 118, 110);">phar反序列化，rce</a><a href="/tags/PWN/" style="font-size: 1.15em; color: rgb(155, 64, 84);">PWN</a><a href="/tags/Volatility/" style="font-size: 1.15em; color: rgb(169, 50, 50);">Volatility</a><a href="/tags/%E5%8F%96%E8%AF%81/" style="font-size: 1.15em; color: rgb(117, 97, 166);">取证</a><a href="/tags/%E4%BC%AA%E5%8D%8F%E8%AE%AE/" style="font-size: 1.15em; color: rgb(62, 64, 132);">伪协议</a><a href="/tags/RCE/" style="font-size: 1.15em; color: rgb(50, 56, 179);">RCE</a><a href="/tags/GO/" style="font-size: 1.15em; color: rgb(50, 183, 50);">GO</a><a href="/tags/%E6%97%A0%E5%8F%82%E6%95%B0rce/" style="font-size: 1.15em; color: rgb(50, 178, 115);">无参数rce</a><a href="/tags/%E5%90%88%E5%A4%A9%E7%BD%91%E5%AE%89/" style="font-size: 1.2em; color: rgb(50, 106, 50);">合天网安</a><a href="/tags/%E8%A7%86%E9%A2%91%E8%AE%B2%E8%A7%A3/" style="font-size: 1.2em; color: rgb(92, 50, 160);">视频讲解</a><a href="/tags/godzilla/" style="font-size: 1.3em; color: rgb(164, 50, 183);">godzilla</a><a href="/tags/%E4%BA%8C%E5%BC%80/" style="font-size: 1.3em; color: rgb(131, 165, 128);">二开</a><a href="/tags/jspx%E5%85%8D%E6%9D%80/" style="font-size: 1.15em; color: rgb(67, 50, 174);">jspx免杀</a><a href="/tags/ctfshow/" style="font-size: 1.15em; color: rgb(50, 50, 182);">ctfshow</a><a href="/tags/ssti/" style="font-size: 1.15em; color: rgb(131, 50, 69);">ssti</a><a href="/tags/%E9%9D%B6%E5%9C%BA/" style="font-size: 1.15em; color: rgb(165, 114, 50);">靶场</a><a href="/tags/vulntarget-c/" style="font-size: 1.15em; color: rgb(67, 73, 50);">vulntarget-c</a><a href="/tags/laravel/" style="font-size: 1.15em; color: rgb(50, 80, 126);">laravel</a><a href="/tags/OVAS-PHP%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E/" style="font-size: 1.15em; color: rgb(177, 148, 90);">OVAS-PHP相关漏洞</a><a href="/tags/%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/" style="font-size: 1.15em; color: rgb(177, 127, 77);">隧道代理</a><a href="/tags/%E6%8F%90%E6%9D%83/" style="font-size: 1.15em; color: rgb(50, 149, 80);">提权</a><a href="/tags/CVE-2021-3129/" style="font-size: 1.15em; color: rgb(125, 161, 50);">CVE-2021-3129</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/02/">
+          <span class="card-archive-list-date">二月 2025</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/01/">
+          <span class="card-archive-list-date">一月 2025</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">九月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/04/">
+          <span class="card-archive-list-date">四月 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/02/">
+          <span class="card-archive-list-date">二月 2024</span>
+          <span class="card-archive-list-count">5</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">一月 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">60</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">124.4k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-02-08T12:47:26.147Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["宁静致远","if you don't win  today,you won't win tomorrow. you have to win today...to win tomorrow."])
+  } else {
+    document.getElementById("subtitle").textContent = "宁静致远"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>

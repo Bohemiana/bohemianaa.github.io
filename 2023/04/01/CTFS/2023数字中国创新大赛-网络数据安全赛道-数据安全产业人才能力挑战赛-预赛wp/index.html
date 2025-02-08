@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2023/04/01/CTFS/2023%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B-%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%BA%A7%E4%B8%9A%E4%BA%BA%E6%89%8D%E8%83%BD%E5%8A%9B%E6%8C%91%E6%88%98%E8%B5%9B-%E9%A2%84%E8%B5%9Bwp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/others/image-20230406143344755.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-01T07:00:17.000Z" title="发表于 2023-04-01 15:00:17">2023-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-06T15:05:11.127Z" title="更新于 2023-04-06 23:05:11">2023-04-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1,196</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="/images/others/image-20230406143344755.png" alt="image-20230406143344755"></p>
+<p><strong>C2流量分析.1</strong></p>
+<p>EDR在一台机密计算机上检测到终止k4.exe进程的行为，取证人员取出来了该机器的镜像流量，请分析附件流量，回答对应问题。（注意：题目中的程序可能存在恶意操作，如果需要运行或调试，请在虚拟机中操作）</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ldNxI6mMfduIxjtAOSMcZQ">https://pan.baidu.com/s/1ldNxI6mMfduIxjtAOSMcZQ</a></p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ldNxI6mMfduIxjtAOSMcZQ">附件下载</a> 提取码（GAME）<a target="_blank" rel="noopener" href="https://share.weiyun.com/QbZIcyjq">备用下载</a></p>
+<p>请提交Payload的完整下载地址。（答案示例：<a target="_blank" rel="noopener" href="http://xxx.xxx.xxx/xxx%EF%BC%89">http://xxx.xxx.xxx/xxx）</a></p>
+<p><code>http://imgcache.cloudservicesdevc.tk/picturess/2023/RDSv38.dll</code></p>
+<p><strong>C2流量分析.2</strong></p>
+<p>请提交Payload的SHA256哈希值。（字母大写，请根据流量内容作答）</p>
+<p>右键将这个RDSv38.dll文件导出然后sha256即可</p>
+<p>AA2CBD3103CECAF189F93D787C602679E156CC6FD90E22646D637F01C64222CF</p>
+<p><img src="/images/others/image-20230401164658387.png" alt="image-20230401164658387"></p>
+<p>n6IcHjmQUNOd6TxOkV6WRigEPUZFkO2TIu8cS6MRyrE=</p>
+<p>Aj0S2EgsjOFd_JRsOjcBB_5-fZ1H-9tZVF67-qOWCbw=</p>
+<p>Aj0S2EgsjOFd_JRsOjcBB_5-fZ1H-9tZVF67-qOWCbw=</p>
+<p>Z-Ur0AYZQ9-nNO_O6j5B1slASR-YR2tsssycqHNc_so=</p>
+<p>eBp92fUD7Lk_6qXR2pIjFt3sBH-lW0ul830S-sO6QCQ=</p>
+<p>Erj5UoZfpxT47Bjpg8qg1XmMCKZyKBj1bJ0otszVZPk=</p>
+<p>qkwNBcGK7ZcOrlKKcflivlyiatdAsb2u_sH_-IB5R_Y=</p>
+<p>0smJ2LvvnQonNICFpjOF8CeuOcMIuYLNVbCDucWSVaw=</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">解密后信息： I&#x27;m a hacker.</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">解密后信息： This system has been hacked by me</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">解密后信息： Next, I want to obtain some data</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">解密后信息： 女,小美,<span class="number">500112202304217984</span>,<span class="number">12222222222</span>,<span class="number">111111111111</span>,<span class="number">22222</span>,<span class="number">333333</span></span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">解密后信息： e4 b8 <span class="number">80</span> e4 b8 aa <span class="number">74</span> <span class="number">78</span> <span class="number">74</span> <span class="number">0</span>a e5 <span class="number">95</span> <span class="number">86</span> e4 b8 <span class="number">9</span>a e8 ae a1 e5 <span class="number">88</span> <span class="number">92</span> ef bc <span class="number">88</span> e4 bb <span class="number">85</span> e4 be <span class="number">9</span>b e5 <span class="number">86</span> <span class="number">85</span> e9 <span class="number">83</span> a8 ef bc <span class="number">89</span> e6 ad a4 e5 a4 </span><br><span class="line"><span class="number">84</span> e7 <span class="number">9</span>c <span class="number">81</span> e7 <span class="number">95</span> a5 <span class="number">35</span> <span class="number">77</span> e5 ad <span class="number">97</span> <span class="number">0</span>a</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">解密后信息： bye??</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br><span class="line">解密后信息： no!I finally want to transmit a flag</span><br><span class="line">PS D:\vscodework&gt; python3 -u &quot;d:\vscodework\ctf\other\shujusai.py&quot;</span><br><span class="line">加密前信息： test message</span><br></pre></td></tr></table></figure>
+
+
+
+<p>fernet 解密，一直解就行解出来是一个图片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> cryptography.fernet <span class="keyword">import</span> Fernet</span><br><span class="line"></span><br><span class="line"><span class="comment"># key = Fernet.generate_key()  # 生成密钥</span></span><br><span class="line"><span class="comment"># print(key)</span></span><br><span class="line">key = <span class="string">&quot;0smJ2LvvnQonNICFpjOF8CeuOcMIuYLNVbCDucWSVaw=&quot;</span></span><br><span class="line">f = Fernet(key)  <span class="comment"># 使用密钥实例化</span></span><br><span class="line"></span><br><span class="line">message = <span class="string">&quot;test message&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;加密前信息：&#x27;</span>, message)</span><br><span class="line"></span><br><span class="line"><span class="comment"># token = f.encrypt(message.encode())</span></span><br><span class="line"><span class="comment"># print(&#x27;加密后信息：&#x27;, token.decode())</span></span><br><span class="line">token = <span class="string">b&#x27;gAAAAABkGeI2QDhD2PlVFV2USJsTO2RxaUESQowz02khRfYI05-AiIFlDuP4HtLShGmGAXgKZ-sS5CXKfWv32mXJFUy7fItWPg==&#x27;</span></span><br><span class="line"></span><br><span class="line">decrypt_message = f.decrypt(token).decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;解密后信息：&#x27;</span>, decrypt_message)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/others/image-20230401171310298.png" alt="image-20230401171310298"></p>
+<p>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</p>
+<p><img src="/images/others/image-20230401172512705.png" alt="image-20230401172512705"></p>
+<p>flag:flag{a20cb3c9-141c-41c4-8255-0cd3eb95b681}</p>
+<p>Beyond</p>
+<p>未解答分值 : 500分</p>
+<p>在某个国家级行动中，作为蓝队研判一哥的老张捕获到了一个神秘流量，直觉告诉他这不简单，于是他将这个流量保存了下来，你能协助他发现其中的秘密吗？</p>
+<p><strong>AreYouOK</strong></p>
+<p>在一次神秘行动中，特工老张的手机遭到了破坏，不过好在还有小米手环，组织向他的手环发送了行动指令，你能协助分析其中的秘密吗？flag格式为flag{Battery_Message}</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1nGvszy3VWD1SKUs3-zwtGw">附件下载</a> 提取码（GAME）<a target="_blank" rel="noopener" href="https://share.weiyun.com/CUe5Gph5">备用下载</a></p>
+<p>lose the key</p>
+<p>未解答分值 : 157分</p>
+<p>题目内容：lose my key，get my like。</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1lUE0VcUSLnb2zyK4WcxGEQ">附件下载</a> 提取码（GAME）<a target="_blank" rel="noopener" href="https://share.weiyun.com/ZvlmiWMe">备用下载</a></p>
+<h3 id="web"><a href="#web" class="headerlink" title="web"></a>web</h3><p>nooblog</p>
+<p>未解答分值 : 500分</p>
+<p>I am just a logic noob trying to talk logically.</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1gxLc9lbq7mpqjD3G8u-1uw">附件下载</a> 提取码（GAME）<a target="_blank" rel="noopener" href="https://share.weiyun.com/z7QclIYK">备用下载</a></p>
+<p><img src="/images/others/image-20230401174456161.png" alt="image-20230401174456161"></p>
+<p><img src="/images/others/image-20230401174257354.png" alt="image-20230401174257354"></p>
+<p><img src="/images/others/image-20230401174445075.png" alt="image-20230401174445075"></p>
+<p>1、【提前下载】挑战区一.rar：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1js3lac6myNUN1LZ0Fvplig">https://pan.baidu.com/s/1js3lac6myNUN1LZ0Fvplig</a> 提取码：GAME md5值：051dbbe806e36d921a579f3a1db16aba 挑战区二.zip：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/119wfiZlc3yw11qMKZWuylQ">https://pan.baidu.com/s/119wfiZlc3yw11qMKZWuylQ</a> 提取码：GAME md5值：c1fff7d2bb8fea7698157267dc16ca0d （解压密码将在比赛时对应题目描述里）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2023/04/01/CTFS/2023%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B-%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%BA%A7%E4%B8%9A%E4%BA%BA%E6%89%8D%E8%83%BD%E5%8A%9B%E6%8C%91%E6%88%98%E8%B5%9B-%E9%A2%84%E8%B5%9Bwp/">https://bohemian.top/2023/04/01/CTFS/2023数字中国创新大赛-网络数据安全赛道-数据安全产业人才能力挑战赛-预赛wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/others/image-20230406143344755.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/03/29/GKCTF-2021-hackme/" title="GKCTF-2021-hackme"><img class="cover" src="/images/others/xingkong.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">GKCTF-2021-hackme</div></div><div class="info-2"><div class="info-item-1">复现地址：https://buuoj.cn/challenges#[GKCTF%202021]hackme 直接访问靶机是一个登录界面  给了提示：unicode   ,   注意server和其配置文件 右键查看源代码，可以看到一个注释，，这里是三个单词而不是四个，do you nosql？ 什么是 NosqlNoSQL 即 Not Only SQL，意即 “不仅仅是SQL”。在现代的计算系统上每天网络上都会产生庞大的数据量。这些数据有很大一部分是由关系数据库管理系统（RDBMS）来处理。 通过应用实践证明，关系模型是非常适合于客户服务器编程，远远超出预期的利益，今天它是结构化数据存储在网络和商务应用的主导技术。 NoSQL 是一项全新的数据库革命性运动，早期就有人提出，发展至 2009 年趋势越发高涨。NoSQL的拥护者们提倡运用非关系型的数据存储，相对于铺天盖地的关系型数据库运用，这一概念无疑是一种全新的思维的注入。 什么是 MongoDBMongoDB 是当前最流行的 NoSQL 数据库产品之一，由 C++ 语言编写，是一个基于分布式文件存储的数据库。旨在为 WEB...</div></div></div></a><a class="pagination-related" href="/2023/04/06/CTFshow-%E7%AC%AC%E4%B8%89%E5%B1%8A%E6%84%9A%E4%BA%BA%E6%9D%AFweb-wp/" title="CTFshow-第三届愚人杯web-wp"><img class="cover" src="/images/others/xingkong.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">CTFshow-第三届愚人杯web-wp</div></div><div class="info-2"><div class="info-item-1">webeasy_signinhttps://ctf.show/challenges#easy_signin-3967 首先给到一个url http://f43e5622-a292-404c-98b5-85b54f0450d8.challenge.ctf.show/?img=ZmFjZS5wbmc= url后img为base64  ZmFjZS5wbmc=   =&gt; face.png 那可以直接读取源码，index.php,    index.php  =&gt; aW5kZXgucGhw 右键查看源代码即可看到   pd9开头为&lt;?php 直接解密即可  easy_flaskhttps://ctf.show/challenges#easy_flask-3971 打开题目连接是一个登录框，可以进行用户注册 可以参考这篇文章 https://blog.csdn.net/since_2020/article/details/119543172 随便一个用户注册，123/123登录上去，可以看到learn可以点击，查看到源代码 有一个app.secret_key =...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#web"><span class="toc-number">1.</span> <span class="toc-text">web</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-3(动态密钥)"/></a><div class="content"><a class="title" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)">哥斯拉二开从0到1-3(动态密钥)</a><time datetime="2024-12-24T05:38:47.000Z" title="发表于 2024-12-24 13:38:47">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)">哥斯拉二开从0到1-2(免杀)</a><time datetime="2024-11-18T01:55:05.000Z" title="发表于 2024-11-18 09:55:05">2024-11-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>

