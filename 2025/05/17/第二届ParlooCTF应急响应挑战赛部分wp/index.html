@@ -1,0 +1,543 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第二届ParlooCTF应急响应挑战赛部分wp | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="123456789Parloo杯 应急响应附件请选手提前下载，正式开赛提供解压密码以及文档文件总大小：70g，请选手下载完成后自行验证 hash 值，确保文件完整性百度网盘https://pan.baidu.com/s/1otqDnpKTOEsPZQiWSE8ECg?pwd=6666..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2025/05/17/%E7%AC%AC%E4%BA%8C%E5%B1%8AParlooCTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"SFZ331F775","apiKey":"d942c1c63cb7ca27d841499faf4a0ec8","indexName":"blogsearch","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第二届ParlooCTF应急响应挑战赛部分wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">第二届ParlooCTF应急响应挑战赛部分wp</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">第二届ParlooCTF应急响应挑战赛部分wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-17T02:28:18.000Z" title="发表于 2025-05-17 10:28:18">2025-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-13T01:21:35.752Z" title="更新于 2025-06-13 09:21:35">2025-06-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2,028</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Parloo杯 应急响应附件</span><br><span class="line">请选手提前下载，正式开赛提供解压密码以及文档</span><br><span class="line">文件总大小：70g，请选手下载完成后自行验证 hash 值，确保文件完整性</span><br><span class="line">百度网盘</span><br><span class="line">https://pan.baidu.com/s/1otqDnpKTOEsPZQiWSE8ECg?pwd=6666 提取码: 6666 </span><br><span class="line">夸克网盘</span><br><span class="line">https://pan.quark.cn/s/46653bd06cca</span><br><span class="line">123云盘</span><br><span class="line">https://www.123865.com/s/qDVvjv-zVBod 提取码:6666</span><br></pre></td></tr></table></figure>
+
+<p>应急响应2-1</p>
+<p>12人已解答</p>
+<p>海底小纵队404notfoundflag签到就完事</p>
+<p>题目描述</p>
+<p>提交堡垒机中留下的flag</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517105145418.png" alt="image-20250517105145418"></p>
+<p>amdin/Skills@2020,标签列表中即是</p>
+<p>应急响应2-2</p>
+<p>题目描述</p>
+<p>提交WAF中隐藏的flag</p>
+<p>分数</p>
+<p>99.5 分</p>
+<p>admin/VF6NXMs7</p>
+<p>应急响应2-3</p>
+<p>11人已解答</p>
+<p>test404notfoundflag0x7c00</p>
+<p>题目描述</p>
+<p>提交Mysql中留下的flag</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.20.101:20221/databases/mysql">http://192.168.20.101:20221/databases/mysql</a> </p>
+<p>mysql面板，</p>
+<p>64a44f8137/f8941f8eb7<img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517111325475.png" alt="image-20250517111325475"></p>
+<p>在面版中找了一圈发现没有，果断连上数据库看看</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517111500551.png" alt="image-20250517111500551"></p>
+<p>应急响应2-4</p>
+<p>6人已解答</p>
+<p>404notfoundflagtestctf小分队</p>
+<p>题目描述</p>
+<p>提交攻击者的攻击IP</p>
+<p>分数</p>
+<p>98.52 分</p>
+<p>c394c5de46/e36c392092</p>
+<p>palu{2025-05-07-07-47-41}</p>
+<p>07/May/2025:07:47:40 +0000</p>
+<p>2025-05-07T07:28:26</p>
+<p>palu{2025-5-7-07:28:26}</p>
+<p>palu{2025-05-07-07-28-26}</p>
+<p>2025-05-07T02:35:01</p>
+<p>2025-05-07T07:31:43.059741+00:00 ubuntu sshd[40637]: Failed password for invalid user admin from 192.168.20.108 port 33852 ssh2</p>
+<p>应急响应2-6</p>
+<p>提交web服务泄露的关键文件名</p>
+<p>应急响应2-7</p>
+<p>4人已解答</p>
+<p>404notfoundflag来参加比赛的无非都是在苟延残喘的吗喽罢了test</p>
+<p>题目描述</p>
+<p>题解泄露的邮箱地址</p>
+<p>分数</p>
+<p>99.01 分</p>
+<p>应急响应2-8</p>
+<p>6人已解答</p>
+<p>test来参加比赛的无非都是在苟延残喘的吗喽罢了江州猎手</p>
+<p>题目描述</p>
+<p>提交立足点服务器ip地址</p>
+<p>分数</p>
+<p>98.52 分</p>
+<p>palu{192.168.20.108}</p>
+<p>应急响应2-9</p>
+<p>parloo/parloo</p>
+<p>应急响应2-10</p>
+<p>提交攻击者留下的的文件内容作为flag提交</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517123701812.png" alt="image-20250517123701812"></p>
+<p>palu{hi_2025_parloo_is_hack}</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517124103880.png" alt="image-20250517124103880"></p>
+<p>cat /var/log/secure |grep 172.19.0.3|grep “Failed”</p>
+<p>应急响应2-11</p>
+<p>提交权限维持方法服务的名称</p>
+<p>应急响应2-12</p>
+<p>6人已解答</p>
+<p>来参加比赛的无非都是在苟延残喘的吗喽罢了天下之中二醒醒该搬砖了</p>
+<p>题目描述</p>
+<p>提交攻击者攻击恶意服务器连接地址作为flag提交</p>
+<p>分数</p>
+<p>98.52 分</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517144629463.png" alt="image-20250517144629463"></p>
+<p>192.168.20.103机器有一个aa文件，</p>
+<p>脱下来反编译即可</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517144700508.png" alt="image-20250517144700508"></p>
+<p>应急响应2-13</p>
+<p>找到系统中被劫持的程序程序名作为flag提交</p>
+<p>应急响应2-14</p>
+<p>5人已解答</p>
+<p>404notfoundflag来参加比赛的无非都是在苟延残喘的吗喽罢了0x7c00</p>
+<p>题目描述</p>
+<p>找到系统中存在信息泄露的服务运行端口作为flag提交</p>
+<p>分数</p>
+<p>98.77 分</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517142537978.png" alt="image-20250517142537978"></p>
+<p>8081</p>
+<p>应急响应2-15</p>
+<p>11人已解答</p>
+<p>天下之中二0x7c00云喵</p>
+<p>题目描述</p>
+<p>提交Parloo公司项目经理的身份证号作为flag提交</p>
+<p>分数</p>
+<p>97.32 分</p>
+<p>这里查看网站面板</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517161731618.png" alt="image-20250517161731618"></p>
+<p>可以看到身份证号</p>
+<p><a target="_blank" rel="noopener" href="http://192.168.20.103:8081/">http://192.168.20.103:8081/</a></p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517161803924.png" alt="image-20250517161803924"></p>
+<p>网站也能直接查看</p>
+<p>应急响应2-16</p>
+<p>4人已解答</p>
+<p>来参加比赛的无非都是在苟延残喘的吗喽罢了最喜欢可爱的富萝莉了0x7c00</p>
+<p>题目描述</p>
+<p>提交存在危险功能的操作系统路径作为flag提交。flag格式为palu{/xxx/xxx}</p>
+<p>分数</p>
+<p>99.01 分</p>
+<p>这里是危险功能，可以看到，<img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517155401279.png" alt="image-20250517155401279"></p>
+<p>waf中3000端口是有一个git管理器的，从日志中可以看到路径</p>
+<p>/admin/parloo</p>
+<p>为什么能判断恶意呢，我们可以登上git查看</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517155512041.png" alt="image-20250517155512041"></p>
+<p>在20.103的机器中有docker的gitea</p>
+<p>因为没有密码，mysql的hash解不出来，所以只能重置了</p>
+<p>重置的时候会显示没权限么，还是啥，意思就是不能root改密码，我们su git</p>
+<p>在改密码就行了。</p>
+<p>sudo gitea admin user change-password –username <a href="mailto:&#97;&#x64;&#x6d;&#105;&#x6e;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#97;&#x64;&#x6d;&#105;&#x6e;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a> –password 12345678</p>
+<p>登上去可以看到go的恶意代码</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517155722389.png" alt="image-20250517155722389"></p>
+<p>应急响应2-17</p>
+<p>提交进源机器中恶意程序的MD5作为flag进行提交。 flag格式为palu{MD5小写}</p>
+<p>应急响应2-18</p>
+<p>题目信息</p>
+<p>Write UP</p>
+<p>17人已解答</p>
+<p>提交攻击者留下的恶意账户名称md5后作为flag进行提交。 格式为palu{md5{xxxxx}}</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529115238121.png" alt="image-20250529115238121"></p>
+<p>palu{md5{hack}}</p>
+<p>应急响应2-19</p>
+<p>22人已解答</p>
+<p>江州猎手404notfoundflag驻场牛马</p>
+<p>题目描述</p>
+<p>提交内部群中留下的flag并提交</p>
+<p>分数</p>
+<p>94.79 分</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517171345253.png" alt="image-20250517171345253"></p>
+<p>palu机器2里有个群聊，直接看即可</p>
+<p>应急响应2-20</p>
+<p>请提交攻击者使用维护页面获取到的敏感内容作为flag进行提交</p>
+<p>在waf中可以可看到</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529140841717.png" alt="image-20250529140841717"></p>
+<p>上游地址是<a target="_blank" rel="noopener" href="http://192.168.20.103:8080/%EF%BC%8C">http://192.168.20.103:8080/，</a></p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529140928679.png" alt="image-20250529140928679">访问之，里面有路由，</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529140951433.png" alt="image-20250529140951433"></p>
+<p>那么就是他的服务维护界面了。</p>
+<p>在waf中并没有看到相关日志，那就要去其他地方找了。</p>
+<p>在29题中，有一个git源码管理的地方。</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529141307747.png" alt="image-20250529141307747"></p>
+<p>源代码给出了日志文件</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529151410471.png" alt="image-20250529151410471"></p>
+<p>就可以找到相关日志了</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529151550458.png" alt="image-20250529151550458"></p>
+<p>应急响应2-21</p>
+<p>提交获取敏感内容IP的第一次执行命令时间作为flag进行提交。flag格式为palu{xxxx-xx-xx:xx:xx:xx}</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529151709025.png" alt="image-20250529151709025"></p>
+<p>第一条便是了</p>
+<p>应急响应2-22</p>
+<p>提交攻击者使用的恶意ip和端口flag格式为palu{xx.xx.xx.xx:xxxx}</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529151748978.png" alt="image-20250529151748978"></p>
+<p>应急响应2-23</p>
+<p>提交重要数据的明文内容作为flag提交</p>
+<p>在git总有hack的代码</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250529153057549.png" alt="image-20250529153057549"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def custom_encrypt(text, key):</span><br><span class="line">    encrypted = []</span><br><span class="line">    key_bytes = [ord(c) for c in key]</span><br><span class="line"></span><br><span class="line">    for i, char in enumerate(text):</span><br><span class="line">        shifted = ord(char) + (i % 5 + 1)</span><br><span class="line"></span><br><span class="line">        xor_key = key_bytes[i % len(key_bytes)]</span><br><span class="line">        xored = shifted ^ xor_key</span><br><span class="line">        substituted = ((xored &amp; 0x0F) &lt;&lt; 4) | ((xored &amp; 0xF0) &gt;&gt; 4)</span><br><span class="line">        encrypted.append(f&quot;&#123;substituted:02x&#125;&quot;)</span><br><span class="line">    return &quot;&quot;.join(encrypted)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但似乎并没有给key</p>
+<p>c3a1c3c13e326020c3919093e1260525045e</p>
+<p>palu3中给了重要数据</p>
+<p>应急响应2-24</p>
+<p>提交恶意维权软件的名称作为flag进行提交</p>
+<p>应急响应2-32</p>
+<p>2人已解答</p>
+<p>test立水桥划水三队虚位以待</p>
+<p>题目描述</p>
+<p>提交攻击者留下的木马md5后作为flag进行提交</p>
+<p>分数</p>
+<p>102.49 分</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517150403071.png" alt="image-20250517150403071"></p>
+<p>应急响应2-36</p>
+<p>13人已解答</p>
+<p>0x7c00404notfoundflagGeek极安云科</p>
+<p>题目描述</p>
+<p>提交恶意用户的数量作为flag进行提交</p>
+<p>分数</p>
+<p>96.85 分</p>
+<p>在palu1 win上有100个</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517165541426.png" alt="image-20250517165541426"></p>
+<p>去掉本身的还有99个</p>
+<p>99</p>
+<p>应急响应2-38</p>
+<p>8人已解答</p>
+<p>0x7c00test404notfoundflag</p>
+<p>题目描述</p>
+<p>提交业务数据中攻击者留下的信息作为flag进行提交</p>
+<p>分数</p>
+<p>98.04 分</p>
+<p>在数据库中有个flag</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517155955071.png" alt="image-20250517155955071"></p>
+<p>应急响应2-39</p>
+<p>3人已解答</p>
+<p>test云喵立水桥划水三队</p>
+<p>题目描述</p>
+<p>提交私人git仓库中留下的内容作为flag进行提交</p>
+<p>分数</p>
+<p>100.25 分</p>
+<p>在仓库中有留下的信息</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517160515087-17474691153161.png" alt="image-20250517160515087"></p>
+<p>base64即可</p>
+<p>应急响应2-40</p>
+<p>8人已解答</p>
+<p>test0x7c00砥柱</p>
+<p>题目描述</p>
+<p>提交存在在mysql服务器中的恶意程序的MD5作为flag进行提交</p>
+<p>分数</p>
+<p>98.04 分</p>
+<p>登录mysql服务器，可以看history，</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517163114057.png" alt="image-20250517163114057"></p>
+<p>有个.a这个就是了</p>
+<p>应急响应2-41</p>
+<p>6人已解答</p>
+<p>test0x7c00砥柱</p>
+<p>题目描述</p>
+<p>提交恶意程序中模拟c2通信的函数名称作为flag进行提交</p>
+<p>分数</p>
+<p>98.52 分</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517164527582.png" alt="image-20250517164527582"></p>
+<p>把.a放ida里，可以看到相关操作</p>
+<p>simulate_network_communication</p>
+<p>应急响应2-42</p>
+<p>6人已解答</p>
+<p>test0x7c00砥柱</p>
+<p>题目描述</p>
+<p>提交恶意程序创建隐藏文件的名称作为flag提交</p>
+<p>分数</p>
+<p>98.52 分</p>
+<p>查看.a  里面创建了隐藏文件，</p>
+<p><img src="D:\myBlog\images\第二届ParlooCTF应急响应挑战赛部分wp\image-20250517163705840.png" alt="image-20250517163705840"></p>
+<p>就是这个了，</p>
+<p>应急响应2-43</p>
+<p>5人已解答</p>
+<p>0x7c00砥柱Geek极安云科</p>
+<p>题目描述</p>
+<p>提交恶意程序中模拟权限提升的函数作为flag进行提交</p>
+<p>分数</p>
+<p>98.77 分</p>
+<p>如上</p>
+<p>simulate_privilege_escalation</p>
+<p>sudo gitea admin user change-password –username <a href="mailto:&#x61;&#x64;&#109;&#105;&#x6e;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#109;">&#x61;&#x64;&#109;&#105;&#x6e;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#109;</a> –password 123456</p>
+<p>admin        <a href="mailto:&#x61;&#100;&#x6d;&#105;&#x6e;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#x6d;">&#x61;&#100;&#x6d;&#105;&#x6e;&#x40;&#113;&#x71;&#x2e;&#x63;&#111;&#x6d;</a>    0    enabled    8231accbd6c278c47f9863b6e4e119f8c6994372e513c32ad89cb98f1b193b4e1425029b61e495bdfd11b20ccec3555642a5    pbkdf2$50000$50    0    0    0        0            029a5e0a032aa4c25cd66fbbc5c117de    b171d280fe6055840eb8153178a81cbc    zh-CN        1746368544    1747159639    1747159579    1    -1    1    1    0    0    0    1    0    34be3c7c0655313619d9b91a7e6f1ee6<br>hack        <a href="mailto:&#104;&#97;&#x63;&#x6b;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;">&#104;&#97;&#x63;&#x6b;&#64;&#x71;&#113;&#x2e;&#x63;&#x6f;&#x6d;</a>    0    enabled    bfd762fa77fbe2cb55c81878fa343ed754464cf59a98d79e3baaea62d17f67ed57bb3404d2400f0c045d93588fc6f81ede73    pbkdf2$50000$50    0    0    0        0            cbbb72e134480ea1a2fd43cae954a282    6b887cf34c01f71b9c656a1c42d3c5cb    zh-CN        1747075693    1747075741    1747075693    1    -1    1    0    0    0    0    1    0    ca467a243edddda808379cd157864068<br>1        @qq.com    0    enabled    palu{crP1ZIVfqrkfdhGy}    argon2    0    0    0        0            aaaaaaaaaaaaaaa    aaaaaaaaaaaaaaa    zh-CN        1747075693    1747075693    1747075693    1    -1    1    0    0    0    0    1    0    aaaaaaaaaaaa</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2025/05/17/%E7%AC%AC%E4%BA%8C%E5%B1%8AParlooCTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/">https://bohemian.top/2025/05/17/第二届ParlooCTF应急响应挑战赛部分wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/website/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/14/lab8-wp/" title="lab8-wp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">lab8-wp</div></div><div class="info-2"><div class="info-item-1">  第一天开环境的时候，不知道为什么，开完环境，啥也没有，果断一下分配的ip的端口，扫到两个，直接三板斧无果。 第二天又去开环境，开完有个cms，我勒个豆，感情昨天扫了俩小时，打歪了。 开局一个zzzcms  开始搜索zzzcms历史漏洞，看了几个文章，发现很乱，不知道哪个可以。先找简单的试一下。 首先肯定是弱口令，试了几个无果，找个文章 https://www.cnblogs.com/0daybug/p/12565986.html，  泄露config.php，/admin/?module=templateedit&amp;type=/config/zzz_config.php  有数据库账号密码，  拿去连下，发现不行，做了限制，不允许的ip。这里也试了一下，不是admin的密码。那就只能换思路了。 又看到一篇大佬文章，https://www.laitimes.com/article/2t711_38slf.html，说存在注入，果断试一下。 12345678GET /search/ HTTP/1.1Host: 172.50.12.33User-Agent:...</div></div></div></a><a class="pagination-related" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开0"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">冰蝎二开0</div></div><div class="info-2"><div class="info-item-1">最近学习了一下冰蝎和哥斯拉的二开，但也只是学习了一丢丢皮毛，这里记录一下。 继上次二开哥斯拉后，已经过去了七个月了，项目收获了很多star，感谢大家。 上次我们已经对godzilla进行了二开，这次我们继续对冰蝎进行简单的二开。 准备工作首先致敬一下原版冰蝎，原版地址https://github.com/rebeyond/Behinder 我们这里使用的最新的[Behinder_v4.1【t00ls专版】...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">49</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开0">冰蝎二开0</a><time datetime="2025-06-19T08:52:04.000Z" title="发表于 2025-06-19 16:52:04">2025-06-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/17/%E7%AC%AC%E4%BA%8C%E5%B1%8AParlooCTF%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B%E9%83%A8%E5%88%86wp/" title="第二届ParlooCTF应急响应挑战赛部分wp">第二届ParlooCTF应急响应挑战赛部分wp</a><time datetime="2025-05-17T02:28:18.000Z" title="发表于 2025-05-17 10:28:18">2025-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/14/lab8-wp/" title="lab8-wp">lab8-wp</a><time datetime="2025-04-14T10:10:30.000Z" title="发表于 2025-04-14 18:10:30">2025-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
