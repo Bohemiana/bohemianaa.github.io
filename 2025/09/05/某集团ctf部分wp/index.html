@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>某集团ctf部分wp | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2025/09/05/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"SFZ331F775","apiKey":"d942c1c63cb7ca27d841499faf4a0ec8","indexName":"blogsearch","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '某集团ctf部分wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">某集团ctf部分wp</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">某集团ctf部分wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-05T03:47:43.000Z" title="发表于 2025-09-05 11:47:43">2025-09-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-05T07:10:00.876Z" title="更新于 2025-09-05 15:10:00">2025-09-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1,584</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>前两天，大师傅说，有个比赛让我看看，这里记录以下。</p>
+<h3 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h3><p>给到一个附件，<img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905115301596.png" alt="image-20250905115301596"></p>
+<p>观察流，看到有rememberMe=的流量，大概率是shiro反序列化了，上面也执行了一些命令，但是没有执行查看flag命令，这里了内存马<img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905115540587-17570445408121.png" alt="image-20250905115540587"></p>
+<p>且流量后面可以看到打了内存马，用了内存马，<img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905115643208-17570446036782.png" alt="image-20250905115643208"></p>
+<p>用大师傅的软件反编译，可以看到内存马的key，哥斯拉解密不需要pwd，只需要key即可，流量少的话直接厨子即可</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905120201484.png" alt="image-20250905120201484"></p>
+<p>看了很多流没看到flag，索性看一下请求包，发现有echo的语句。</p>
+<p>666c61677b63306e67723474735f74305f66316e645f7468335f7365637265745f6f465f6834636b33727d</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905135041776-17570514420363.png" alt="image-20250905135041776"></p>
+<h3 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h3><p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905135155707.png" alt="image-20250905135155707"></p>
+<p>最下面有一个flag。zip,直接导出即可。发现是假的<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905135233842.png" alt="image-20250905135233842"></p>
+<p>secret.zip是真的。</p>
+<h3 id="misc3-xiaozhang"><a href="#misc3-xiaozhang" class="headerlink" title="misc3 xiaozhang"></a>misc3 xiaozhang</h3><p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905140128431.png" alt="image-20250905140128431"></p>
+<p>看到</p>
+<p>POST /submit.php?id=1389642286 HTTP/1.1，大概率就是cs流量了，给了一个raw，那必是在其中找私钥了，</p>
+<p>网上找了一下，发现是原题，NepCTF2025 misc部分 客服小美<br>给一个大师傅的wp连接<code>https://blog.csdn.net/edigexiong/article/details/149725919</code></p>
+<p>这里就不在复现了。</p>
+<h3 id="misc4-比赛未作出"><a href="#misc4-比赛未作出" class="headerlink" title="misc4 比赛未作出"></a>misc4 比赛未作出</h3><p>开局给到一个流量包，<br>可以看到有很多流量<img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905140808425.png" alt="image-20250905140808425"></p>
+<p>随便点一个是sqlmap的注入流量</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905140737284.png" alt="image-20250905140737284"></p>
+<p>那就经典的misc日志分析提flag了，以往这里都是get流量，且最后用的=，用等于的话，盲注只需提最后一个字符即可，然后这个是&gt;，那么就需要具体的进行分析了，<br>id=1%27%20AND%20ORD%28MID%28%28SELECT%20IFNULL%28CAST%28table_name%20AS%20NCHAR%29%2C0x20%29%20FROM%20INFORMATION_SCHEMA.TABLES%20WHERE%20table_schema%3D0x73746f7265%20LIMIT%200%2C1%29%2C6%2C1%29%29%3E96%20AND%20%27SpqU%27%3D%27SpqU&amp;Submit=Submit</p>
+<p><code>id=1&#39; AND ORD(MID((SELECT IFNULL(CAST(table_name AS NCHAR),0x20) FROM INFORMATION_SCHEMA.TABLES WHERE table_schema=0x73746f7265 LIMIT 0,1),6,1))&gt;96 AND &#39;SpqU&#39;=&#39;SpqU&amp;Submit=Submit</code>,显卡这个流量,6,1))&gt;96 可以看到是用的大于，如果这里直接提最后一位会不准<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905141302196.png" alt="image-20250905141302196"></p>
+<p>为什么呢，因为sqlmap使用的是二分法，在判断的时候，会进行&gt;64 ， &gt; 96，  &gt; 104，这样判断，我们只知道他的上线而不知道他的下线，怎么判断&gt;64 是否对，在盲注里用字符串大小判断，其实也就是判断回显内容，所以这里，我们要进行判断回显内容，</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905141803402.png" alt="image-20250905141803402"></p>
+<p>根据回显内容，可以看到注入的是dvwa，dvwa在盲注时，用<pre>User ID exists in the database.</pre>判断<img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905141850145.png" alt="image-20250905141850145"></p>
+<p>如果正确，就是User ID exists in the database.，错误就是\t\t<pre>User ID is MISSING from the database.</pre>\r\n</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905142018658.png" alt="image-20250905142018658"></p>
+<p>这样的话，我们就可以进行区分了，下一步就是提取流量了，sqlmap跑的流量很多，一个一个看肯定不现实，所以用脚本提出了所有符合条件的，这里注意，先进行<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905142216400.png" alt="image-20250905142216400"></p>
+<p>http.response过滤，我们要根据回显包的内容，来提取请求报的内容，观察到，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905142317728.png" alt="image-20250905142317728"></p>
+<p>数据包回显在400左右时，回显内容是我们要到，取个中，小于700，</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 用法: ./extract.sh input.pcapng output.txt</span></span><br><span class="line"></span><br><span class="line">pcap_file=<span class="variable">$1</span></span><br><span class="line">out_file=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 临时文件保存 stream</span></span><br><span class="line">tmp_streams=$(mktemp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1) 提取所有 http.response 且包含 database. 的 stream</span></span><br><span class="line">tshark -r <span class="string">&quot;<span class="variable">$pcap_file</span>&quot;</span> -Y <span class="string">&#x27;http.response &amp;&amp; tcp.len &lt;700&#x27;</span> \</span><br><span class="line">  -T fields -e tcp.stream | sort -u &gt; <span class="string">&quot;<span class="variable">$tmp_streams</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) 根据 stream 号提取请求+响应</span></span><br><span class="line">&gt; <span class="string">&quot;<span class="variable">$out_file</span>&quot;</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> stream; <span class="keyword">do</span></span><br><span class="line">  tshark -r <span class="string">&quot;<span class="variable">$pcap_file</span>&quot;</span> -Y <span class="string">&quot;tcp.stream == <span class="variable">$stream</span>&quot;</span> \</span><br><span class="line">  -O http &gt;&gt; <span class="string">&quot;<span class="variable">$out_file</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span> &lt; <span class="string">&quot;<span class="variable">$tmp_streams</span>&quot;</span></span><br><span class="line"></span><br><span class="line">rm <span class="string">&quot;<span class="variable">$tmp_streams</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;结果已保存到 <span class="variable">$out_file</span>&quot;</span></span><br><span class="line">//./tiqu2.sh att.pcapng der.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后，找gpt写一个脚本，先把符合的流量的流序号进行拿出来，在进行把序号的流的全部内容导出。目前来看只能用这种方式提了，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905142642576.png" alt="image-20250905142642576"></p>
+<p>查看der 就是符合所有条件的数据包了，然后在进行正则匹配。只要payload即可。</p>
+<p><code>strings re.txt| grep &quot;id=1&quot; &gt; re222.txt</code></p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143029111.png" alt="image-20250905143029111"></p>
+<p>就会有一大堆这个数据，利用脚本提取即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> E</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;D:\\vscodework\\work\\za\\data3123.txt&quot;</span>,<span class="string">&quot;rb&quot;</span>)</span><br><span class="line"><span class="comment">#读取a.txt</span></span><br><span class="line">st = f.read().decode(<span class="string">&quot;utf-8&quot;</span>,<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line">st = urllib.parse.unquote(st)</span><br><span class="line">lis = re.findall(<span class="string">&quot;2,1\),([0-9]*),1\)\)&gt;([0-9]*)&quot;</span>,st)</span><br><span class="line"><span class="built_in">print</span>(lis)</span><br><span class="line">aa = [<span class="string">&#x27;&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>)]</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> lis:</span><br><span class="line">    <span class="comment">#(&#x27;1&#x27;, &#x27;33&#x27;), (&#x27;1&#x27;, &#x27;34&#x27;), (&#x27;1&#x27;, &#x27;35&#x27;), (&#x27;1&#x27;, &#x27;36&#x27;), (&#x27;1&#x27;, &#x27;37&#x27;), </span></span><br><span class="line">    <span class="comment">#将数字为1的索引一个个填充，正好到最后一个，换索引</span></span><br><span class="line">    aa[<span class="built_in">int</span>(t[<span class="number">0</span>])] = <span class="built_in">chr</span>(<span class="built_in">int</span>(t[<span class="number">1</span>])+<span class="number">1</span>)</span><br><span class="line">    <span class="comment">#print(aa)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> aa:</span><br><span class="line">    <span class="built_in">print</span>(i, end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里注意正则别写错了，每次的正则都不一样，`id=1’ AND ORD(MID((SELECT IFNULL(CAST(table_name AS NCHAR),0x20) FROM INFORMATION_SCHEMA.TABLES WHERE table_schema=0x73746f7265 LIMIT 0,1),6,1))&gt;96 AND ‘SpqU’=’SpqU&amp;Submit=Submit<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143255109.png" alt="image-20250905143255109"></p>
+<p>可以得到前半段，接下还有后半段，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143341125.png" alt="image-20250905143341125"></p>
+<p>在最下面，我们可以看到，有php的流量，大概率是木马的流量了，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143434964.png" alt="image-20250905143434964"></p>
+<p>这里可以看到有这个referer，这就是冰蝎的流量，我们在以前的二开冰蝎中分析过，冰蝎的作者，特意加的这个referer。那么接下来就是找马，找key，一般文件上传都是post传参，直接过滤post流量</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143619313.png" alt="image-20250905143619313"></p>
+<p>似乎并没有上传的流量，但是我们可以看到，icon流进行了上传<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143659689.png" alt="image-20250905143659689"></p>
+<p>这里追踪可以看到上传了zip，里面文件叫key，导出即可，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905143831081.png" alt="image-20250905143831081"></p>
+<p>发现要密码，再从流量包中找密码，试了在sql注入中的第一个字段，第二个字段都不对</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905144001164.png" alt="image-20250905144001164"></p>
+<p>无果，尝试爆破</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905144051624-17570544519704.png" alt="image-20250905144051624"></p>
+<p>发现为弱口令，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905144152229.png" alt="image-20250905144152229"></p>
+<p>这里，key为这个，可以发现，这不是冰蝎3的，冰蝎三是不能设置密码的，也就是这是设置的key，冰蝎3默认的key必须是16进制的，就是密码的md5的前十六位，必然不可以有wklkju，那么这里可能还要回去找🐎，没有马的话，只能猜了，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905144603630.png" alt="image-20250905144603630"></p>
+<p>这里直接猜，就是aes的马，直接上面的哥斯拉直接改下key即可</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905144843488.png" alt="image-20250905144843488"></p>
+<p>即可得到后半部分flag，拼接即可。</p>
+<h3 id="web1-比赛中未出"><a href="#web1-比赛中未出" class="headerlink" title="web1 比赛中未出"></a>web1 比赛中未出</h3><p>开局给到一个jar，说是shiro，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905145203274.png" alt="image-20250905145203274"></p>
+<p>反编译查看，存在接口，存在反序列化，因为是shiro，所以需要key，但全部jar看完为找到key。</p>
+<p>2022MTCTFWP-Web ezjava，考过，；绕过</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905145403044.png" alt="image-20250905145403044"></p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905145608886.png" alt="image-20250905145608886"></p>
+<p>这个漏洞可以绕过。<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905145701457.png" alt="image-20250905145701457"></p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905145710414.png" alt="image-20250905145710414"></p>
+<p>接受input，<br><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905150322699-17570558030555.png" alt="image-20250905150322699"></p>
+<p>这里用大师傅的工具直接生成链子，生成回显的，记得要urlencode，在bp中发包。</p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905150428760.png" alt="image-20250905150428760"></p>
+<p><img src="/images/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/image-20250905150457326.png" alt="image-20250905150457326"></p>
+<p>head执行命令即可。感谢<code>A_llen</code>帮助。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>emmm 太菜了<br>一直在路上</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2025/09/05/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/">https://bohemian.top/2025/09/05/某集团ctf部分wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ctf/">ctf</a></div><div class="post-share"><div class="social-share" data-image="/images/website/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/07/26/2025%E5%B9%B4Solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%AC%E7%9B%8A%E6%9C%88%E8%B5%9B-7%E6%9C%88-%E9%83%A8%E5%88%86wp/" title="2025年Solar应急响应公益月赛-7月-部分wp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2025年Solar应急响应公益月赛-7月-部分wp</div></div><div class="info-2"><div class="info-item-1">【任务1】应急大师题目描述 请提交隐藏用户的名称？  创建用户账户的事件（Event ID: 4720） 4720，直接搜4720 及一个包，solar$ 【任务2】应急大师 91人已解答 ikunikeceiLucifrix 题目描述 请提交黑客的IP地址？ 分数 55.19 分 这里地址为，他登陆过受害机器，由于网站没有日志，就猜这个地址 【任务3】应急大师 96人已解答 StravvberryGourdboychaiLucifrix 题目描述 请提交黑客的一句话木马密码？ 分数 69.14 分 upload下面就是  【任务4】应急大师 89人已解答 StravvberryGourdGuokeHHHXXX 题目描述 请提交黑客创建隐藏用户的TargetSid（目标账户安全ID）？ 分数 70.53 分刚刚创建用户的时候已经知道  【任务5】应急大师 82人已解答 StravvberryGourdHHHXXXLucifrix 题目描述 请提交黑客创建隐藏账户的事件（格式为 年/月/日 时:分:秒）？ 分数 72.02...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/09/28/CTFS/2023%E6%B3%B7%E5%89%91%E6%9D%AFwp/" title="2023longjianbeiwp"><img class="cover" src="/images/my2021/xingkong.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-28</div><div class="info-item-2">2023longjianbeiwp</div></div><div class="info-2"><div class="info-item-1">没了tcp.flags.syn==1 and tcp.flags.ack==1 1234567891011121314151617181920212223242526  from Crypto.Cipher import AESimport zlibkey = b&#x27;748007e861908c03&#x27;hex_string = &#x27;b5c1fadbb7e28da08572486d8e6933a84c5144463f178b352c5bda71cff4e8ffe919f0f115a528ebfc4a79b03aea0e31cb22d460ada998c7657d4d0f1be71ffa&#x27;byte_data = bytes.fromhex(hex_string)  cipher = AES.new(key, AES.MODE_ECB)decrypted_data = cipher.decrypt(byte_data)    s = zlib.decompress(decrypted_data,16 + zlib.MAX_WBITS)sa=...</div></div></div></a><a class="pagination-related" href="/2023/08/29/CTFS/2022Space-Heroes-CTF/" title="2022Space Heroes CTF"><img class="cover" src="/images/my2021/xingkong.jpeg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-29</div><div class="info-item-2">2022Space Heroes CTF</div></div><div class="info-2"><div class="info-item-1">webR2D2提示robot机器人，直接访问robots.txt即可  Space Traveler前端验证，直接右键源代码， 1var...</div></div></div></a><a class="pagination-related" href="/2022/09/29/CTFS/2022%E5%B9%B4%E5%A4%A9%E6%B4%A5%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%A4%A7%E8%B5%9B%E9%83%A8%E5%88%86wp/" title="2022年天津市大学生信息安全网络攻防大赛部分wp"><img class="cover" src="/images/2022%E5%B9%B4%E5%A4%A9%E6%B4%A5%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%A4%A7%E8%B5%9B%E9%83%A8%E5%88%86wp/640.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-29</div><div class="info-item-2">2022年天津市大学生信息安全网络攻防大赛部分wp</div></div><div class="info-2"><div class="info-item-1">本来想不记录了 ，也都是网上能搜到的题，最后想了一下还是记录一下吧 理论题没啥意思 web最好的语言300pt (已做出) 考点 is_number array_search() 弱类型比较赛题地址http://ctftime1.usaas.net/web/good/index.php 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&lt;?phpshow_source(__FILE__);$a=0;$b=0;$c=0;$d=0;if (isset($_GET[&#x27;x1&#x27;]))&#123;        $x1 = $_GET[&#x27;x1&#x27;];        $x1==&quot;1&quot;?die(&quot;ha?&quot;):NULL;        switch ($x1)        &#123;        case 0:        case 1:                $a=1;    ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc1"><span class="toc-number">1.</span> <span class="toc-text">misc1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc2"><span class="toc-number">2.</span> <span class="toc-text">misc2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc3-xiaozhang"><span class="toc-number">3.</span> <span class="toc-text">misc3 xiaozhang</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misc4-%E6%AF%94%E8%B5%9B%E6%9C%AA%E4%BD%9C%E5%87%BA"><span class="toc-number">4.</span> <span class="toc-text">misc4 比赛未作出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web1-%E6%AF%94%E8%B5%9B%E4%B8%AD%E6%9C%AA%E5%87%BA"><span class="toc-number">5.</span> <span class="toc-text">web1 比赛中未出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/05/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/" title="某集团ctf部分wp">某集团ctf部分wp</a><time datetime="2025-09-05T03:47:43.000Z" title="发表于 2025-09-05 11:47:43">2025-09-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/26/2025%E5%B9%B4Solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%AC%E7%9B%8A%E6%9C%88%E8%B5%9B-7%E6%9C%88-%E9%83%A8%E5%88%86wp/" title="2025年Solar应急响应公益月赛-7月-部分wp">2025年Solar应急响应公益月赛-7月-部分wp</a><time datetime="2025-07-26T07:43:13.000Z" title="发表于 2025-07-26 15:43:13">2025-07-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/07/06/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="冰蝎二开从0到1-2(免杀)"><img src="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="冰蝎二开从0到1-2(免杀)"/></a><div class="content"><a class="title" href="/2025/07/06/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2/" title="冰蝎二开从0到1-2(免杀)">冰蝎二开从0到1-2(免杀)</a><time datetime="2025-07-05T18:39:55.000Z" title="发表于 2025-07-06 02:39:55">2025-07-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开从0到1"><img src="/images/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20250706005428414.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="冰蝎二开从0到1"/></a><div class="content"><a class="title" href="/2025/06/19/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80v1-0/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/" title="冰蝎二开从0到1">冰蝎二开从0到1</a><time datetime="2025-06-19T08:52:04.000Z" title="发表于 2025-06-19 16:52:04">2025-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)"><img src="/images/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01/image-20241114102655833.png" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="哥斯拉二开从0到1-6(jspx免杀)"/></a><div class="content"><a class="title" href="/2025/02/06/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80v1-0/%E5%93%A5%E6%96%AF%E6%8B%89%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-6/" title="哥斯拉二开从0到1-6(jspx免杀)">哥斯拉二开从0到1-6(jspx免杀)</a><time datetime="2025-02-06T02:21:52.000Z" title="发表于 2025-02-06 10:21:52">2025-02-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
